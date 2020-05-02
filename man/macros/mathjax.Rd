@@ -1,3 +1,4 @@
+\newcommand{\loadmathjaxcdn}{\if{html}{\out{<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">></script>}}}
 \newcommand{\loadmathjax}{\if{html}{\out{<script id="MathJax-script" async src="../../mathjaxr/doc/mathjax/es5/tex-mml-chtml.js"></script>}}}
-\newcommand{\mjeqn}{\ifelse{latex}{\out{$#1$}}{\ifelse{html}{\out{\(#1\)}}{#2}}}
-\newcommand{\mjdeqn}{\ifelse{latex}{\out{$$#1$$}}{\ifelse{html}{\out{\[#1\]}}{#2}}}
+\newcommand{\mjeqn}{\ifelse{latex}{\eqn{#1}}{\ifelse{html}{\out{\(#1\)}}{\eqn{#2}}}}
+\newcommand{\mjdeqn}{\ifelse{latex}{\deqn{#1}}{\ifelse{html}{\out{\[#1\]}}{\deqn{#2}}}}
