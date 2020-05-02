@@ -4,7 +4,7 @@ Date: 2020-05-02
 Title: Using Mathjax in Rd Files
 Authors@R: person(given = "Wolfgang", family = "Viechtbauer", role = c("aut","cre"), email = "wvb@wvbauer.com", comment = c(ORCID = "0000-0003-3463-4063"))
 Description: The package provides MathJax and macros to enable its use within Rd files for rendering equations in the html help files.
-License: GPL (>=2)
+License: GPL-3
 Encoding: UTF-8
 URL: https://github.com/wviechtb/mathjaxr
 BugReports: https://github.com/wviechtb/mathjaxr/issues

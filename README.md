@@ -32,4 +32,4 @@ remotes::install_github("wviechtb/mathjaxr")
 
 ## Meta
 
-The `mathjaxr` package is licensed under the [GNU General Public License Version 2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt). To report any issues or bugs, please go [here](https://github.com/wviechtb/mathjaxr/issues).
+The `mathjaxr` package is licensed under the [GNU General Public License Version 3](https://www.gnu.org/licenses/gpl-3.0.txt), while MathJax itself is licensed under the [Apache License, Version 2.0.](https://github.com/mathjax/MathJax/blob/master/LICENSE). To report any issues or bugs, please go [here](https://github.com/wviechtb/mathjaxr/issues).
