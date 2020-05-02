@@ -1,0 +1,35 @@
+template:
+  params:
+    bootswatch: cosmo
+
+home:
+  links:
+  - text: GitHub Repo
+    href: https://github.com/wviechtb/mathjaxr
+  - text: Author Website(s)
+    href: http://www.wvbauer.com/
+
+figures:
+  dev: grDevices::png
+  dpi: 96
+  dev.args: []
+  fig.ext: png
+  fig.width: 8
+  fig.height: ~
+  fig.retina: 2
+  fig.asp: 0.8
+
+navbar:
+  title: "mathjaxr"
+  left:
+    - icon: fa-home fa-lg
+      href: index.html
+    - text: Intro
+      href: reference/mathjaxr-package.html
+    - text: "Changelog"
+      href: news/index.html
+  right:
+   - icon: fa-twitter
+     href: https://twitter.com/wviechtb
+   - icon: fa-github
+     href: https://github.com/wviechtb/mathjaxr
