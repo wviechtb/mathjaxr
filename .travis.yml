@@ -1,0 +1,7 @@
+language: r
+cache: packages
+r: release
+dist: xenial
+
+#after_success:
+#  - travis_wait 60 Rscript -e 'covr::codecov()'
