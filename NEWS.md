@@ -1,4 +1,4 @@
-# mathjaxr 0.8-2 (2020-05-06)
+# mathjaxr 0.8-3 (2020-05-06)
 
 * simplified `ifelse` logic for the `\mjeqn` and `\mjdeqn` macros
 
