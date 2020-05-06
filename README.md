@@ -3,7 +3,7 @@ mathjaxr: Using Mathjax in Rd Files
 
 [![Build Status](https://travis-ci.org/wviechtb/mathjaxr.svg?branch=master)](https://travis-ci.org/wviechtb/mathjaxr)
 ![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-0.8--1-brightgreen.svg)
+![devel Version](https://img.shields.io/badge/devel-0.8--2-brightgreen.svg)
 
 ## Description
 
@@ -22,6 +22,10 @@ An inline equation can then be added with the `\mjeqn{latex}{ascii}` macro, with
 The Javascript code for MathJax is contained in this package. If a user viewing a help page has `mathjaxr` installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js. To force use of the CDN site, the user can set the environment variable `MATHJAXR.USECDN` to any non-blank value.
 
 Package authors who want to ensure that users can see the rendered equations in the HTML help pages also when offline should add `mathjaxr` to `Imports`.
+
+## Issues
+
+Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. Adding space around these symbols should solve this problem (i.e., instead of writing `\mjseqn{i<j}`, write `\mjseqn{i < j}`). Do not use the `\lt` and `\gt` macros provided by MathJax as these will cause problems when rendering the PDF help pages.
 
 ## Installation
 
