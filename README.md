@@ -3,7 +3,7 @@ mathjaxr: Using Mathjax in Rd Files
 
 [![Build Status](https://travis-ci.org/wviechtb/mathjaxr.svg?branch=master)](https://travis-ci.org/wviechtb/mathjaxr)
 ![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-0.8--4-brightgreen.svg)
+![devel Version](https://img.shields.io/badge/devel-0.9--0-brightgreen.svg)
 
 ## Description
 
