@@ -3,7 +3,7 @@ mathjaxr: Using Mathjax in Rd Files
 
 [![Build Status](https://travis-ci.org/wviechtb/mathjaxr.svg?branch=master)](https://travis-ci.org/wviechtb/mathjaxr)
 ![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-0.8--3-brightgreen.svg)
+![devel Version](https://img.shields.io/badge/devel-0.8--4-brightgreen.svg)
 
 ## Description
 
@@ -25,7 +25,7 @@ Package authors who want to ensure that users can see the rendered equations in 
 
 ## Issues
 
-Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. Adding space around these symbols should solve this problem (i.e., instead of writing `\mjseqn{i<j}`, write `\mjseqn{i < j}`). Do not use the `\lt` and `\gt` macros provided by MathJax as these will cause problems when rendering the PDF help pages.
+Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. Adding space around these symbols should solve this problem (e.g., instead of writing `\mjseqn{i<j}`, write `\mjseqn{i < j}`). Do not use the `\lt` and `\gt` macros provided by MathJax as these will cause problems when rendering the PDF help pages. Also, while MathJax supports a large number of LaTeX commands, only the math-mode commands are implemented. See [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) for a list of the supported commands.
 
 ## Installation
 

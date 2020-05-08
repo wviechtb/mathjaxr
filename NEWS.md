@@ -1,4 +1,6 @@
-# mathjaxr 0.8-3 (2020-05-06)
+# mathjaxr 0.8-4 (2020-05-08)
+
+* added note under 'Issues' about the supported LaTeX commands
 
 * simplified `ifelse` logic for the `\mjeqn` and `\mjdeqn` macros
 
