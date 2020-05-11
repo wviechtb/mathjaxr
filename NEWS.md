@@ -1,4 +1,4 @@
-# mathjaxr 0.9-0 (2020-05-08)
+# mathjaxr 0.9-1 (2020-05-11)
 
 * added note under 'Issues' about the supported LaTeX commands
 

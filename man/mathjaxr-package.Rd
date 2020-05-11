@@ -23,7 +23,11 @@
    Package authors who want to ensure that users can see the rendered equations in the HTML help pages also when offline should add \pkg{mathjaxr} to \verb{Imports}.
 }
 \section{Issues}{
-   Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See \href{https://docs.mathjax.org/en/latest/input/tex/html.html}{here} for further details. Adding space around these symbols should solve this problem (e.g., instead of writing \code{\\mjseqn{i<j}}, write \code{\\mjseqn{i < j}}). Do not use the \code{\\lt} and \code{\\gt} macros provided by MathJax as these will cause problems when rendering the PDF help pages. Also, while MathJax supports a large number of \LaTeX commands, only the math-mode commands are implemented. See \href{https://docs.mathjax.org/en/latest/input/tex/macros/index.html}{here} for a list of the supported commands.
+   Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See \href{https://docs.mathjax.org/en/latest/input/tex/html.html}{here} for further details. Adding space around these symbols should solve this problem (e.g., instead of writing \code{\\mjseqn{i<j}}, write \code{\\mjseqn{i < j}}). Do not use the \code{\\lt} and \code{\\gt} macros provided by MathJax as these will cause problems when rendering the PDF help pages.
+
+   Curly braces/brackets in equations also cause problems. Using \code{\\lbrace} and \code{\\rbrace} (possibly in combination with \code{\\left} and \code{\\right} to make them sufficiently large) is a solution (e.g., \code{\\mjseqn{\\left\\lbrace \\ldots \\right\\rbrace}} should render nicely in the HTML and the PDF help pages).
+
+   Also, while MathJax supports a large number of \LaTeX commands, only the math-mode commands are implemented. See \href{https://docs.mathjax.org/en/latest/input/tex/macros/index.html}{here} for a list of the supported commands.
 }
 \section{Example}{
    The probability density function of a normal distribution is given by \mjdeqn{f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2},}{f(x) = 1/(sqrt(2 pi) sigma) e^-((x - mu)^2/(2 sigma^2)),} where \mjseqn{\mu} denotes the mean of the distribution and \mjseqn{\sigma} its standard deviation.
