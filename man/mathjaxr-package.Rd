@@ -25,7 +25,7 @@
 \section{Issues}{
    Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See \href{https://docs.mathjax.org/en/latest/input/tex/html.html}{here} for further details. Adding space around these symbols should solve this problem (e.g., instead of writing \code{\\mjseqn{i<j}}, write \code{\\mjseqn{i < j}}). Do not use the \code{\\lt} and \code{\\gt} macros provided by MathJax as these will cause problems when rendering the PDF help pages.
 
-   Curly braces/brackets in equations also cause problems. Using \code{\\lbrace} and \code{\\rbrace} (possibly in combination with \code{\\left} and \code{\\right} to make them sufficiently large) is a solution (e.g., \code{\\mjseqn{\\left\\lbrace \\ldots \\right\\rbrace}} should render nicely in the HTML and the PDF help pages).
+   Curly braces/brackets in equations also cause problems. Using \code{\\lbrace} and \code{\\rbrace} (possibly in combination with \code{\\left} and \code{\\right} to make them sufficiently large) is a solution (e.g., \code{\\mjseqn{\\left\\lbrace \\ldots \\right\\rbrace}} should render nicely in the HTML and PDF help pages).
 
    Also, while MathJax supports a large number of \LaTeX commands, only the math-mode commands are implemented. See \href{https://docs.mathjax.org/en/latest/input/tex/macros/index.html}{here} for a list of the supported commands.
 }
