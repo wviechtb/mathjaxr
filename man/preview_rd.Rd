@@ -16,6 +16,8 @@ preview_rd(Rdfile, view=TRUE)
 
    By default (i.e., when \code{view=TRUE}), the HTML page will be opened in the browser with the \code{\link{browseURL}} function. When making further changes to the Rd file, reopening the page each time \code{preview_rd()} is called is inconvenient as this will usually open up a new tab in the browser. Setting \code{view=FALSE} prevents this. Reloading the page in the open tab should then reflect the updates.
 
+   In RStudio, the generated HTML version will be displayed in the \sQuote{Viewer} pane and the \code{view} argument is then irrelevant.
+
    Due to some limitations as to how MathJax can be loaded via the \pkg{mathjaxr} package, MathJax must be loaded via the CDN. Hence, rendering of equations will only work with an active internet connection.
 }
 \author{

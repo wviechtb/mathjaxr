@@ -46,7 +46,13 @@ preview_rd <- function(Rdfile, view = TRUE) {
       stylesheet = system.file("html/R.css", package = "mathjaxr"),
       permissive = TRUE)
 
-   if (view)
-      utils::browseURL(html)
+   # use viewer if available (as in RStudio); otherwise use browseURL()
+   viewer <- getOption("viewer")
+   if (!is.null(viewer)) {
+      viewer(html)
+   } else {
+      if (view)
+         utils::browseURL(html)
+   }
 
 }
