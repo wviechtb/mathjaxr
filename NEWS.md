@@ -1,4 +1,6 @@
-# mathjaxr 0.9-2 (2020-05-12)
+# mathjaxr 0.9-3 (2020-05-13)
+
+* added `preview_rd()` function
 
 * added note under 'Issues' about the supported LaTeX commands
 
