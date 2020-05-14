@@ -13,7 +13,7 @@
       \item add \verb{mathjaxr} to \verb{RdMacros} in the \file{DESCRIPTION} file of their package (or add \verb{RdMacros: mathjaxr} if the \file{DESCRIPTION} file does not yet contain a \verb{RdMacros} entry)
    }
 
-   One can then enable the use of MathJax by calling the \code{\\loadmathjax} macro (that is provided by the \pkg{mathjaxr} package) within the \code{\\description{}} section of an \code{.Rd} file.
+   One can then enable the use of MathJax by calling the \code{\\loadmathjax} macro (that is provided by the \pkg{mathjaxr} package) within the \code{\\description{}} section of an Rd file.
 
    An inline equation can then be added with the \code{\\mjeqn{latex}{ascii}} macro, with the \LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain text help). With the \code{\\mjdeqn{latex}{ascii}} macro, one can add \sQuote{displayed equations} (as in \LaTeX's \code{displaymath} environment). Single argument versions of these macros, namely \code{\\mjseqn{latexascii}} and \code{\\mjsdeqn{latexascii}}, are also available.
 }
@@ -31,6 +31,9 @@
 }
 \section{Example}{
    The probability density function of a normal distribution is given by \mjdeqn{f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2},}{f(x) = 1/(sqrt(2 pi) sigma) e^-((x - mu)^2/(2 sigma^2)),} where \mjseqn{\mu} denotes the mean of the distribution and \mjseqn{\sigma} its standard deviation.
+}
+\seealso{
+   \code{\link{preview_rd}}
 }
 \author{
    Wolfgang Viechtbauer \email{wvb@wvbauer.com} \url{http://www.wvbauer.com/}

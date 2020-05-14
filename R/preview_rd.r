@@ -24,17 +24,16 @@ preview_rd <- function(Rdfile, view = TRUE) {
       Rdfile.loc <- paste0("man/", Rdfile, ifelse(noext, ".rd", ""))
    } else if (paste0(Rdfile, ifelse(noext, ".Rd", "")) %in% Rdfiles) {
       Rdfile.loc <- paste0(Rdfile, ifelse(noext, ".Rd", ""))
-      in.man <- FALSE
    } else if (paste0(Rdfile, ifelse(noext, ".rd", "")) %in% rdfiles) {
       Rdfile.loc <- paste0(Rdfile, ifelse(noext, ".rd", ""))
-      in.man <- FALSE
    } else {
-      stop(paste0("Cannot find the specified Rdfile in the current directory or in the 'man' subdirectory."))
+      stop(paste0("Cannot find the specified Rd file in the current directory or in the 'man' subdirectory."))
    }
 
    # get environments with the mathjaxr and system macros and 'merge' them
-   env.mathjaxr <- tools::loadPkgRdMacros(system.file("", package = "mathjaxr"))
-   env.system <- tools::loadRdMacros(file.path(R.home("share"), "Rd", "macros", "system.Rd"))
+   # (might also want to check if package itself has/loads macros and merge these in as well)
+   env.mathjaxr <- tools::loadPkgRdMacros(system.file(package = "mathjaxr"))
+   env.system   <- tools::loadRdMacros(file.path(R.home("share"), "Rd", "macros", "system.Rd"))
    parent.env(env.mathjaxr) <- env.system
 
    # generate name of temp file
