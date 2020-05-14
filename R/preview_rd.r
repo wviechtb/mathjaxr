@@ -2,9 +2,9 @@ preview_rd <- function(Rdfile, view = TRUE) {
 
    # need to load MathJax from the CDN since the \mathjaxr macro
    # won't be able to load MathJax from the local installation
-   mjcdn <- Sys.getenv("MATHJAXR.USECDN")
-   on.exit(Sys.setenv(MATHJAXR.USECDN = mjcdn))
-   Sys.setenv(MATHJAXR.USECDN = "TRUE")
+   mjcdn <- Sys.getenv("MATHJAXR_USECDN")
+   on.exit(Sys.setenv(MATHJAXR_USECDN = mjcdn))
+   Sys.setenv(MATHJAXR_USECDN = "TRUE")
 
    # list all .Rd and .rd files in the current dir
    Rdfiles <- list.files(pattern = ".*\\.Rd$")
@@ -30,18 +30,17 @@ preview_rd <- function(Rdfile, view = TRUE) {
       stop(paste0("Cannot find the specified Rd file in the current directory or in the 'man' subdirectory."))
    }
 
-   # get environments with the mathjaxr and system macros and 'merge' them
+   # get environment with the mathjaxr and system macros
    # (might also want to check if package itself has/loads macros and merge these in as well)
-   env.mathjaxr <- tools::loadPkgRdMacros(system.file(package = "mathjaxr"))
-   env.system   <- tools::loadRdMacros(file.path(R.home("share"), "Rd", "macros", "system.Rd"))
-   parent.env(env.mathjaxr) <- env.system
+   macros <- tools::loadPkgRdMacros(system.file(package = "mathjaxr"))
+   macros <- tools::loadRdMacros(file.path(R.home("share"), "Rd", "macros", "system.Rd"), macros = macros)
 
    # generate name of temp file
    outfile <- paste0(file.path(tempdir(), Rdfile), ".html")
 
    # convert Rd to HTML
    html <- tools::Rd2HTML(Rdfile.loc, outfile,
-      macros = env.mathjaxr,
+      macros = macros,
       stylesheet = system.file("html/R.css", package = "mathjaxr"),
       permissive = TRUE)
 

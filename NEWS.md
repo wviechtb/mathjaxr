@@ -1,4 +1,6 @@
-# mathjaxr 0.9-5 (2020-05-14)
+# mathjaxr 0.9-6 (2020-05-14)
+
+* changed name of environment variable from `MATHJAXR.USECDN` to `MATHJAXR_USECDN`
 
 * added `preview_rd()` function
 
