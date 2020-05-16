@@ -13,7 +13,7 @@
       \item add \verb{mathjaxr} to \verb{RdMacros} in the \file{DESCRIPTION} file of their package (or add \verb{RdMacros: mathjaxr} if the \file{DESCRIPTION} file does not yet contain a \verb{RdMacros} entry)
    }
 
-   One can then enable the use of MathJax by calling the \code{\\loadmathjax} macro (that is provided by the \pkg{mathjaxr} package) within the \code{\\description{}} section of an Rd file.
+   One can then enable the use of MathJax by calling the \code{\\loadmathjax} macro (that is provided by the \pkg{mathjaxr} package) within the \code{\\description{}} section of an Rd file (or within the \code{@description} section if you use \pkg{roxygen2}).
 
    An inline equation can then be added with the \code{\\mjeqn{latex}{ascii}} macro, with the \LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain text help). With the \code{\\mjdeqn{latex}{ascii}} macro, one can add \sQuote{displayed equations} (as in \LaTeX's \code{displaymath} environment). Single argument versions of these macros, namely \code{\\mjseqn{latexascii}} and \code{\\mjsdeqn{latexascii}}, are also available.
 }
