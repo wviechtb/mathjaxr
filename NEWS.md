@@ -1,4 +1,4 @@
-# mathjaxr 0.9-7 (2020-05-16)
+# mathjaxr 0.9-8 (2020-05-16)
 
 * environment variable `MATHJAXR_CDN` can now be used to specify an alternative URL for a CDN
 
