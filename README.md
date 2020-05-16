@@ -21,7 +21,7 @@ An inline equation can then be added with the `\mjeqn{latex}{ascii}` macro, with
 
 The Javascript code for MathJax is contained in this package. If a user viewing a help page has `mathjaxr` installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js. To force use of the CDN site, the user can set the environment variable `MATHJAXR_USECDN` to any non-blank value. The URL for a diferent CDN can be specified via the environment variable `MATHJAXR_CDN`.
 
-Package authors who want to ensure that users can see the rendered equations in the HTML help pages also when offline should add `mathjaxr` to `Imports`.
+Package authors who want to ensure that users can see the rendered equations in the HTML help pages also when offline should add `mathjaxr` to `Imports`. To avoid the note from `R CMD check` that `All declared Imports should be used`, one can add `import(mathjaxr)` to `NAMESPACE`.
 
 ## Issues
 
