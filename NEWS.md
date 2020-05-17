@@ -1,12 +1,12 @@
-# mathjaxr 0.9-8 (2020-05-16)
+# mathjaxr 0.9-9 (2020-05-18)
+
+* added `preview_rd()` function
 
 * environment variable `MATHJAXR_CDN` can now be used to specify an alternative URL for a CDN
 
 * changed name of environment variable from `MATHJAXR.USECDN` to `MATHJAXR_USECDN`
 
-* added `preview_rd()` function
-
-* added note under 'Issues' about the supported LaTeX commands
+* added information under 'Issues' about curly braces/brackets and supported LaTeX commands
 
 # mathjaxr 0.8-3 (2020-05-08)
 
