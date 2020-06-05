@@ -1,4 +1,6 @@
-# mathjaxr 0.9-11 (2020-06-05)
+# mathjaxr 1.0-0 (2020-06-05)
+
+* added `\mjteqn` and `\mjtdeqn` macros (triple-argument versions)
 
 * added `preview_rd()` function
 
@@ -6,7 +8,7 @@
 
 * changed name of environment variable from `MATHJAXR.USECDN` to `MATHJAXR_USECDN`
 
-* added information under 'Issues' about curly braces/brackets and supported LaTeX commands
+* expanded information provided under 'Issues'
 
 # mathjaxr 0.8-3 (2020-05-08)
 

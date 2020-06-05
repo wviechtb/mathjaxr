@@ -1,5 +1,5 @@
 Package: mathjaxr
-Version: 0.9-11
+Version: 1.0-0
 Date: 2020-06-05
 Title: Using 'Mathjax' in Rd Files
 Authors@R: person(given = "Wolfgang", family = "Viechtbauer", role = c("aut","cre"), email = "wvb@wvbauer.com", comment = c(ORCID = "0000-0003-3463-4063"))
