@@ -1,4 +1,4 @@
-# mathjaxr 0.9-9 (2020-05-18)
+# mathjaxr 0.9-10 (2020-06-05)
 
 * added `preview_rd()` function
 

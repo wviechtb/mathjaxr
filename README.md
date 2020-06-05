@@ -3,7 +3,7 @@ mathjaxr: Using Mathjax in Rd Files
 
 [![Build Status](https://travis-ci.org/wviechtb/mathjaxr.svg?branch=master)](https://travis-ci.org/wviechtb/mathjaxr)
 [![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)](https://CRAN.R-project.org/package=mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-0.9--9-brightgreen.svg)
+![devel Version](https://img.shields.io/badge/devel-0.9--10-brightgreen.svg)
 
 ## Description
 
@@ -15,7 +15,9 @@ The `mathjaxr` package allows for easy inclusion of [MathJax](https://www.mathja
 
 One can then enable the use of MathJax by calling the `\loadmathjax` macro (that is provided by the `mathjaxr` package) within the `\description{}` section of an Rd file (or within the `@description` section if you use `roxygen2`).
 
-An inline equation can then be added with the `\mjeqn{latex}{ascii}` macro, with the LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain text help). With the `\mjdeqn{latex}{ascii}` macro, one can add 'displayed equations' (as in LaTeX's `displaymath` environment). Single argument versions of these macros, namely `\mjseqn{latexascii}` and `\mjsdeqn{latexascii}`, are also available.
+An inline equation can then be added with the `\mjeqn{latex}{ascii}` macro, with the LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain text help). With the `\mjdeqn{latex}{ascii}` macro, one can add 'displayed equations' (as in LaTeX's `displaymath` environment).
+
+Single argument versions of these macros, namely `\mjseqn{latexascii}` and `\mjsdeqn{latexascii}`, are also available. For the rare case that one must specify different LaTeX commands for the PDF and HTML pages, there are also triple argument versions of these macros, namely `\mjteqn{pdflatex}{htmllatex}{ascii}` and `\mjtdeqn{pdflatex}{htmllatex}{ascii}`.
 
 ## Details
 
@@ -27,9 +29,19 @@ Package authors who want to ensure that users can see the rendered equations in 
 
 Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. Adding space around these symbols should solve this problem (e.g., instead of writing `\mjseqn{i<j}`, write `\mjseqn{i < j}`). Do not use the `\lt` and `\gt` macros provided by MathJax as these will cause problems when rendering the PDF help pages.
 
-Curly braces/brackets in equations also cause problems. Using `\lbrace` and `\rbrace` (possibly in combination with `\left` and `\right` to make them sufficiently large) is a solution (e.g., `\mjseqn{\left\lbrace \ldots \right\rbrace}` should render nicely in the HTML and PDF help pages).
+Curly braces/brackets in equations also cause problems. Using `\lbrace` and `\rbrace` (possibly in combination with `\left` and `\right` to make them sufficiently large) is a solution (e.g., `\mjeqn{\left\lbrace ... \right\rbrace}{\{...\}}` should render nicely in the PDF/HTML help pages and the plain-text version).
 
-Also, while MathJax supports a large number of LaTeX commands, only the math-mode commands are implemented. See [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) for a list of the supported commands.
+Using the percent symbol (i.e., %) inside of equations is also problematic. The percent symbol needs to be 'escaped' by using a backslash, but backslashes need to be escaped as well. For this to work, we need to use the correct number of backslashes, which works slightly differently for producing the PDF, HTML, and plain-text help pages. The equation `\mjteqn{100\\\%}{100\\\\\\\%}{100\\%}` should be rendered correctly in all three help pages.
+
+Finally, while MathJax supports a large number of LaTeX commands, only the math-mode commands are implemented. See [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) for a list of the supported commands.
+
+## Example
+
+The probability density function of a normal distribution is given by
+
+![f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2},](https://render.githubusercontent.com/render/math?math=%5Clarge%20f(x)%20%3D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%20%5Csigma%7D%20e%5E%7B-%5Cfrac%7B1%7D%7B2%7D%5Cleft(%5Cfrac%7Bx-%5Cmu%7D%7B%5Csigma%7D%5Cright)%5E2%7D%2C)
+
+where ![\mu](https://render.githubusercontent.com/render/math?math=%5Cmu) denotes the mean of the distribution and ![\sigma](https://render.githubusercontent.com/render/math?math=%5Csigma) its standard deviation.
 
 ## Installation
 

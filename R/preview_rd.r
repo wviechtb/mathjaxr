@@ -3,7 +3,10 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE) {
    if (missing(Rdfile))
       stop("Need to specify 'Rdfile' argument.")
 
-   type <- match.arg(type, c("html", "txt", "pdf"))
+   type <- match.arg(type, c("html", "txt", "text", "pdf"))
+
+   if (type == "text")
+      type <- "txt"
 
    # need to load MathJax from the CDN since the \mathjaxr macro
    # won't be able to load MathJax from the local installation
@@ -22,7 +25,7 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE) {
    # check if Rdfile has an .Rd or .rd extension
    noext <- !is.element(substr(Rdfile, nchar(Rdfile)-2, nchar(Rdfile)), c(".Rd", ".rd"))
 
-   # try to find Rdfile first in the man subdir and then in the current dir
+   # try to find the Rdfile first in the man subdir and then in the current dir
    if (paste0(Rdfile, ifelse(noext, ".Rd", "")) %in% Rdfiles.man) {
       Rdfile.loc <- paste0("man/", Rdfile, ifelse(noext, ".Rd", ""))
    } else if (paste0(Rdfile, ifelse(noext, ".rd", "")) %in% rdfiles.man) {

@@ -12,5 +12,7 @@
 \newcommand{\mjsdeqn}{\ifelse{html}{\out{\[#1\]}}{\deqn{#1}}}
 
 % tripple-argument macros \mjteqn{pdflatex}{htmllatex}{ascii} and \mjtdeqn{pdflatex}{htmllatex}{ascii}
-\newcommand{\mjteqn}{\ifelse{latex}{\eqn{#1}}{\ifelse{html}{\out{\(#2\)}}{\eqn{#3}}}}
-\newcommand{\mjtdeqn}{\ifelse{latex}{\deqn{#1}}{\ifelse{html}{\out{\[#2\]}}{\deqn{#3}}}}
+% \newcommand{\mjteqn}{\ifelse{latex}{\eqn{#1}}{\ifelse{html}{\out{\(#2\)}}{\eqn{#3}}}}
+% \newcommand{\mjtdeqn}{\ifelse{latex}{\deqn{#1}}{\ifelse{html}{\out{\[#2\]}}{\deqn{#3}}}}
+\newcommand{\mjteqn}{\if{latex}{\eqn{#1}}\if{html}{\out{\(#2\)}}\if{text}{\eqn{#3}}}
+\newcommand{\mjtdeqn}{\if{latex}{\deqn{#1}}\if{html}{\out{\[#2\]}}\if{text}{\deqn{#3}}}
