@@ -39,7 +39,9 @@ Finally, while MathJax supports a large number of LaTeX commands, only the math-
 
 The probability density function of a normal distribution is given by
 
-![f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2},](https://render.githubusercontent.com/render/math?math=%5Clarge%20f(x)%20%3D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%20%5Csigma%7D%20e%5E%7B-%5Cfrac%7B1%7D%7B2%7D%5Cleft(%5Cfrac%7Bx-%5Cmu%7D%7B%5Csigma%7D%5Cright)%5E2%7D%2C)
+<p align="center">
+<img src="https://render.githubusercontent.com/render/math?math=%5Clarge%20f(x)%20%3D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%20%5Csigma%7D%20e%5E%7B-%5Cfrac%7B1%7D%7B2%7D%5Cleft(%5Cfrac%7Bx-%5Cmu%7D%7B%5Csigma%7D%5Cright)%5E2%7D%2C">
+</p>
 
 where ![\mu](https://render.githubusercontent.com/render/math?math=%5Cmu) denotes the mean of the distribution and ![\sigma](https://render.githubusercontent.com/render/math?math=%5Csigma) its standard deviation.
 
