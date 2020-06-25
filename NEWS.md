@@ -1,4 +1,4 @@
-# mathjaxr 1.0-0 (2020-06-05)
+# mathjaxr 1.0-1 (2020-06-25)
 
 * added `\mjteqn` and `\mjtdeqn` macros (triple-argument versions)
 

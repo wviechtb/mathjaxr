@@ -27,4 +27,10 @@ preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE)
 \author{
    Wolfgang Viechtbauer \email{wvb@wvbauer.com} \url{http://www.wvbauer.com/}
 }
+\examples{
+\dontrun{
+setwd("/path/to/root/of/package")
+preview_rd("someRdfile")
+}
+}
 \keyword{utilities}
