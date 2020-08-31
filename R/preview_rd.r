@@ -41,9 +41,9 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE) {
    if (verbose)
       message("Found Rd file: ", Rdfile.loc)
 
-   # get environment with the mathjaxr and system macros
-   # (might also want to check if package itself has/loads macros and merge these in as well)
+   # get environment with the mathjaxr, package, and system macros
    macros <- tools::loadPkgRdMacros(system.file(package = "mathjaxr"))
+   macros <- tools::loadPkgRdMacros(ifelse(basename(getwd()) == "man", "..", "."), macros = macros)
    macros <- tools::loadRdMacros(file.path(R.home("share"), "Rd", "macros", "system.Rd"), macros = macros)
 
    # generate name of temp file
@@ -92,8 +92,23 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE) {
 
    if (type == "pdf") {
 
+      pkg <- character(0)
+
+      if (file.exists(ifelse(basename(getwd()) == "man", "../DESCRIPTION", "DESCRIPTION"))) {
+         pkg <- suppressWarnings(try(read.dcf(ifelse(basename(getwd()) == "man", "../DESCRIPTION", "DESCRIPTION"), fields="Package"), silent=TRUE))
+         if (inherits(pkg, "try-error") || is.na(pkg[1]))
+            pkg <- character(0)
+      }
+
+      if (length(pkg) > 0L) {
+         RdMacros <- paste0("mathjaxr,", pkg)
+      } else {
+         RdMacros <- "mathjaxr"
+      }
+
       #cmd <- paste0("CMD Rd2pdf --no-index --no-description --force --batch --RdMacros=mathjaxr ", ifelse(view, "", "--no-preview"), " --output=", outfile, " ", Rdfile.loc)
-      cmd <- paste0("CMD Rd2pdf --no-index --no-description --force --batch --RdMacros=mathjaxr --no-preview --output=", outfile, " ", Rdfile.loc)
+      #cmd <- paste0("CMD Rd2pdf --no-index --no-description --force --batch --RdMacros=mathjaxr --no-preview --output=", outfile, " ", Rdfile.loc)
+      cmd <- paste0("CMD Rd2pdf --no-index --no-description --force --batch --RdMacros=", RdMacros, " --no-preview --output=", outfile, " ", Rdfile.loc)
       system2("R", cmd, wait=TRUE, stdout = ifelse(verbose >= 2, "", tempfile("stdout")))
 
       if (.Platform$OS.type == "windows") {

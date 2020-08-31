@@ -18,7 +18,7 @@ preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE)
 
    For \code{type="html"}, the HTML page will be opened in the browser with the \code{\link{browseURL}} function. When making further changes to the Rd file, reopening the page each time \code{preview_rd()} is called is inconvenient as this will usually open up a new tab in the browser. Setting \code{view=FALSE} prevents this. Reloading the page in the open tab should then reflect the updates. In RStudio, the generated HTML version will be displayed in the \sQuote{Viewer} pane and the \code{view} argument is then irrelevant.
 
-   For \code{type="txt"}, the plain-text version of the help file will be shown (using the \code{\link{file.show}} function and directly on the console in RStudio).
+   For \code{type="txt"} (or \code{type="text"}), the plain-text version of the help file will be shown (using the \code{\link{file.show}} function and directly on the console in RStudio).
 
    For \code{type="pdf"}, the PDF is generated using \command{R CMD Rd2pdf} and should open up in the default PDF viewer.
 }

@@ -1,6 +1,6 @@
-# mathjaxr 1.1-0 (2020-06-25)
+# mathjaxr 1.1-1 (2020-08-31)
 
-* jump to development version
+* `preview_rd()` tries to load any package-specific macros before rendering a help page
 
 # mathjaxr 1.0-1 (2020-06-25)
 
