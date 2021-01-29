@@ -1,4 +1,4 @@
-# mathjaxr 1.2-0 (2021-01-29)
+# mathjaxr 1.1-2 (2021-01-29)
 
 * upgraded MathJax version to 3.1.2
 
