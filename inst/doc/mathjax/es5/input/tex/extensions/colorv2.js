@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -106,57 +106,51 @@ exports.MathJax = MathJax._.components.global.MathJax;
 
 "use strict";
 
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
-    };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NoUndefinedConfiguration = void 0;
-var Configuration_js_1 = __webpack_require__(2);
-function noUndefined(parser, name) {
-    var e_1, _a;
-    var textNode = parser.create('text', '\\' + name);
-    var options = parser.options.noundefined || {};
-    var def = {};
-    try {
-        for (var _b = __values(['color', 'background', 'size']), _c = _b.next(); !_c.done; _c = _b.next()) {
-            var id = _c.value;
-            if (options[id]) {
-                def['math' + id] = options[id];
-            }
+exports.ColorConfiguration = exports.ColorV2Methods = void 0;
+var SymbolMap_js_1 = __webpack_require__(2);
+var Configuration_js_1 = __webpack_require__(3);
+exports.ColorV2Methods = {
+    Color: function (parser, name) {
+        var color = parser.GetArgument(name);
+        var old = parser.stack.env['color'];
+        parser.stack.env['color'] = color;
+        var math = parser.ParseArg(name);
+        if (old) {
+            parser.stack.env['color'] = old;
         }
+        else {
+            delete parser.stack.env['color'];
+        }
+        var node = parser.create('node', 'mstyle', [math], { mathcolor: color });
+        parser.Push(node);
     }
-    catch (e_1_1) { e_1 = { error: e_1_1 }; }
-    finally {
-        try {
-            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
-        }
-        finally { if (e_1) throw e_1.error; }
-    }
-    parser.Push(parser.create('node', 'mtext', [], def, textNode));
-}
-exports.NoUndefinedConfiguration = Configuration_js_1.Configuration.create('noundefined', {
-    fallback: { macro: noUndefined },
-    options: {
-        noundefined: {
-            color: 'red',
-            background: '',
-            size: ''
-        }
-    },
-    priority: 3
-});
-//# sourceMappingURL=NoUndefinedConfiguration.js.map
+};
+new SymbolMap_js_1.CommandMap('colorv2', { color: 'Color' }, exports.ColorV2Methods);
+exports.ColorConfiguration = Configuration_js_1.Configuration.create('colorv2', { handler: { macro: ['colorv2'] } });
+//# sourceMappingURL=ColorV2Configuration.js.map
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.AbstractSymbolMap = MathJax._.input.tex.SymbolMap.AbstractSymbolMap;
+exports.RegExpMap = MathJax._.input.tex.SymbolMap.RegExpMap;
+exports.AbstractParseMap = MathJax._.input.tex.SymbolMap.AbstractParseMap;
+exports.CharacterMap = MathJax._.input.tex.SymbolMap.CharacterMap;
+exports.DelimiterMap = MathJax._.input.tex.SymbolMap.DelimiterMap;
+exports.MacroMap = MathJax._.input.tex.SymbolMap.MacroMap;
+exports.CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+exports.EnvironmentMap = MathJax._.input.tex.SymbolMap.EnvironmentMap;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -170,7 +164,7 @@ exports.ConfigurationHandler = MathJax._.input.tex.Configuration.ConfigurationHa
 exports.ParserConfiguration = MathJax._.input.tex.Configuration.ParserConfiguration;
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -180,25 +174,49 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
 var global = __webpack_require__(0);
 
-// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/noundefined/NoUndefinedConfiguration.js
-var NoUndefinedConfiguration = __webpack_require__(1);
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/colorv2/ColorV2Configuration.js
+var ColorV2Configuration = __webpack_require__(1);
 
-// CONCATENATED MODULE: ./lib/noundefined.js
+// CONCATENATED MODULE: ./lib/colorv2.js
 
 
 Object(global["combineWithMathJax"])({
   _: {
     input: {
       tex: {
-        noundefined: {
-          NoUndefinedConfiguration: NoUndefinedConfiguration
+        colorv2: {
+          ColorV2Configuration: ColorV2Configuration
         }
       }
     }
   }
 });
-// CONCATENATED MODULE: ./noundefined.js
+// CONCATENATED MODULE: ../rename.js
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+ //
+// Look for a package name in the package list and change it to a new name
+//   and rename tex options for it, if there are any.
+//
+
+function rename(oname, nname, options) {
+  var tex = MathJax.config.tex;
+
+  if (tex && tex.packages) {
+    var packages = tex.packages;
+    var n = packages.indexOf(oname);
+    if (n >= 0) packages[n] = nname;
+
+    if (options && tex[oname]) {
+      Object(global["combineConfig"])(tex, _defineProperty({}, nname, tex[oname]));
+      delete tex[oname];
+    }
+  }
+}
+// CONCATENATED MODULE: ./colorv2.js
+
+
+rename('colorV2', 'colorv2', false);
 
 /***/ })
 /******/ ]);

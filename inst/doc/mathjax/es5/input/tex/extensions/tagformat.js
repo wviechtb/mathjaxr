@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -106,54 +106,67 @@ exports.MathJax = MathJax._.components.global.MathJax;
 
 "use strict";
 
-var __values = (this && this.__values) || function(o) {
-    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-    if (m) return m.call(o);
-    if (o && typeof o.length === "number") return {
-        next: function () {
-            if (o && i >= o.length) o = void 0;
-            return { value: o && o[i++], done: !o };
-        }
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
     };
-    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-};
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NoUndefinedConfiguration = void 0;
+exports.TagFormatConfiguration = exports.tagformatConfig = void 0;
 var Configuration_js_1 = __webpack_require__(2);
-function noUndefined(parser, name) {
-    var e_1, _a;
-    var textNode = parser.create('text', '\\' + name);
-    var options = parser.options.noundefined || {};
-    var def = {};
-    try {
-        for (var _b = __values(['color', 'background', 'size']), _c = _b.next(); !_c.done; _c = _b.next()) {
-            var id = _c.value;
-            if (options[id]) {
-                def['math' + id] = options[id];
-            }
-        }
+var Tags_js_1 = __webpack_require__(3);
+var tagID = 0;
+function tagformatConfig(config, jax) {
+    var tags = jax.parseOptions.options.tags;
+    if (tags !== 'base' && config.tags.hasOwnProperty(tags)) {
+        Tags_js_1.TagsFactory.add(tags, config.tags[tags]);
     }
-    catch (e_1_1) { e_1 = { error: e_1_1 }; }
-    finally {
-        try {
-            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+    var TagClass = Tags_js_1.TagsFactory.create(jax.parseOptions.options.tags).constructor;
+    var TagFormat = (function (_super) {
+        __extends(TagFormat, _super);
+        function TagFormat() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
-        finally { if (e_1) throw e_1.error; }
-    }
-    parser.Push(parser.create('node', 'mtext', [], def, textNode));
+        TagFormat.prototype.formatNumber = function (n) {
+            return jax.parseOptions.options.tagformat.number(n);
+        };
+        TagFormat.prototype.formatTag = function (tag) {
+            return jax.parseOptions.options.tagformat.tag(tag);
+        };
+        TagFormat.prototype.formatId = function (id) {
+            return jax.parseOptions.options.tagformat.id(id);
+        };
+        TagFormat.prototype.formatUrl = function (id, base) {
+            return jax.parseOptions.options.tagformat.url(id, base);
+        };
+        return TagFormat;
+    }(TagClass));
+    tagID++;
+    var tagName = 'configTags-' + tagID;
+    Tags_js_1.TagsFactory.add(tagName, TagFormat);
+    jax.parseOptions.options.tags = tagName;
 }
-exports.NoUndefinedConfiguration = Configuration_js_1.Configuration.create('noundefined', {
-    fallback: { macro: noUndefined },
+exports.tagformatConfig = tagformatConfig;
+exports.TagFormatConfiguration = Configuration_js_1.Configuration.create('tagformat', {
+    config: [tagformatConfig, 10],
     options: {
-        noundefined: {
-            color: 'red',
-            background: '',
-            size: ''
+        tagformat: {
+            number: function (n) { return n.toString(); },
+            tag: function (tag) { return '(' + tag + ')'; },
+            id: function (id) { return 'mjx-eqn-' + id.replace(/\s/g, '_'); },
+            url: function (id, base) { return base + '#' + encodeURIComponent(id); },
         }
-    },
-    priority: 3
+    }
 });
-//# sourceMappingURL=NoUndefinedConfiguration.js.map
+//# sourceMappingURL=TagFormatConfiguration.js.map
 
 /***/ }),
 /* 2 */
@@ -171,6 +184,23 @@ exports.ParserConfiguration = MathJax._.input.tex.Configuration.ParserConfigurat
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.Label = MathJax._.input.tex.Tags.Label;
+exports.TagInfo = MathJax._.input.tex.Tags.TagInfo;
+exports.AbstractTags = MathJax._.input.tex.Tags.AbstractTags;
+exports.NoTags = MathJax._.input.tex.Tags.NoTags;
+exports.AllTags = MathJax._.input.tex.Tags.AllTags;
+exports.TagsFactory = MathJax._.input.tex.Tags.TagsFactory;
+
+/***/ }),
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -180,25 +210,49 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
 var global = __webpack_require__(0);
 
-// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/noundefined/NoUndefinedConfiguration.js
-var NoUndefinedConfiguration = __webpack_require__(1);
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/tagformat/TagFormatConfiguration.js
+var TagFormatConfiguration = __webpack_require__(1);
 
-// CONCATENATED MODULE: ./lib/noundefined.js
+// CONCATENATED MODULE: ./lib/tagformat.js
 
 
 Object(global["combineWithMathJax"])({
   _: {
     input: {
       tex: {
-        noundefined: {
-          NoUndefinedConfiguration: NoUndefinedConfiguration
+        tagformat: {
+          TagFormatConfiguration: TagFormatConfiguration
         }
       }
     }
   }
 });
-// CONCATENATED MODULE: ./noundefined.js
+// CONCATENATED MODULE: ../rename.js
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+ //
+// Look for a package name in the package list and change it to a new name
+//   and rename tex options for it, if there are any.
+//
+
+function rename(oname, nname, options) {
+  var tex = MathJax.config.tex;
+
+  if (tex && tex.packages) {
+    var packages = tex.packages;
+    var n = packages.indexOf(oname);
+    if (n >= 0) packages[n] = nname;
+
+    if (options && tex[oname]) {
+      Object(global["combineConfig"])(tex, _defineProperty({}, nname, tex[oname]));
+      delete tex[oname];
+    }
+  }
+}
+// CONCATENATED MODULE: ./tagformat.js
+
+
+rename('tagFormat', 'tagformat', true);
 
 /***/ })
 /******/ ]);

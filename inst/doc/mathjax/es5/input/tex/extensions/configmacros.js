@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -118,19 +118,29 @@ var __values = (this && this.__values) || function(o) {
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NoUndefinedConfiguration = void 0;
+exports.ConfigMacrosConfiguration = void 0;
 var Configuration_js_1 = __webpack_require__(2);
-function noUndefined(parser, name) {
+var Options_js_1 = __webpack_require__(3);
+var SymbolMap_js_1 = __webpack_require__(4);
+var Symbol_js_1 = __webpack_require__(5);
+var NewcommandMethods_js_1 = __webpack_require__(6);
+var MACROSMAP = 'configmacros-map';
+function configmacrosInit(config) {
+    new SymbolMap_js_1.CommandMap(MACROSMAP, {}, {});
+    config.append(Configuration_js_1.Configuration.local({ handler: { macro: [MACROSMAP] }, priority: 3 }));
+}
+function configmacrosConfig(_config, jax) {
     var e_1, _a;
-    var textNode = parser.create('text', '\\' + name);
-    var options = parser.options.noundefined || {};
-    var def = {};
+    var macrosMap = jax.parseOptions.handlers.retrieve(MACROSMAP);
+    var macros = jax.parseOptions.options.macros;
     try {
-        for (var _b = __values(['color', 'background', 'size']), _c = _b.next(); !_c.done; _c = _b.next()) {
-            var id = _c.value;
-            if (options[id]) {
-                def['math' + id] = options[id];
-            }
+        for (var _b = __values(Object.keys(macros)), _c = _b.next(); !_c.done; _c = _b.next()) {
+            var cs = _c.value;
+            var def = (typeof macros[cs] === 'string' ? [macros[cs]] : macros[cs]);
+            var macro = Array.isArray(def[2]) ?
+                new Symbol_js_1.Macro(cs, NewcommandMethods_js_1.default.MacroWithTemplate, def.slice(0, 2).concat(def[2])) :
+                new Symbol_js_1.Macro(cs, NewcommandMethods_js_1.default.Macro, def);
+            macrosMap.add(cs, macro);
         }
     }
     catch (e_1_1) { e_1 = { error: e_1_1 }; }
@@ -140,20 +150,13 @@ function noUndefined(parser, name) {
         }
         finally { if (e_1) throw e_1.error; }
     }
-    parser.Push(parser.create('node', 'mtext', [], def, textNode));
 }
-exports.NoUndefinedConfiguration = Configuration_js_1.Configuration.create('noundefined', {
-    fallback: { macro: noUndefined },
-    options: {
-        noundefined: {
-            color: 'red',
-            background: '',
-            size: ''
-        }
-    },
-    priority: 3
+exports.ConfigMacrosConfiguration = Configuration_js_1.Configuration.create('configmacros', {
+    init: configmacrosInit,
+    config: configmacrosConfig,
+    options: { macros: Options_js_1.expandable({}) }
 });
-//# sourceMappingURL=NoUndefinedConfiguration.js.map
+//# sourceMappingURL=ConfigMacrosConfiguration.js.map
 
 /***/ }),
 /* 2 */
@@ -171,6 +174,74 @@ exports.ParserConfiguration = MathJax._.input.tex.Configuration.ParserConfigurat
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.APPEND = MathJax._.util.Options.APPEND;
+exports.REMOVE = MathJax._.util.Options.REMOVE;
+exports.Expandable = MathJax._.util.Options.Expandable;
+exports.expandable = MathJax._.util.Options.expandable;
+exports.makeArray = MathJax._.util.Options.makeArray;
+exports.keys = MathJax._.util.Options.keys;
+exports.copy = MathJax._.util.Options.copy;
+exports.insert = MathJax._.util.Options.insert;
+exports.defaultOptions = MathJax._.util.Options.defaultOptions;
+exports.userOptions = MathJax._.util.Options.userOptions;
+exports.selectOptions = MathJax._.util.Options.selectOptions;
+exports.selectOptionsFromKeys = MathJax._.util.Options.selectOptionsFromKeys;
+exports.separateOptions = MathJax._.util.Options.separateOptions;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.AbstractSymbolMap = MathJax._.input.tex.SymbolMap.AbstractSymbolMap;
+exports.RegExpMap = MathJax._.input.tex.SymbolMap.RegExpMap;
+exports.AbstractParseMap = MathJax._.input.tex.SymbolMap.AbstractParseMap;
+exports.CharacterMap = MathJax._.input.tex.SymbolMap.CharacterMap;
+exports.DelimiterMap = MathJax._.input.tex.SymbolMap.DelimiterMap;
+exports.MacroMap = MathJax._.input.tex.SymbolMap.MacroMap;
+exports.CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+exports.EnvironmentMap = MathJax._.input.tex.SymbolMap.EnvironmentMap;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.Symbol = MathJax._.input.tex.Symbol.Symbol;
+exports.Macro = MathJax._.input.tex.Symbol.Macro;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.newcommand.NewcommandMethods["default"];
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -180,25 +251,49 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
 var global = __webpack_require__(0);
 
-// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/noundefined/NoUndefinedConfiguration.js
-var NoUndefinedConfiguration = __webpack_require__(1);
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/configmacros/ConfigMacrosConfiguration.js
+var ConfigMacrosConfiguration = __webpack_require__(1);
 
-// CONCATENATED MODULE: ./lib/noundefined.js
+// CONCATENATED MODULE: ./lib/configmacros.js
 
 
 Object(global["combineWithMathJax"])({
   _: {
     input: {
       tex: {
-        noundefined: {
-          NoUndefinedConfiguration: NoUndefinedConfiguration
+        configmacros: {
+          ConfigMacrosConfiguration: ConfigMacrosConfiguration
         }
       }
     }
   }
 });
-// CONCATENATED MODULE: ./noundefined.js
+// CONCATENATED MODULE: ../rename.js
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+ //
+// Look for a package name in the package list and change it to a new name
+//   and rename tex options for it, if there are any.
+//
+
+function rename(oname, nname, options) {
+  var tex = MathJax.config.tex;
+
+  if (tex && tex.packages) {
+    var packages = tex.packages;
+    var n = packages.indexOf(oname);
+    if (n >= 0) packages[n] = nname;
+
+    if (options && tex[oname]) {
+      Object(global["combineConfig"])(tex, _defineProperty({}, nname, tex[oname]));
+      delete tex[oname];
+    }
+  }
+}
+// CONCATENATED MODULE: ./configmacros.js
+
+
+rename('configMacros', 'configmacros', false);
 
 /***/ })
 /******/ ]);

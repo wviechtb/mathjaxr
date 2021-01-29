@@ -1,1 +1,977 @@
-!function(o){var i={};function r(t){if(i[t])return i[t].exports;var e=i[t]={i:t,l:!1,exports:{}};return o[t].call(e.exports,e,e.exports,r),e.l=!0,e.exports}r.m=o,r.c=i,r.d=function(t,e,o){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(r.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)r.d(o,i,function(t){return e[t]}.bind(null,i));return o},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=9)}([function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.isObject=MathJax._.components.global.isObject,e.combineConfig=MathJax._.components.global.combineConfig,e.combineDefaults=MathJax._.components.global.combineDefaults,e.combineWithMathJax=MathJax._.components.global.combineWithMathJax,e.MathJax=MathJax._.components.global.MathJax},function(t,e,o){"use strict";var i,r=this&&this.__extends||(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var o in e)e.hasOwnProperty(o)&&(t[o]=e[o])})(t,e)},function(t,e){function o(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(o.prototype=e.prototype,new o)}),s=this&&this.__assign||function(){return(s=Object.assign||function(t){for(var e,o=1,i=arguments.length;o<i;o++)for(var r in e=arguments[o])Object.prototype.hasOwnProperty.call(e,r)&&(t[r]=e[r]);return t}).apply(this,arguments)},n=this&&this.__read||function(t,e){var o="function"==typeof Symbol&&t[Symbol.iterator];if(!o)return t;var i,r,n=o.call(t),s=[];try{for(;(void 0===e||0<e--)&&!(i=n.next()).done;)s.push(i.value)}catch(t){r={error:t}}finally{try{i&&!i.done&&(o=n.return)&&o.call(n)}finally{if(r)throw r.error}}return s},l=this&&this.__spread||function(){for(var t=[],e=0;e<arguments.length;e++)t=t.concat(n(arguments[e]));return t},a=this&&this.__values||function(t){var e="function"==typeof Symbol&&Symbol.iterator,o=e&&t[e],i=0;if(o)return o.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&i>=t.length&&(t=void 0),{value:t&&t[i++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")};Object.defineProperty(e,"__esModule",{value:!0});var c=o(7),p=o(2),u=o(3),h=o(5);function d(t,e){return r(o,i=t),o.prototype.complexity=function(t){this.state()<c.STATE.COMPLEXITY&&!this.isEscaped&&(this.enrich(t),e(this.root),this.state(c.STATE.COMPLEXITY))},o;function o(){return null!==i&&i.apply(this,arguments)||this}var i}function y(t){var e,n;return r(o,n=t),o.prototype.complexity=function(){var e,t;if(!this.processed.isSet("complexity")){try{for(var o=a(this.math),i=o.next();!i.done;i=o.next())i.value.complexity(this)}catch(t){e={error:t}}finally{try{i&&!i.done&&(t=o.return)&&t.call(o)}finally{if(e)throw e.error}}this.processed.set("complexity")}return this},o.prototype.state=function(t,e){return void 0===e&&(e=!1),n.prototype.state.call(this,t,e),t<c.STATE.COMPLEXITY&&this.processed.clear("complexity"),this},(e=o).OPTIONS=s(s(s({},t.OPTIONS),u.ComplexityVisitor.OPTIONS),{ComplexityVisitor:u.ComplexityVisitor,renderActions:h.expandable(s(s({},t.OPTIONS.renderActions),{complexity:[c.STATE.COMPLEXITY]}))}),e;function o(){for(var t=[],e=0;e<arguments.length;e++)t[e]=arguments[e];var o=n.apply(this,l(t))||this,i=o.constructor.ProcessBits;i.has("complexity")||i.allocate("complexity");var r=h.selectOptionsFromKeys(o.options,o.options.ComplexityVisitor.OPTIONS);o.complexityVisitor=new o.options.ComplexityVisitor(o.mmlFactory,r);return o.options.MathItem=d(o.options.MathItem,function(t){return o.complexityVisitor.visitTree(t)}),o}}c.newState("COMPLEXITY",40),e.ComplexityMathItemMixin=d,e.ComplexityMathDocumentMixin=y,e.ComplexityHandler=function(t,e){return void 0===e&&(e=null),!t.documentClass.prototype.enrich&&e&&(t=p.EnrichHandler(t,e)),t.documentClass=y(t.documentClass),t}},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.EnrichedMathItemMixin=MathJax._.a11y["semantic-enrich"].EnrichedMathItemMixin,e.EnrichedMathDocumentMixin=MathJax._.a11y["semantic-enrich"].EnrichedMathDocumentMixin,e.EnrichHandler=MathJax._.a11y["semantic-enrich"].EnrichHandler},function(t,e,o){"use strict";var i,r=this&&this.__extends||(i=function(t,e){return(i=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var o in e)e.hasOwnProperty(o)&&(t[o]=e[o])})(t,e)},function(t,e){function o(){this.constructor=t}i(t,e),t.prototype=null===e?Object.create(e):(o.prototype=e.prototype,new o)}),l=this&&this.__values||function(t){var e="function"==typeof Symbol&&Symbol.iterator,o=e&&t[e],i=0;if(o)return o.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&i>=t.length&&(t=void 0),{value:t&&t[i++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")};Object.defineProperty(e,"__esModule",{value:!0});var a,n=o(8),s=o(4),c=o(5),p=(a=n.MmlVisitor,r(u,a),u.prototype.visitTree=function(t){a.prototype.visitTree.call(this,t,!0),this.options.makeCollapsible&&this.collapse.makeCollapse(t)},u.prototype.visitNode=function(t,e){if(!t.attributes.get("data-semantic-complexity"))return a.prototype.visitNode.call(this,t,e)},u.prototype.visitDefault=function(t,e){var o;if(t.isToken){var i=t.getText();o=this.complexity.text*i.length+this.complexity.token}else o=this.childrenComplexity(t);return this.setComplexity(t,o,e)},u.prototype.visitMfracNode=function(t,e){var o=this.childrenComplexity(t)*this.complexity.script+this.complexity.fraction;return this.setComplexity(t,o,e)},u.prototype.visitMsqrtNode=function(t,e){var o=this.childrenComplexity(t)+this.complexity.sqrt;return this.setComplexity(t,o,e)},u.prototype.visitMrootNode=function(t,e){var o=this.childrenComplexity(t)+this.complexity.sqrt-(1-this.complexity.script)*this.getComplexity(t.childNodes[1]);return this.setComplexity(t,o,e)},u.prototype.visitMphantomNode=function(t,e){return this.setComplexity(t,this.complexity.phantom,e)},u.prototype.visitMsNode=function(t,e){var o=(t.attributes.get("lquote")+t.getText()+t.attributes.get("rquote")).length*this.complexity.text;return this.setComplexity(t,o,e)},u.prototype.visitMsubsupNode=function(t,e){a.prototype.visitDefault.call(this,t,!0);var o=t.childNodes[t.sub],i=t.childNodes[t.sup],r=t.childNodes[t.base],n=Math.max(o?this.getComplexity(o):0,i?this.getComplexity(i):0)*this.complexity.script;return n+=this.complexity.child*((o?1:0)+(i?1:0)),n+=r?this.getComplexity(r)+this.complexity.child:0,n+=this.complexity.subsup,this.setComplexity(t,n,e)},u.prototype.visitMsubNode=function(t,e){return this.visitMsubsupNode(t,e)},u.prototype.visitMsupNode=function(t,e){return this.visitMsubsupNode(t,e)},u.prototype.visitMunderoverNode=function(t,e){a.prototype.visitDefault.call(this,t,!0);var o=t.childNodes[t.under],i=t.childNodes[t.over],r=t.childNodes[t.base],n=Math.max(o?this.getComplexity(o):0,i?this.getComplexity(i):0)*this.complexity.script;return r&&(n=Math.max(this.getComplexity(r),n)),n+=this.complexity.child*((o?1:0)+(i?1:0)+(r?1:0)),n+=this.complexity.underover,this.setComplexity(t,n,e)},u.prototype.visitMunderNode=function(t,e){return this.visitMunderoverNode(t,e)},u.prototype.visitMoverNode=function(t,e){return this.visitMunderoverNode(t,e)},u.prototype.visitMencloseNode=function(t,e){var o=this.childrenComplexity(t)+this.complexity.enclose;return this.setComplexity(t,o,e)},u.prototype.visitMactionNode=function(t,e){this.childrenComplexity(t);var o=this.getComplexity(t.selected);return this.setComplexity(t,o,e)},u.prototype.visitMsemanticsNode=function(t,e){var o=t.childNodes[0],i=0;return o&&(this.visitNode(o,!0),i=this.getComplexity(o)),this.setComplexity(t,i,e)},u.prototype.visitAnnotationNode=function(t,e){return this.setComplexity(t,this.complexity.xml,e)},u.prototype.visitAnnotation_xmlNode=function(t,e){return this.setComplexity(t,this.complexity.xml,e)},u.prototype.visitMglyphNode=function(t,e){return this.setComplexity(t,this.complexity.glyph,e)},u.prototype.getComplexity=function(t){var e=t.getProperty("collapsedComplexity");return null!=e?e:t.attributes.get("data-semantic-complexity")},u.prototype.setComplexity=function(t,e,o){return o&&(this.options.identifyCollapsible&&(e=this.collapse.check(t,e)),t.attributes.set("data-semantic-complexity",e)),e},u.prototype.childrenComplexity=function(t){var e,o;a.prototype.visitDefault.call(this,t,!0);var i=0;try{for(var r=l(t.childNodes),n=r.next();!n.done;n=r.next()){var s=n.value;i+=this.getComplexity(s)}}catch(t){e={error:t}}finally{try{n&&!n.done&&(o=r.return)&&o.call(r)}finally{if(e)throw e.error}}return 1<t.childNodes.length&&(i+=t.childNodes.length*this.complexity.child),i},u.OPTIONS={identifyCollapsible:!0,makeCollapsible:!0,Collapse:s.Collapse},u);function u(t,e){var o=a.call(this,t)||this;o.complexity={text:.5,token:.5,child:1,script:.8,sqrt:2,subsup:2,underover:2,fraction:2,enclose:2,action:2,phantom:0,xml:2,glyph:2};var i=o.constructor;return o.options=c.userOptions(c.defaultOptions({},i.OPTIONS),e),o.collapse=new o.options.Collapse(o),o.factory=t,o}e.ComplexityVisitor=p},function(t,e,o){"use strict";var a=this&&this.__values||function(t){var e="function"==typeof Symbol&&Symbol.iterator,o=e&&t[e],i=0;if(o)return o.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&i>=t.length&&(t=void 0),{value:t&&t[i++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")};Object.defineProperty(e,"__esModule",{value:!0});var i=(n.prototype.check=function(t,e){var o=t.attributes.get("data-semantic-type");return this.collapse.has(o)?this.collapse.get(o).call(this,t,e):this.cutoff.hasOwnProperty(o)?this.defaultCheck(t,e,o):e},n.prototype.defaultCheck=function(t,e,o){var i=t.attributes.get("data-semantic-role"),r=this.cutoff[o];if(("number"==typeof r?r:r[i]||r.value)<e){var n=this.marker[o]||"??",s="string"==typeof n?n:n[i]||n.value;e=this.recordCollapse(t,e,s)}return e},n.prototype.recordCollapse=function(t,e,o){return o="\u25c2"+o+"\u25b8",t.setProperty("collapse-marker",o),t.setProperty("collapse-complexity",e),o.length*this.complexity.complexity.text},n.prototype.unrecordCollapse=function(t){var e=t.getProperty("collapse-complexity");null!=e&&(t.attributes.set("data-semantic-complexity",e),t.removeProperty("collapse-complexity"),t.removeProperty("collapse-marker"))},n.prototype.canUncollapse=function(t,e,o){if(void 0===o&&(o=1),this.splitAttribute(t,"children").length===o){var i=1===t.childNodes.length&&t.childNodes[0].isInferred?t.childNodes[0]:t;if(i&&i.childNodes[e]){var r=i.childNodes[e];if(r.getProperty("collapse-marker"))return r}}return null},n.prototype.uncollapseChild=function(t,e,o,i){void 0===i&&(i=1);var r=this.canUncollapse(e,o,i);return r&&(this.unrecordCollapse(r),r.parent!==e&&r.parent.attributes.set("data-semantic-complexity",void 0),t=this.complexity.visitNode(e,!1)),t},n.prototype.splitAttribute=function(t,e){return(t.attributes.get("data-semantic-"+e)||"").split(/,/)},n.prototype.getText=function(t){var e=this;return t.isToken?t.getText():t.childNodes.map(function(t){return e.getText(t)}).join("")},n.prototype.findChildText=function(t,e){var o=this.findChild(t,e);return this.getText(o.coreMO()||o)},n.prototype.findChild=function(t,e){var o,i;if(!t||t.attributes.get("data-semantic-id")===e)return t;if(!t.isToken)try{for(var r=a(t.childNodes),n=r.next();!n.done;n=r.next()){var s=n.value,l=this.findChild(s,e);if(l)return l}}catch(t){o={error:t}}finally{try{n&&!n.done&&(i=r.return)&&i.call(r)}finally{if(o)throw o.error}}return null},n.prototype.makeCollapse=function(t){var e=[];t.walkTree(function(t){t.getProperty("collapse-marker")&&e.push(t)}),this.makeActions(e)},n.prototype.makeActions=function(t){var e,o;try{for(var i=a(t),r=i.next();!r.done;r=i.next()){var n=r.value;this.makeAction(n)}}catch(t){e={error:t}}finally{try{r&&!r.done&&(o=i.return)&&o.call(i)}finally{if(e)throw e.error}}},n.prototype.makeId=function(){return"mjx-collapse-"+this.idCount++},n.prototype.makeAction=function(t){t.isKind("math")&&(t=this.addMrow(t));var e=this.complexity.factory,o=t.getProperty("collapse-marker"),i=t.parent,r=e.create("maction",{actiontype:"toggle",selection:2,"data-collapsible":!0,id:this.makeId(),"data-semantic-complexity":t.attributes.get("data-semantic-complexity")},[e.create("mtext",{mathcolor:"blue"},[e.create("text").setText(o)])]);r.inheritAttributesFrom(t),t.attributes.set("data-semantic-complexity",t.getProperty("collapse-complexity")),t.removeProperty("collapse-marker"),t.removeProperty("collapse-complexity"),i.replaceChild(r,t),r.appendChild(t)},n.prototype.addMrow=function(t){var e,o,i=this.complexity.factory.create("mrow",null,t.childNodes[0].childNodes);t.childNodes[0].setChildren([i]);var r=t.attributes.getAllAttributes();try{for(var n=a(Object.keys(r)),s=n.next();!s.done;s=n.next()){var l=s.value;"data-semantic-"===l.substr(0,14)&&(i.attributes.set(l,r[l]),delete r[l])}}catch(t){e={error:t}}finally{try{s&&!s.done&&(o=n.return)&&o.call(n)}finally{if(e)throw e.error}}return i.setProperty("collapse-marker",t.getProperty("collapse-marker")),i.setProperty("collapse-complexity",t.getProperty("collapse-complexity")),t.removeProperty("collapse-marker"),t.removeProperty("collapse-complexity"),i},n.NOCOLLAPSE=1e7,n);function n(t){var r=this;this.cutoff={identifier:3,number:3,text:10,infixop:15,relseq:15,multirel:15,fenced:18,bigop:20,integral:20,fraction:12,sqrt:9,root:12,vector:15,matrix:15,cases:15,superscript:9,subscript:9,subsup:9,punctuated:{endpunct:n.NOCOLLAPSE,startpunct:n.NOCOLLAPSE,value:12}},this.marker={identifier:"x",number:"#",text:"...",appl:{"limit function":"lim",value:"f()"},fraction:"/",sqrt:"\u221a",root:"\u221a",superscript:"\u25fd\u02d9",subscript:"\u25fd.",subsup:"\u25fd:",vector:{binomial:"(:)",determinant:"|:|",value:"\u27e8:\u27e9"},matrix:{squarematrix:"[::]",rowvector:"\u27e8\u22ef\u27e9",columnvector:"\u27e8\u22ee\u27e9",determinant:"|::|",value:"(::)"},cases:"{:",infixop:{addition:"+",subtraction:"\u2212",multiplication:"\u22c5",implicit:"\u22c5",value:"+"},punctuated:{text:"...",value:","}},this.collapse=new Map([["fenced",function(t,e){return(e=r.uncollapseChild(e,t,1))>r.cutoff.fenced&&"leftright"===t.attributes.get("data-semantic-role")&&(e=r.recordCollapse(t,e,r.getText(t.childNodes[0])+r.getText(t.childNodes[t.childNodes.length-1]))),e}],["appl",function(t,e){if(r.canUncollapse(t,2,2)){e=r.complexity.visitNode(t,!1);var o=r.marker.appl,i=o[t.attributes.get("data-semantic-role")]||o.value;e=r.recordCollapse(t,e,i)}return e}],["sqrt",function(t,e){return(e=r.uncollapseChild(e,t,0))>r.cutoff.sqrt&&(e=r.recordCollapse(t,e,r.marker.sqrt)),e}],["root",function(t,e){return(e=r.uncollapseChild(e,t,0,2))>r.cutoff.sqrt&&(e=r.recordCollapse(t,e,r.marker.sqrt)),e}],["enclose",function(t,e){if(1===r.splitAttribute(t,"children").length){var o=r.canUncollapse(t,1);if(o){var i=o.getProperty("collapse-marker");r.unrecordCollapse(o),e=r.recordCollapse(t,r.complexity.visitNode(t,!1),i)}}return e}],["bigop",function(t,e){if(e>r.cutoff.bigop||!t.isKind("mo")){var o=r.splitAttribute(t,"content").pop(),i=r.findChildText(t,o);e=r.recordCollapse(t,e,i)}return e}],["integral",function(t,e){if(e>r.cutoff.integral||!t.isKind("mo")){var o=r.splitAttribute(t,"content").pop(),i=r.findChildText(t,o);e=r.recordCollapse(t,e,i)}return e}],["relseq",function(t,e){if(e>r.cutoff.relseq){var o=r.splitAttribute(t,"content")[0],i=r.findChildText(t,o);e=r.recordCollapse(t,e,i)}return e}],["multirel",function(t,e){if(e>r.cutoff.relseq){var o=r.splitAttribute(t,"content")[0],i=r.findChildText(t,o)+"\u22ef";e=r.recordCollapse(t,e,i)}return e}],["superscript",function(t,e){return(e=r.uncollapseChild(e,t,0,2))>r.cutoff.superscript&&(e=r.recordCollapse(t,e,r.marker.superscript)),e}],["subscript",function(t,e){return(e=r.uncollapseChild(e,t,0,2))>r.cutoff.subscript&&(e=r.recordCollapse(t,e,r.marker.subscript)),e}],["subsup",function(t,e){return(e=r.uncollapseChild(e,t,0,3))>r.cutoff.subsup&&(e=r.recordCollapse(t,e,r.marker.subsup)),e}]]),this.idCount=0,this.complexity=t}e.Collapse=i},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.APPEND=MathJax._.util.Options.APPEND,e.REMOVE=MathJax._.util.Options.REMOVE,e.Expandable=MathJax._.util.Options.Expandable,e.expandable=MathJax._.util.Options.expandable,e.makeArray=MathJax._.util.Options.makeArray,e.keys=MathJax._.util.Options.keys,e.copy=MathJax._.util.Options.copy,e.insert=MathJax._.util.Options.insert,e.defaultOptions=MathJax._.util.Options.defaultOptions,e.userOptions=MathJax._.util.Options.userOptions,e.selectOptions=MathJax._.util.Options.selectOptions,e.selectOptionsFromKeys=MathJax._.util.Options.selectOptionsFromKeys,e.separateOptions=MathJax._.util.Options.separateOptions},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.sreReady=MathJax._.a11y.sre.sreReady},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.protoItem=MathJax._.core.MathItem.protoItem,e.AbstractMathItem=MathJax._.core.MathItem.AbstractMathItem,e.STATE=MathJax._.core.MathItem.STATE,e.newState=MathJax._.core.MathItem.newState},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.MmlVisitor=MathJax._.core.MmlTree.MmlVisitor.MmlVisitor},function(t,e,o){"use strict";o.r(e);var i=o(0),r=o(1),n=o(4),s=o(3),l=o(2),a=o(6);Object(i.combineWithMathJax)({_:{a11y:{complexity_ts:r,complexity:{collapse:n,visitor:s},"semantic-enrich":l,sre:a}}}),MathJax.startup&&(MathJax.startup.extendHandler(function(t){return Object(r.ComplexityHandler)(t)}),Object(i.combineDefaults)(MathJax.config,"options",MathJax.config["a11y/complexity"]||{}))}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.isObject = MathJax._.components.global.isObject;
+exports.combineConfig = MathJax._.components.global.combineConfig;
+exports.combineDefaults = MathJax._.components.global.combineDefaults;
+exports.combineWithMathJax = MathJax._.components.global.combineWithMathJax;
+exports.MathJax = MathJax._.components.global.MathJax;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ComplexityHandler = exports.ComplexityMathDocumentMixin = exports.ComplexityMathItemMixin = void 0;
+var MathItem_js_1 = __webpack_require__(7);
+var semantic_enrich_js_1 = __webpack_require__(2);
+var visitor_js_1 = __webpack_require__(3);
+var Options_js_1 = __webpack_require__(5);
+MathItem_js_1.newState('COMPLEXITY', 40);
+function ComplexityMathItemMixin(BaseMathItem, computeComplexity) {
+    return (function (_super) {
+        __extends(class_1, _super);
+        function class_1() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        class_1.prototype.complexity = function (document, force) {
+            if (force === void 0) { force = false; }
+            if (this.state() >= MathItem_js_1.STATE.COMPLEXITY)
+                return;
+            if (!this.isEscaped && (document.options.enableComplexity || force)) {
+                this.enrich(document, true);
+                computeComplexity(this.root);
+            }
+            this.state(MathItem_js_1.STATE.COMPLEXITY);
+        };
+        return class_1;
+    }(BaseMathItem));
+}
+exports.ComplexityMathItemMixin = ComplexityMathItemMixin;
+function ComplexityMathDocumentMixin(BaseDocument) {
+    var _a;
+    return _a = (function (_super) {
+            __extends(class_2, _super);
+            function class_2() {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i] = arguments[_i];
+                }
+                var _this = _super.apply(this, __spread(args)) || this;
+                var ProcessBits = _this.constructor.ProcessBits;
+                if (!ProcessBits.has('complexity')) {
+                    ProcessBits.allocate('complexity');
+                }
+                var visitorOptions = Options_js_1.selectOptionsFromKeys(_this.options, _this.options.ComplexityVisitor.OPTIONS);
+                _this.complexityVisitor = new _this.options.ComplexityVisitor(_this.mmlFactory, visitorOptions);
+                var computeComplexity = (function (node) { return _this.complexityVisitor.visitTree(node); });
+                _this.options.MathItem =
+                    ComplexityMathItemMixin(_this.options.MathItem, computeComplexity);
+                return _this;
+            }
+            class_2.prototype.complexity = function () {
+                var e_1, _a;
+                if (!this.processed.isSet('complexity')) {
+                    if (this.options.enableComplexity) {
+                        try {
+                            for (var _b = __values(this.math), _c = _b.next(); !_c.done; _c = _b.next()) {
+                                var math = _c.value;
+                                math.complexity(this);
+                            }
+                        }
+                        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+                        finally {
+                            try {
+                                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                            }
+                            finally { if (e_1) throw e_1.error; }
+                        }
+                    }
+                    this.processed.set('complexity');
+                }
+                return this;
+            };
+            class_2.prototype.state = function (state, restore) {
+                if (restore === void 0) { restore = false; }
+                _super.prototype.state.call(this, state, restore);
+                if (state < MathItem_js_1.STATE.COMPLEXITY) {
+                    this.processed.clear('complexity');
+                }
+                return this;
+            };
+            return class_2;
+        }(BaseDocument)),
+        _a.OPTIONS = __assign(__assign(__assign({}, BaseDocument.OPTIONS), visitor_js_1.ComplexityVisitor.OPTIONS), { enableComplexity: true, ComplexityVisitor: visitor_js_1.ComplexityVisitor, renderActions: Options_js_1.expandable(__assign(__assign({}, BaseDocument.OPTIONS.renderActions), { complexity: [MathItem_js_1.STATE.COMPLEXITY] })) }),
+        _a;
+}
+exports.ComplexityMathDocumentMixin = ComplexityMathDocumentMixin;
+function ComplexityHandler(handler, MmlJax) {
+    if (MmlJax === void 0) { MmlJax = null; }
+    if (!handler.documentClass.prototype.enrich && MmlJax) {
+        handler = semantic_enrich_js_1.EnrichHandler(handler, MmlJax);
+    }
+    handler.documentClass = ComplexityMathDocumentMixin(handler.documentClass);
+    return handler;
+}
+exports.ComplexityHandler = ComplexityHandler;
+//# sourceMappingURL=complexity.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.EnrichedMathItemMixin = MathJax._.a11y['semantic-enrich'].EnrichedMathItemMixin;
+exports.EnrichedMathDocumentMixin = MathJax._.a11y['semantic-enrich'].EnrichedMathDocumentMixin;
+exports.EnrichHandler = MathJax._.a11y['semantic-enrich'].EnrichHandler;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ComplexityVisitor = void 0;
+var MmlVisitor_js_1 = __webpack_require__(8);
+var collapse_js_1 = __webpack_require__(4);
+var Options_js_1 = __webpack_require__(5);
+var ComplexityVisitor = (function (_super) {
+    __extends(ComplexityVisitor, _super);
+    function ComplexityVisitor(factory, options) {
+        var _this = _super.call(this, factory) || this;
+        _this.complexity = {
+            text: .5,
+            token: .5,
+            child: 1,
+            script: .8,
+            sqrt: 2,
+            subsup: 2,
+            underover: 2,
+            fraction: 2,
+            enclose: 2,
+            action: 2,
+            phantom: 0,
+            xml: 2,
+            glyph: 2
+        };
+        var CLASS = _this.constructor;
+        _this.options = Options_js_1.userOptions(Options_js_1.defaultOptions({}, CLASS.OPTIONS), options);
+        _this.collapse = new _this.options.Collapse(_this);
+        _this.factory = factory;
+        return _this;
+    }
+    ComplexityVisitor.prototype.visitTree = function (node) {
+        _super.prototype.visitTree.call(this, node, true);
+        if (this.options.makeCollapsible) {
+            this.collapse.makeCollapse(node);
+        }
+    };
+    ComplexityVisitor.prototype.visitNode = function (node, save) {
+        if (node.attributes.get('data-semantic-complexity'))
+            return;
+        return _super.prototype.visitNode.call(this, node, save);
+    };
+    ComplexityVisitor.prototype.visitDefault = function (node, save) {
+        var complexity;
+        if (node.isToken) {
+            var text = node.getText();
+            complexity = this.complexity.text * text.length + this.complexity.token;
+        }
+        else {
+            complexity = this.childrenComplexity(node);
+        }
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMfracNode = function (node, save) {
+        var complexity = this.childrenComplexity(node) * this.complexity.script + this.complexity.fraction;
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMsqrtNode = function (node, save) {
+        var complexity = this.childrenComplexity(node) + this.complexity.sqrt;
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMrootNode = function (node, save) {
+        var complexity = this.childrenComplexity(node) + this.complexity.sqrt
+            - (1 - this.complexity.script) * this.getComplexity(node.childNodes[1]);
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMphantomNode = function (node, save) {
+        return this.setComplexity(node, this.complexity.phantom, save);
+    };
+    ComplexityVisitor.prototype.visitMsNode = function (node, save) {
+        var text = node.attributes.get('lquote')
+            + node.getText()
+            + node.attributes.get('rquote');
+        var complexity = text.length * this.complexity.text;
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMsubsupNode = function (node, save) {
+        _super.prototype.visitDefault.call(this, node, true);
+        var sub = node.childNodes[node.sub];
+        var sup = node.childNodes[node.sup];
+        var base = node.childNodes[node.base];
+        var complexity = Math.max(sub ? this.getComplexity(sub) : 0, sup ? this.getComplexity(sup) : 0) * this.complexity.script;
+        complexity += this.complexity.child * ((sub ? 1 : 0) + (sup ? 1 : 0));
+        complexity += (base ? this.getComplexity(base) + this.complexity.child : 0);
+        complexity += this.complexity.subsup;
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMsubNode = function (node, save) {
+        return this.visitMsubsupNode(node, save);
+    };
+    ComplexityVisitor.prototype.visitMsupNode = function (node, save) {
+        return this.visitMsubsupNode(node, save);
+    };
+    ComplexityVisitor.prototype.visitMunderoverNode = function (node, save) {
+        _super.prototype.visitDefault.call(this, node, true);
+        var under = node.childNodes[node.under];
+        var over = node.childNodes[node.over];
+        var base = node.childNodes[node.base];
+        var complexity = Math.max(under ? this.getComplexity(under) : 0, over ? this.getComplexity(over) : 0) * this.complexity.script;
+        if (base) {
+            complexity = Math.max(this.getComplexity(base), complexity);
+        }
+        complexity += this.complexity.child * ((under ? 1 : 0) + (over ? 1 : 0) + (base ? 1 : 0));
+        complexity += this.complexity.underover;
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMunderNode = function (node, save) {
+        return this.visitMunderoverNode(node, save);
+    };
+    ComplexityVisitor.prototype.visitMoverNode = function (node, save) {
+        return this.visitMunderoverNode(node, save);
+    };
+    ComplexityVisitor.prototype.visitMencloseNode = function (node, save) {
+        var complexity = this.childrenComplexity(node) + this.complexity.enclose;
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMactionNode = function (node, save) {
+        this.childrenComplexity(node);
+        var complexity = this.getComplexity(node.selected);
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitMsemanticsNode = function (node, save) {
+        var child = node.childNodes[0];
+        var complexity = 0;
+        if (child) {
+            this.visitNode(child, true);
+            complexity = this.getComplexity(child);
+        }
+        return this.setComplexity(node, complexity, save);
+    };
+    ComplexityVisitor.prototype.visitAnnotationNode = function (node, save) {
+        return this.setComplexity(node, this.complexity.xml, save);
+    };
+    ComplexityVisitor.prototype.visitAnnotation_xmlNode = function (node, save) {
+        return this.setComplexity(node, this.complexity.xml, save);
+    };
+    ComplexityVisitor.prototype.visitMglyphNode = function (node, save) {
+        return this.setComplexity(node, this.complexity.glyph, save);
+    };
+    ComplexityVisitor.prototype.getComplexity = function (node) {
+        var collapsed = node.getProperty('collapsedComplexity');
+        return (collapsed != null ? collapsed : node.attributes.get('data-semantic-complexity'));
+    };
+    ComplexityVisitor.prototype.setComplexity = function (node, complexity, save) {
+        if (save) {
+            if (this.options.identifyCollapsible) {
+                complexity = this.collapse.check(node, complexity);
+            }
+            node.attributes.set('data-semantic-complexity', complexity);
+        }
+        return complexity;
+    };
+    ComplexityVisitor.prototype.childrenComplexity = function (node) {
+        var e_1, _a;
+        _super.prototype.visitDefault.call(this, node, true);
+        var complexity = 0;
+        try {
+            for (var _b = __values(node.childNodes), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var child = _c.value;
+                complexity += this.getComplexity(child);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        if (node.childNodes.length > 1) {
+            complexity += node.childNodes.length * this.complexity.child;
+        }
+        return complexity;
+    };
+    ComplexityVisitor.OPTIONS = {
+        identifyCollapsible: true,
+        makeCollapsible: true,
+        Collapse: collapse_js_1.Collapse
+    };
+    return ComplexityVisitor;
+}(MmlVisitor_js_1.MmlVisitor));
+exports.ComplexityVisitor = ComplexityVisitor;
+//# sourceMappingURL=visitor.js.map
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Collapse = void 0;
+var Collapse = (function () {
+    function Collapse(visitor) {
+        var _this = this;
+        this.cutoff = {
+            identifier: 3,
+            number: 3,
+            text: 10,
+            infixop: 15,
+            relseq: 15,
+            multirel: 15,
+            fenced: 18,
+            bigop: 20,
+            integral: 20,
+            fraction: 12,
+            sqrt: 9,
+            root: 12,
+            vector: 15,
+            matrix: 15,
+            cases: 15,
+            superscript: 9,
+            subscript: 9,
+            subsup: 9,
+            punctuated: {
+                endpunct: Collapse.NOCOLLAPSE,
+                startpunct: Collapse.NOCOLLAPSE,
+                value: 12
+            }
+        };
+        this.marker = {
+            identifier: 'x',
+            number: '#',
+            text: '...',
+            appl: {
+                'limit function': 'lim',
+                value: 'f()'
+            },
+            fraction: '/',
+            sqrt: '\u221A',
+            root: '\u221A',
+            superscript: '\u25FD\u02D9',
+            subscript: '\u25FD.',
+            subsup: '\u25FD:',
+            vector: {
+                binomial: '(:)',
+                determinant: '|:|',
+                value: '\u27E8:\u27E9'
+            },
+            matrix: {
+                squarematrix: '[::]',
+                rowvector: '\u27E8\u22EF\u27E9',
+                columnvector: '\u27E8\u22EE\u27E9',
+                determinant: '|::|',
+                value: '(::)'
+            },
+            cases: '{:',
+            infixop: {
+                addition: '+',
+                subtraction: '\u2212',
+                multiplication: '\u22C5',
+                implicit: '\u22C5',
+                value: '+'
+            },
+            punctuated: {
+                text: '...',
+                value: ','
+            }
+        };
+        this.collapse = new Map([
+            ['fenced', function (node, complexity) {
+                    complexity = _this.uncollapseChild(complexity, node, 1);
+                    if (complexity > _this.cutoff.fenced && node.attributes.get('data-semantic-role') === 'leftright') {
+                        complexity = _this.recordCollapse(node, complexity, _this.getText(node.childNodes[0]) +
+                            _this.getText(node.childNodes[node.childNodes.length - 1]));
+                    }
+                    return complexity;
+                }],
+            ['appl', function (node, complexity) {
+                    if (_this.canUncollapse(node, 2, 2)) {
+                        complexity = _this.complexity.visitNode(node, false);
+                        var marker = _this.marker.appl;
+                        var text = marker[node.attributes.get('data-semantic-role')] || marker.value;
+                        complexity = _this.recordCollapse(node, complexity, text);
+                    }
+                    return complexity;
+                }],
+            ['sqrt', function (node, complexity) {
+                    complexity = _this.uncollapseChild(complexity, node, 0);
+                    if (complexity > _this.cutoff.sqrt) {
+                        complexity = _this.recordCollapse(node, complexity, _this.marker.sqrt);
+                    }
+                    return complexity;
+                }],
+            ['root', function (node, complexity) {
+                    complexity = _this.uncollapseChild(complexity, node, 0, 2);
+                    if (complexity > _this.cutoff.sqrt) {
+                        complexity = _this.recordCollapse(node, complexity, _this.marker.sqrt);
+                    }
+                    return complexity;
+                }],
+            ['enclose', function (node, complexity) {
+                    if (_this.splitAttribute(node, 'children').length === 1) {
+                        var child = _this.canUncollapse(node, 1);
+                        if (child) {
+                            var marker = child.getProperty('collapse-marker');
+                            _this.unrecordCollapse(child);
+                            complexity = _this.recordCollapse(node, _this.complexity.visitNode(node, false), marker);
+                        }
+                    }
+                    return complexity;
+                }],
+            ['bigop', function (node, complexity) {
+                    if (complexity > _this.cutoff.bigop || !node.isKind('mo')) {
+                        var id = _this.splitAttribute(node, 'content').pop();
+                        var op = _this.findChildText(node, id);
+                        complexity = _this.recordCollapse(node, complexity, op);
+                    }
+                    return complexity;
+                }],
+            ['integral', function (node, complexity) {
+                    if (complexity > _this.cutoff.integral || !node.isKind('mo')) {
+                        var id = _this.splitAttribute(node, 'content').pop();
+                        var op = _this.findChildText(node, id);
+                        complexity = _this.recordCollapse(node, complexity, op);
+                    }
+                    return complexity;
+                }],
+            ['relseq', function (node, complexity) {
+                    if (complexity > _this.cutoff.relseq) {
+                        var id = _this.splitAttribute(node, 'content')[0];
+                        var text = _this.findChildText(node, id);
+                        complexity = _this.recordCollapse(node, complexity, text);
+                    }
+                    return complexity;
+                }],
+            ['multirel', function (node, complexity) {
+                    if (complexity > _this.cutoff.relseq) {
+                        var id = _this.splitAttribute(node, 'content')[0];
+                        var text = _this.findChildText(node, id) + '\u22EF';
+                        complexity = _this.recordCollapse(node, complexity, text);
+                    }
+                    return complexity;
+                }],
+            ['superscript', function (node, complexity) {
+                    complexity = _this.uncollapseChild(complexity, node, 0, 2);
+                    if (complexity > _this.cutoff.superscript) {
+                        complexity = _this.recordCollapse(node, complexity, _this.marker.superscript);
+                    }
+                    return complexity;
+                }],
+            ['subscript', function (node, complexity) {
+                    complexity = _this.uncollapseChild(complexity, node, 0, 2);
+                    if (complexity > _this.cutoff.subscript) {
+                        complexity = _this.recordCollapse(node, complexity, _this.marker.subscript);
+                    }
+                    return complexity;
+                }],
+            ['subsup', function (node, complexity) {
+                    complexity = _this.uncollapseChild(complexity, node, 0, 3);
+                    if (complexity > _this.cutoff.subsup) {
+                        complexity = _this.recordCollapse(node, complexity, _this.marker.subsup);
+                    }
+                    return complexity;
+                }]
+        ]);
+        this.idCount = 0;
+        this.complexity = visitor;
+    }
+    Collapse.prototype.check = function (node, complexity) {
+        var type = node.attributes.get('data-semantic-type');
+        if (this.collapse.has(type)) {
+            return this.collapse.get(type).call(this, node, complexity);
+        }
+        if (this.cutoff.hasOwnProperty(type)) {
+            return this.defaultCheck(node, complexity, type);
+        }
+        return complexity;
+    };
+    Collapse.prototype.defaultCheck = function (node, complexity, type) {
+        var role = node.attributes.get('data-semantic-role');
+        var check = this.cutoff[type];
+        var cutoff = (typeof check === 'number' ? check : check[role] || check.value);
+        if (complexity > cutoff) {
+            var marker = this.marker[type] || '??';
+            var text = (typeof marker === 'string' ? marker : marker[role] || marker.value);
+            complexity = this.recordCollapse(node, complexity, text);
+        }
+        return complexity;
+    };
+    Collapse.prototype.recordCollapse = function (node, complexity, text) {
+        text = '\u25C2' + text + '\u25B8';
+        node.setProperty('collapse-marker', text);
+        node.setProperty('collapse-complexity', complexity);
+        return text.length * this.complexity.complexity.text;
+    };
+    Collapse.prototype.unrecordCollapse = function (node) {
+        var complexity = node.getProperty('collapse-complexity');
+        if (complexity != null) {
+            node.attributes.set('data-semantic-complexity', complexity);
+            node.removeProperty('collapse-complexity');
+            node.removeProperty('collapse-marker');
+        }
+    };
+    Collapse.prototype.canUncollapse = function (node, n, m) {
+        if (m === void 0) { m = 1; }
+        if (this.splitAttribute(node, 'children').length === m) {
+            var mml = (node.childNodes.length === 1 &&
+                node.childNodes[0].isInferred ? node.childNodes[0] : node);
+            if (mml && mml.childNodes[n]) {
+                var child = mml.childNodes[n];
+                if (child.getProperty('collapse-marker')) {
+                    return child;
+                }
+            }
+        }
+        return null;
+    };
+    Collapse.prototype.uncollapseChild = function (complexity, node, n, m) {
+        if (m === void 0) { m = 1; }
+        var child = this.canUncollapse(node, n, m);
+        if (child) {
+            this.unrecordCollapse(child);
+            if (child.parent !== node) {
+                child.parent.attributes.set('data-semantic-complexity', undefined);
+            }
+            complexity = this.complexity.visitNode(node, false);
+        }
+        return complexity;
+    };
+    Collapse.prototype.splitAttribute = function (node, id) {
+        return (node.attributes.get('data-semantic-' + id) || '').split(/,/);
+    };
+    Collapse.prototype.getText = function (node) {
+        var _this = this;
+        if (node.isToken)
+            return node.getText();
+        return node.childNodes.map(function (n) { return _this.getText(n); }).join('');
+    };
+    Collapse.prototype.findChildText = function (node, id) {
+        var child = this.findChild(node, id);
+        return this.getText(child.coreMO() || child);
+    };
+    Collapse.prototype.findChild = function (node, id) {
+        var e_1, _a;
+        if (!node || node.attributes.get('data-semantic-id') === id)
+            return node;
+        if (!node.isToken) {
+            try {
+                for (var _b = __values(node.childNodes), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var mml = _c.value;
+                    var child = this.findChild(mml, id);
+                    if (child)
+                        return child;
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+        }
+        return null;
+    };
+    Collapse.prototype.makeCollapse = function (node) {
+        var nodes = [];
+        node.walkTree(function (child) {
+            if (child.getProperty('collapse-marker')) {
+                nodes.push(child);
+            }
+        });
+        this.makeActions(nodes);
+    };
+    Collapse.prototype.makeActions = function (nodes) {
+        var e_2, _a;
+        try {
+            for (var nodes_1 = __values(nodes), nodes_1_1 = nodes_1.next(); !nodes_1_1.done; nodes_1_1 = nodes_1.next()) {
+                var node = nodes_1_1.value;
+                this.makeAction(node);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (nodes_1_1 && !nodes_1_1.done && (_a = nodes_1.return)) _a.call(nodes_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+    };
+    Collapse.prototype.makeId = function () {
+        return 'mjx-collapse-' + this.idCount++;
+    };
+    Collapse.prototype.makeAction = function (node) {
+        if (node.isKind('math')) {
+            node = this.addMrow(node);
+        }
+        var factory = this.complexity.factory;
+        var marker = node.getProperty('collapse-marker');
+        var parent = node.parent;
+        var maction = factory.create('maction', {
+            actiontype: 'toggle',
+            selection: 2,
+            'data-collapsible': true,
+            id: this.makeId(),
+            'data-semantic-complexity': node.attributes.get('data-semantic-complexity')
+        }, [
+            factory.create('mtext', { mathcolor: 'blue' }, [
+                factory.create('text').setText(marker)
+            ])
+        ]);
+        maction.inheritAttributesFrom(node);
+        node.attributes.set('data-semantic-complexity', node.getProperty('collapse-complexity'));
+        node.removeProperty('collapse-marker');
+        node.removeProperty('collapse-complexity');
+        parent.replaceChild(maction, node);
+        maction.appendChild(node);
+    };
+    Collapse.prototype.addMrow = function (node) {
+        var e_3, _a;
+        var mrow = this.complexity.factory.create('mrow', null, node.childNodes[0].childNodes);
+        node.childNodes[0].setChildren([mrow]);
+        var attributes = node.attributes.getAllAttributes();
+        try {
+            for (var _b = __values(Object.keys(attributes)), _c = _b.next(); !_c.done; _c = _b.next()) {
+                var name_1 = _c.value;
+                if (name_1.substr(0, 14) === 'data-semantic-') {
+                    mrow.attributes.set(name_1, attributes[name_1]);
+                    delete attributes[name_1];
+                }
+            }
+        }
+        catch (e_3_1) { e_3 = { error: e_3_1 }; }
+        finally {
+            try {
+                if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+            }
+            finally { if (e_3) throw e_3.error; }
+        }
+        mrow.setProperty('collapse-marker', node.getProperty('collapse-marker'));
+        mrow.setProperty('collapse-complexity', node.getProperty('collapse-complexity'));
+        node.removeProperty('collapse-marker');
+        node.removeProperty('collapse-complexity');
+        return mrow;
+    };
+    Collapse.NOCOLLAPSE = 10000000;
+    return Collapse;
+}());
+exports.Collapse = Collapse;
+//# sourceMappingURL=collapse.js.map
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.APPEND = MathJax._.util.Options.APPEND;
+exports.REMOVE = MathJax._.util.Options.REMOVE;
+exports.Expandable = MathJax._.util.Options.Expandable;
+exports.expandable = MathJax._.util.Options.expandable;
+exports.makeArray = MathJax._.util.Options.makeArray;
+exports.keys = MathJax._.util.Options.keys;
+exports.copy = MathJax._.util.Options.copy;
+exports.insert = MathJax._.util.Options.insert;
+exports.defaultOptions = MathJax._.util.Options.defaultOptions;
+exports.userOptions = MathJax._.util.Options.userOptions;
+exports.selectOptions = MathJax._.util.Options.selectOptions;
+exports.selectOptionsFromKeys = MathJax._.util.Options.selectOptionsFromKeys;
+exports.separateOptions = MathJax._.util.Options.separateOptions;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.sreReady = MathJax._.a11y.sre.sreReady;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.protoItem = MathJax._.core.MathItem.protoItem;
+exports.AbstractMathItem = MathJax._.core.MathItem.AbstractMathItem;
+exports.STATE = MathJax._.core.MathItem.STATE;
+exports.newState = MathJax._.core.MathItem.newState;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.MmlVisitor = MathJax._.core.MmlTree.MmlVisitor.MmlVisitor;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
+var global = __webpack_require__(0);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/a11y/complexity.js
+var complexity = __webpack_require__(1);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/a11y/complexity/collapse.js
+var collapse = __webpack_require__(4);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/a11y/complexity/visitor.js
+var visitor = __webpack_require__(3);
+
+// EXTERNAL MODULE: ../semantic-enrich/lib/a11y/semantic-enrich.js
+var semantic_enrich = __webpack_require__(2);
+
+// EXTERNAL MODULE: ../semantic-enrich/lib/a11y/sre.js
+var sre = __webpack_require__(6);
+
+// CONCATENATED MODULE: ./lib/complexity.js
+
+
+
+
+
+
+Object(global["combineWithMathJax"])({
+  _: {
+    a11y: {
+      complexity_ts: complexity,
+      complexity: {
+        collapse: collapse,
+        visitor: visitor
+      },
+      "semantic-enrich": semantic_enrich,
+      sre: sre
+    }
+  }
+});
+// CONCATENATED MODULE: ./complexity.js
+
+
+
+
+if (MathJax.startup) {
+  MathJax.startup.extendHandler(function (handler) {
+    return Object(complexity["ComplexityHandler"])(handler);
+  });
+  Object(global["combineDefaults"])(MathJax.config, 'options', MathJax.config['a11y/complexity'] || {});
+}
+
+/***/ })
+/******/ ]);

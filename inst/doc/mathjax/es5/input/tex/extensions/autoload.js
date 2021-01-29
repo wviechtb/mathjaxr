@@ -1,1 +1,402 @@
-!function(o){var r={};function a(t){if(r[t])return r[t].exports;var e=r[t]={i:t,l:!1,exports:{}};return o[t].call(e.exports,e,e.exports,a),e.l=!0,e.exports}a.m=o,a.c=r,a.d=function(t,e,o){a.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:o})},a.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},a.t=function(e,t){if(1&t&&(e=a(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(a.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)a.d(o,r,function(t){return e[t]}.bind(null,r));return o},a.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return a.d(e,"a",e),e},a.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},a.p="",a(a.s=8)}([function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.isObject=MathJax._.components.global.isObject,e.combineConfig=MathJax._.components.global.combineConfig,e.combineDefaults=MathJax._.components.global.combineDefaults,e.combineWithMathJax=MathJax._.components.global.combineWithMathJax,e.MathJax=MathJax._.components.global.MathJax},function(t,e,o){"use strict";var r,a=this&&this.__extends||(r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var o in e)e.hasOwnProperty(o)&&(t[o]=e[o])})(t,e)},function(t,e){function o(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(o.prototype=e.prototype,new o)}),C=this&&this.__read||function(t,e){var o="function"==typeof Symbol&&t[Symbol.iterator];if(!o)return t;var r,a,n=o.call(t),i=[];try{for(;(void 0===e||0<e--)&&!(r=n.next()).done;)i.push(r.value)}catch(t){a={error:t}}finally{try{r&&!r.done&&(o=n.return)&&o.call(n)}finally{if(a)throw a.error}}return i},P=this&&this.__values||function(t){var e="function"==typeof Symbol&&Symbol.iterator,o=e&&t[e],r=0;if(o)return o.call(t);if(t&&"number"==typeof t.length)return{next:function(){return t&&r>=t.length&&(t=void 0),{value:t&&t[r++],done:!t}}};throw new TypeError(e?"Object is not iterable.":"Symbol.iterator is not defined.")};Object.defineProperty(e,"__esModule",{value:!0});var n,i=o(2),l=o(3),w=o(4),S=o(5),b=o(6),u=o(7),c=(n=l.CommandMap,a(p,n),p.prototype.remove=function(t){this.map.delete(t)},p);function p(){return null!==n&&n.apply(this,arguments)||this}function j(t,e,o,r){var a,n,i,l;if(b.Package.packages.has(t.options.require.prefix+o)){var u=t.options.autoload[o],c=C(2===u.length&&Array.isArray(u[0])?u:[u,[]],2),p=c[0],s=c[1];try{for(var f=P(p),d=f.next();!d.done;d=f.next()){var x=d.value;q.remove(x)}}catch(t){a={error:t}}finally{try{d&&!d.done&&(n=f.return)&&n.call(f)}finally{if(a)throw a.error}}try{for(var y=P(s),h=y.next();!h.done;h=y.next()){var M=h.value;k.remove(M)}}catch(t){i={error:t}}finally{try{h&&!h.done&&(l=y.return)&&l.call(y)}finally{if(i)throw i.error}}t.i-=e.length+(r?0:7)}S.RequireLoad(t,o)}var q=new(e.AutoloadCommandMap=c)("autoload-macros",{},{}),k=new c("autoload-environments",{},{});e.AutoloadConfiguration=i.Configuration.create("autoload",{handler:{macro:["autoload-macros"],environment:["autoload-environments"]},options:{autoload:u.expandable({action:["toggle","mathtip","texttip"],amsCd:[[],["CD"]],bbox:["bbox"],boldsymbol:["boldsymbol"],braket:["bra","ket","braket","set","Bra","Ket","Braket","Set","ketbra","Ketbra"],cancel:["cancel","bcancel","xcancel","cancelto"],color:["color","definecolor","textcolor","colorbox","fcolorbox"],enclose:["enclose"],extpfeil:["xtwoheadrightarrow","xtwoheadleftarrow","xmapsto","xlongequal","xtofrom","Newextarrow"],html:["href","class","style","cssId"],mhchem:["ce","pu"],newcommand:["newcommand","renewcommand","newenvironment","renewenvironment","def","let"],unicode:["unicode"],verb:["verb"]})},config:function(t,e){var o,r,a,n,i,l,u=e.parseOptions,c=u.handlers.get("macro"),p=u.handlers.get("environment"),s=u.options.autoload;try{for(var f=P(Object.keys(s)),d=f.next();!d.done;d=f.next()){var x=d.value,y=s[x],h=C(2===y.length&&Array.isArray(y[0])?y:[y,[]],2),M=h[0],b=h[1];try{for(var m=(a=void 0,P(M)),_=m.next();!_.done;_=m.next()){var v=_.value;c.lookup(v)&&"color"!==v||q.add(v,new w.Macro(v,j,[x,!0]))}}catch(t){a={error:t}}finally{try{_&&!_.done&&(n=m.return)&&n.call(m)}finally{if(a)throw a.error}}try{for(var g=(i=void 0,P(b)),O=g.next();!O.done;O=g.next()){var J=O.value;p.lookup(J)||k.add(J,new w.Macro(J,j,[x,!1]))}}catch(t){i={error:t}}finally{try{O&&!O.done&&(l=g.return)&&l.call(g)}finally{if(i)throw i.error}}}}catch(t){o={error:t}}finally{try{d&&!d.done&&(r=f.return)&&r.call(f)}finally{if(o)throw o.error}}u.options.require.jax||S.RequireConfiguration.config(t,e)},configPriority:10,init:function(t){t.options.require||u.defaultOptions(t.options,S.RequireConfiguration.options)},priority:10})},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.Configuration=MathJax._.input.tex.Configuration.Configuration,e.ConfigurationHandler=MathJax._.input.tex.Configuration.ConfigurationHandler},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.AbstractSymbolMap=MathJax._.input.tex.SymbolMap.AbstractSymbolMap,e.RegExpMap=MathJax._.input.tex.SymbolMap.RegExpMap,e.AbstractParseMap=MathJax._.input.tex.SymbolMap.AbstractParseMap,e.CharacterMap=MathJax._.input.tex.SymbolMap.CharacterMap,e.DelimiterMap=MathJax._.input.tex.SymbolMap.DelimiterMap,e.MacroMap=MathJax._.input.tex.SymbolMap.MacroMap,e.CommandMap=MathJax._.input.tex.SymbolMap.CommandMap,e.EnvironmentMap=MathJax._.input.tex.SymbolMap.EnvironmentMap},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.Symbol=MathJax._.input.tex.Symbol.Symbol,e.Macro=MathJax._.input.tex.Symbol.Macro},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.RequireLoad=MathJax._.input.tex.require.RequireConfiguration.RequireLoad,e.RequireMethods=MathJax._.input.tex.require.RequireConfiguration.RequireMethods,e.options=MathJax._.input.tex.require.RequireConfiguration.options,e.RequireConfiguration=MathJax._.input.tex.require.RequireConfiguration.RequireConfiguration},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.PackageError=MathJax._.components.package.PackageError,e.Package=MathJax._.components.package.Package},function(t,e,o){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.APPEND=MathJax._.util.Options.APPEND,e.REMOVE=MathJax._.util.Options.REMOVE,e.Expandable=MathJax._.util.Options.Expandable,e.expandable=MathJax._.util.Options.expandable,e.makeArray=MathJax._.util.Options.makeArray,e.keys=MathJax._.util.Options.keys,e.copy=MathJax._.util.Options.copy,e.insert=MathJax._.util.Options.insert,e.defaultOptions=MathJax._.util.Options.defaultOptions,e.userOptions=MathJax._.util.Options.userOptions,e.selectOptions=MathJax._.util.Options.selectOptions,e.selectOptionsFromKeys=MathJax._.util.Options.selectOptionsFromKeys,e.separateOptions=MathJax._.util.Options.separateOptions},function(t,e,o){"use strict";o.r(e);var r=o(0),a=o(1);Object(r.combineWithMathJax)({_:{input:{tex:{autoload:{AutoloadConfiguration:a}}}}})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.isObject = MathJax._.components.global.isObject;
+exports.combineConfig = MathJax._.components.global.combineConfig;
+exports.combineDefaults = MathJax._.components.global.combineDefaults;
+exports.combineWithMathJax = MathJax._.components.global.combineWithMathJax;
+exports.MathJax = MathJax._.components.global.MathJax;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AutoloadConfiguration = void 0;
+var Configuration_js_1 = __webpack_require__(2);
+var SymbolMap_js_1 = __webpack_require__(3);
+var Symbol_js_1 = __webpack_require__(4);
+var RequireConfiguration_js_1 = __webpack_require__(5);
+var package_js_1 = __webpack_require__(6);
+var Options_js_1 = __webpack_require__(7);
+function Autoload(parser, name, extension, isMacro) {
+    var e_1, _a, e_2, _b;
+    if (package_js_1.Package.packages.has(parser.options.require.prefix + extension)) {
+        var def = parser.options.autoload[extension];
+        var _c = __read((def.length === 2 && Array.isArray(def[0]) ? def : [def, []]), 2), macros = _c[0], envs = _c[1];
+        try {
+            for (var macros_1 = __values(macros), macros_1_1 = macros_1.next(); !macros_1_1.done; macros_1_1 = macros_1.next()) {
+                var macro = macros_1_1.value;
+                AutoloadMacros.remove(macro);
+            }
+        }
+        catch (e_1_1) { e_1 = { error: e_1_1 }; }
+        finally {
+            try {
+                if (macros_1_1 && !macros_1_1.done && (_a = macros_1.return)) _a.call(macros_1);
+            }
+            finally { if (e_1) throw e_1.error; }
+        }
+        try {
+            for (var envs_1 = __values(envs), envs_1_1 = envs_1.next(); !envs_1_1.done; envs_1_1 = envs_1.next()) {
+                var env = envs_1_1.value;
+                AutoloadEnvironments.remove(env);
+            }
+        }
+        catch (e_2_1) { e_2 = { error: e_2_1 }; }
+        finally {
+            try {
+                if (envs_1_1 && !envs_1_1.done && (_b = envs_1.return)) _b.call(envs_1);
+            }
+            finally { if (e_2) throw e_2.error; }
+        }
+        parser.string = (isMacro ? name : '\\begin{' + name.slice(1) + '}') + parser.string.slice(parser.i);
+        parser.i = 0;
+    }
+    RequireConfiguration_js_1.RequireLoad(parser, extension);
+}
+function initAutoload(config) {
+    if (!config.options.require) {
+        Options_js_1.defaultOptions(config.options, RequireConfiguration_js_1.RequireConfiguration.options);
+    }
+}
+function configAutoload(config, jax) {
+    var e_3, _a, e_4, _b, e_5, _c;
+    var parser = jax.parseOptions;
+    var macros = parser.handlers.get('macro');
+    var environments = parser.handlers.get('environment');
+    var autoload = parser.options.autoload;
+    parser.packageData.set('autoload', { Autoload: Autoload });
+    try {
+        for (var _d = __values(Object.keys(autoload)), _e = _d.next(); !_e.done; _e = _d.next()) {
+            var extension = _e.value;
+            var def = autoload[extension];
+            var _f = __read((def.length === 2 && Array.isArray(def[0]) ? def : [def, []]), 2), macs = _f[0], envs = _f[1];
+            try {
+                for (var macs_1 = (e_4 = void 0, __values(macs)), macs_1_1 = macs_1.next(); !macs_1_1.done; macs_1_1 = macs_1.next()) {
+                    var name_1 = macs_1_1.value;
+                    if (!macros.lookup(name_1) || name_1 === 'color') {
+                        AutoloadMacros.add(name_1, new Symbol_js_1.Macro(name_1, Autoload, [extension, true]));
+                    }
+                }
+            }
+            catch (e_4_1) { e_4 = { error: e_4_1 }; }
+            finally {
+                try {
+                    if (macs_1_1 && !macs_1_1.done && (_b = macs_1.return)) _b.call(macs_1);
+                }
+                finally { if (e_4) throw e_4.error; }
+            }
+            try {
+                for (var envs_2 = (e_5 = void 0, __values(envs)), envs_2_1 = envs_2.next(); !envs_2_1.done; envs_2_1 = envs_2.next()) {
+                    var name_2 = envs_2_1.value;
+                    if (!environments.lookup(name_2)) {
+                        AutoloadEnvironments.add(name_2, new Symbol_js_1.Macro(name_2, Autoload, [extension, false]));
+                    }
+                }
+            }
+            catch (e_5_1) { e_5 = { error: e_5_1 }; }
+            finally {
+                try {
+                    if (envs_2_1 && !envs_2_1.done && (_c = envs_2.return)) _c.call(envs_2);
+                }
+                finally { if (e_5) throw e_5.error; }
+            }
+        }
+    }
+    catch (e_3_1) { e_3 = { error: e_3_1 }; }
+    finally {
+        try {
+            if (_e && !_e.done && (_a = _d.return)) _a.call(_d);
+        }
+        finally { if (e_3) throw e_3.error; }
+    }
+    if (!parser.packageData.get('require')) {
+        RequireConfiguration_js_1.RequireConfiguration.config(config, jax);
+    }
+}
+var AutoloadMacros = new SymbolMap_js_1.CommandMap('autoload-macros', {}, {});
+var AutoloadEnvironments = new SymbolMap_js_1.CommandMap('autoload-environments', {}, {});
+exports.AutoloadConfiguration = Configuration_js_1.Configuration.create('autoload', {
+    handler: {
+        macro: ['autoload-macros'],
+        environment: ['autoload-environments']
+    },
+    options: {
+        autoload: Options_js_1.expandable({
+            action: ['toggle', 'mathtip', 'texttip'],
+            amscd: [[], ['CD']],
+            bbox: ['bbox'],
+            boldsymbol: ['boldsymbol'],
+            braket: ['bra', 'ket', 'braket', 'set', 'Bra', 'Ket', 'Braket', 'Set', 'ketbra', 'Ketbra'],
+            bussproofs: [[], ['prooftree']],
+            cancel: ['cancel', 'bcancel', 'xcancel', 'cancelto'],
+            color: ['color', 'definecolor', 'textcolor', 'colorbox', 'fcolorbox'],
+            enclose: ['enclose'],
+            extpfeil: ['xtwoheadrightarrow', 'xtwoheadleftarrow', 'xmapsto', 'xlongequal', 'xtofrom', 'Newextarrow'],
+            html: ['href', 'class', 'style', 'cssId'],
+            mhchem: ['ce', 'pu'],
+            newcommand: ['newcommand', 'renewcommand', 'newenvironment', 'renewenvironment', 'def', 'let'],
+            unicode: ['unicode'],
+            verb: ['verb']
+        })
+    },
+    config: configAutoload,
+    init: initAutoload,
+    priority: 10
+});
+//# sourceMappingURL=AutoloadConfiguration.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.Configuration = MathJax._.input.tex.Configuration.Configuration;
+exports.ConfigurationHandler = MathJax._.input.tex.Configuration.ConfigurationHandler;
+exports.ParserConfiguration = MathJax._.input.tex.Configuration.ParserConfiguration;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.AbstractSymbolMap = MathJax._.input.tex.SymbolMap.AbstractSymbolMap;
+exports.RegExpMap = MathJax._.input.tex.SymbolMap.RegExpMap;
+exports.AbstractParseMap = MathJax._.input.tex.SymbolMap.AbstractParseMap;
+exports.CharacterMap = MathJax._.input.tex.SymbolMap.CharacterMap;
+exports.DelimiterMap = MathJax._.input.tex.SymbolMap.DelimiterMap;
+exports.MacroMap = MathJax._.input.tex.SymbolMap.MacroMap;
+exports.CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+exports.EnvironmentMap = MathJax._.input.tex.SymbolMap.EnvironmentMap;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.Symbol = MathJax._.input.tex.Symbol.Symbol;
+exports.Macro = MathJax._.input.tex.Symbol.Macro;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.RequireLoad = MathJax._.input.tex.require.RequireConfiguration.RequireLoad;
+exports.RequireMethods = MathJax._.input.tex.require.RequireConfiguration.RequireMethods;
+exports.options = MathJax._.input.tex.require.RequireConfiguration.options;
+exports.RequireConfiguration = MathJax._.input.tex.require.RequireConfiguration.RequireConfiguration;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.PackageError = MathJax._.components["package"].PackageError;
+exports.Package = MathJax._.components["package"].Package;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.APPEND = MathJax._.util.Options.APPEND;
+exports.REMOVE = MathJax._.util.Options.REMOVE;
+exports.Expandable = MathJax._.util.Options.Expandable;
+exports.expandable = MathJax._.util.Options.expandable;
+exports.makeArray = MathJax._.util.Options.makeArray;
+exports.keys = MathJax._.util.Options.keys;
+exports.copy = MathJax._.util.Options.copy;
+exports.insert = MathJax._.util.Options.insert;
+exports.defaultOptions = MathJax._.util.Options.defaultOptions;
+exports.userOptions = MathJax._.util.Options.userOptions;
+exports.selectOptions = MathJax._.util.Options.selectOptions;
+exports.selectOptionsFromKeys = MathJax._.util.Options.selectOptionsFromKeys;
+exports.separateOptions = MathJax._.util.Options.separateOptions;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
+var global = __webpack_require__(0);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/autoload/AutoloadConfiguration.js
+var AutoloadConfiguration = __webpack_require__(1);
+
+// CONCATENATED MODULE: ./lib/autoload.js
+
+
+Object(global["combineWithMathJax"])({
+  _: {
+    input: {
+      tex: {
+        autoload: {
+          AutoloadConfiguration: AutoloadConfiguration
+        }
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./autoload.js
+
+
+/***/ })
+/******/ ]);

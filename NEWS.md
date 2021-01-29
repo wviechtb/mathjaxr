@@ -1,6 +1,12 @@
-# mathjaxr 1.1-1 (2020-08-31)
+# mathjaxr 1.2-0 (2021-01-29)
 
-* `preview_rd()` tries to load any package-specific macros before rendering a help page
+* upgraded MathJax version to 3.1.2
+
+* MathJax is now bundled with non-minified js files
+
+* `preview_rd()` now tries to load any package-specific macros before rendering a help page
+
+* `preview_rd()` gains a `dark` argument (for the option to render HTML pages in dark mode)
 
 # mathjaxr 1.0-1 (2020-06-25)
 

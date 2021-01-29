@@ -1,1 +1,429 @@
-!function(r){var a={};function o(e){if(a[e])return a[e].exports;var t=a[e]={i:e,l:!1,exports:{}};return r[e].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=a,o.d=function(e,t,r){o.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},o.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},o.t=function(t,e){if(1&e&&(t=o(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(o.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var a in t)o.d(r,a,function(e){return t[e]}.bind(null,a));return r},o.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return o.d(t,"a",t),t},o.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},o.p="",o(o.s=11)}([function(e,t,r){"use strict";var a,o=this&&this.__extends||(a=function(e,t){return(a=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])})(e,t)},function(e,t){function r(){this.constructor=e}a(e,t),e.prototype=null===t?Object.create(t):(r.prototype=t.prototype,new r)});Object.defineProperty(t,"__esModule",{value:!0});var c,n=r(6),i=r(2),l=r(7),s=(c=n.BaseItem,o(u,c),Object.defineProperty(u.prototype,"kind",{get:function(){return"braket"},enumerable:!0,configurable:!0}),Object.defineProperty(u.prototype,"isOpen",{get:function(){return!0},enumerable:!0,configurable:!0}),u.prototype.checkItem=function(e){return e.isKind("close")?[[this.factory.create("mml",this.toMml())],!0]:e.isKind("mml")?(this.Push(e.toMml()),this.getProperty("single")?[[this.toMml()],!0]:n.BaseItem.fail):c.prototype.checkItem.call(this,e)},u.prototype.toMml=function(){var e=c.prototype.toMml.call(this),t=this.getProperty("open"),r=this.getProperty("close");if(this.getProperty("stretchy"))return l.default.fenced(this.factory.configuration,t,e,r);var a={fence:!0,stretchy:!1,symmetric:!0,texClass:i.TEXCLASS.OPEN},o=this.create("token","mo",a,t);a.texClass=i.TEXCLASS.CLOSE;var n=this.create("token","mo",a,r);return this.create("node","mrow",[o,e,n],{open:t,close:r,texClass:i.TEXCLASS.INNER})},u);function u(){return null!==c&&c.apply(this,arguments)||this}t.BraketItem=s},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=r(10),i=r(2),o={};o.Macro=a.default.Macro,o.Braket=function(e,t,r,a,o,n){var c=!0;"{"===e.GetNext()&&(e.i++,c=!1),e.Push(e.itemFactory.create("braket").setProperties({barmax:n,barcount:0,open:r,close:a,stretchy:o,single:c}))},o.Bar=function(e,t){var r="|"===t?"|":"\u2225",a=e.stack.Top();if("braket"!==a.kind||a.getProperty("barcount")>=a.getProperty("barmax")){var o=e.create("token","mo",{texClass:i.TEXCLASS.ORD,stretchy:!1},r);e.Push(o)}else{if("|"===r&&"|"===e.GetNext()&&(e.i++,r="\u2225"),a.getProperty("stretchy")){var n=e.create("node","TeXAtom",[],{texClass:i.TEXCLASS.CLOSE});e.Push(n),a.setProperty("barcount",a.getProperty("barcount")+1),n=e.create("token","mo",{stretchy:!0,braketbar:!0},r),e.Push(n),n=e.create("node","TeXAtom",[],{texClass:i.TEXCLASS.OPEN}),e.Push(n)}else{var c=e.create("token","mo",{stretchy:!1,braketbar:!0},r);e.Push(c)}}},t.default=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.TEXCLASS=MathJax._.core.MmlTree.MmlNode.TEXCLASS,t.TEXCLASSNAMES=MathJax._.core.MmlTree.MmlNode.TEXCLASSNAMES,t.indentAttributes=MathJax._.core.MmlTree.MmlNode.indentAttributes,t.AbstractMmlNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlNode,t.AbstractMmlTokenNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlTokenNode,t.AbstractMmlLayoutNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlLayoutNode,t.AbstractMmlBaseNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlBaseNode,t.AbstractMmlEmptyNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlEmptyNode,t.TextNode=MathJax._.core.MmlTree.MmlNode.TextNode,t.XMLNode=MathJax._.core.MmlTree.MmlNode.XMLNode},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.isObject=MathJax._.components.global.isObject,t.combineConfig=MathJax._.components.global.combineConfig,t.combineDefaults=MathJax._.components.global.combineDefaults,t.combineWithMathJax=MathJax._.components.global.combineWithMathJax,t.MathJax=MathJax._.components.global.MathJax},function(e,t,r){"use strict";var a;Object.defineProperty(t,"__esModule",{value:!0});var o=r(5),n=r(0);r(8),t.BraketConfiguration=o.Configuration.create("braket",{handler:{character:["Braket-characters"],macro:["Braket-macros"]},items:((a={})[n.BraketItem.prototype.kind]=n.BraketItem,a)})},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Configuration=MathJax._.input.tex.Configuration.Configuration,t.ConfigurationHandler=MathJax._.input.tex.Configuration.ConfigurationHandler},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.MmlStack=MathJax._.input.tex.StackItem.MmlStack,t.BaseItem=MathJax._.input.tex.StackItem.BaseItem},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.ParseUtil.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var a=r(9),o=r(1);new a.CommandMap("Braket-macros",{bra:["Macro","{\\langle {#1} \\vert}",1],ket:["Macro","{\\vert {#1} \\rangle}",1],braket:["Braket","\u27e8","\u27e9",!1,1/0],set:["Braket","{","}",!1,1],Bra:["Macro","{\\left\\langle {#1} \\right\\vert}",1],Ket:["Macro","{\\left\\vert {#1} \\right\\rangle}",1],Braket:["Braket","\u27e8","\u27e9",!0,1/0],Set:["Braket","{","}",!0,1],ketbra:["Macro","{\\vert {#1} \\rangle\\langle {#2} \\vert}",2],Ketbra:["Macro","{\\left\\vert {#1} \\right\\rangle\\left\\langle {#2} \\right\\vert}",2],"|":"Bar"},o.default),new a.MacroMap("Braket-characters",{"|":"Bar"},o.default)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.AbstractSymbolMap=MathJax._.input.tex.SymbolMap.AbstractSymbolMap,t.RegExpMap=MathJax._.input.tex.SymbolMap.RegExpMap,t.AbstractParseMap=MathJax._.input.tex.SymbolMap.AbstractParseMap,t.CharacterMap=MathJax._.input.tex.SymbolMap.CharacterMap,t.DelimiterMap=MathJax._.input.tex.SymbolMap.DelimiterMap,t.MacroMap=MathJax._.input.tex.SymbolMap.MacroMap,t.CommandMap=MathJax._.input.tex.SymbolMap.CommandMap,t.EnvironmentMap=MathJax._.input.tex.SymbolMap.EnvironmentMap},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.base.BaseMethods.default},function(e,t,r){"use strict";r.r(t);var a=r(3),o=r(4),n=r(0),c=r(1);Object(a.combineWithMathJax)({_:{input:{tex:{braket:{BraketConfiguration:o,BraketItems:n,BraketMethods:c}}}}})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BraketItem = void 0;
+var StackItem_js_1 = __webpack_require__(6);
+var MmlNode_js_1 = __webpack_require__(2);
+var ParseUtil_js_1 = __webpack_require__(7);
+var BraketItem = (function (_super) {
+    __extends(BraketItem, _super);
+    function BraketItem() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(BraketItem.prototype, "kind", {
+        get: function () {
+            return 'braket';
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(BraketItem.prototype, "isOpen", {
+        get: function () {
+            return true;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    BraketItem.prototype.checkItem = function (item) {
+        if (item.isKind('close')) {
+            return [[this.factory.create('mml', this.toMml())], true];
+        }
+        if (item.isKind('mml')) {
+            this.Push(item.toMml());
+            if (this.getProperty('single')) {
+                return [[this.toMml()], true];
+            }
+            return StackItem_js_1.BaseItem.fail;
+        }
+        return _super.prototype.checkItem.call(this, item);
+    };
+    BraketItem.prototype.toMml = function () {
+        var inner = _super.prototype.toMml.call(this);
+        var open = this.getProperty('open');
+        var close = this.getProperty('close');
+        if (this.getProperty('stretchy')) {
+            return ParseUtil_js_1.default.fenced(this.factory.configuration, open, inner, close);
+        }
+        var attrs = { fence: true, stretchy: false, symmetric: true, texClass: MmlNode_js_1.TEXCLASS.OPEN };
+        var openNode = this.create('token', 'mo', attrs, open);
+        attrs.texClass = MmlNode_js_1.TEXCLASS.CLOSE;
+        var closeNode = this.create('token', 'mo', attrs, close);
+        var mrow = this.create('node', 'mrow', [openNode, inner, closeNode], { open: open, close: close, texClass: MmlNode_js_1.TEXCLASS.INNER });
+        return mrow;
+    };
+    return BraketItem;
+}(StackItem_js_1.BaseItem));
+exports.BraketItem = BraketItem;
+//# sourceMappingURL=BraketItems.js.map
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var BaseMethods_js_1 = __webpack_require__(10);
+var MmlNode_js_1 = __webpack_require__(2);
+var TexError_js_1 = __webpack_require__(11);
+var BraketMethods = {};
+BraketMethods.Macro = BaseMethods_js_1.default.Macro;
+BraketMethods.Braket = function (parser, _name, open, close, stretchy, barmax) {
+    var next = parser.GetNext();
+    if (next === '') {
+        throw new TexError_js_1.default('MissingArgFor', 'Missing argument for %1', parser.currentCS);
+    }
+    var single = true;
+    if (next === '{') {
+        parser.i++;
+        single = false;
+    }
+    parser.Push(parser.itemFactory.create('braket')
+        .setProperties({ barmax: barmax, barcount: 0, open: open,
+        close: close, stretchy: stretchy, single: single }));
+};
+BraketMethods.Bar = function (parser, name) {
+    var c = name === '|' ? '|' : '\u2225';
+    var top = parser.stack.Top();
+    if (top.kind !== 'braket' ||
+        top.getProperty('barcount') >= top.getProperty('barmax')) {
+        var mml = parser.create('token', 'mo', { texClass: MmlNode_js_1.TEXCLASS.ORD, stretchy: false }, c);
+        parser.Push(mml);
+        return;
+    }
+    if (c === '|' && parser.GetNext() === '|') {
+        parser.i++;
+        c = '\u2225';
+    }
+    var stretchy = top.getProperty('stretchy');
+    if (!stretchy) {
+        var node_1 = parser.create('token', 'mo', { stretchy: false, braketbar: true }, c);
+        parser.Push(node_1);
+        return;
+    }
+    var node = parser.create('node', 'TeXAtom', [], { texClass: MmlNode_js_1.TEXCLASS.CLOSE });
+    parser.Push(node);
+    top.setProperty('barcount', top.getProperty('barcount') + 1);
+    node = parser.create('token', 'mo', { stretchy: true, braketbar: true }, c);
+    parser.Push(node);
+    node = parser.create('node', 'TeXAtom', [], { texClass: MmlNode_js_1.TEXCLASS.OPEN });
+    parser.Push(node);
+};
+exports.default = BraketMethods;
+//# sourceMappingURL=BraketMethods.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.TEXCLASS = MathJax._.core.MmlTree.MmlNode.TEXCLASS;
+exports.TEXCLASSNAMES = MathJax._.core.MmlTree.MmlNode.TEXCLASSNAMES;
+exports.indentAttributes = MathJax._.core.MmlTree.MmlNode.indentAttributes;
+exports.AbstractMmlNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlNode;
+exports.AbstractMmlTokenNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlTokenNode;
+exports.AbstractMmlLayoutNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlLayoutNode;
+exports.AbstractMmlBaseNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlBaseNode;
+exports.AbstractMmlEmptyNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlEmptyNode;
+exports.TextNode = MathJax._.core.MmlTree.MmlNode.TextNode;
+exports.XMLNode = MathJax._.core.MmlTree.MmlNode.XMLNode;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.isObject = MathJax._.components.global.isObject;
+exports.combineConfig = MathJax._.components.global.combineConfig;
+exports.combineDefaults = MathJax._.components.global.combineDefaults;
+exports.combineWithMathJax = MathJax._.components.global.combineWithMathJax;
+exports.MathJax = MathJax._.components.global.MathJax;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BraketConfiguration = void 0;
+var Configuration_js_1 = __webpack_require__(5);
+var BraketItems_js_1 = __webpack_require__(0);
+__webpack_require__(8);
+exports.BraketConfiguration = Configuration_js_1.Configuration.create('braket', {
+    handler: {
+        character: ['Braket-characters'],
+        macro: ['Braket-macros']
+    },
+    items: (_a = {},
+        _a[BraketItems_js_1.BraketItem.prototype.kind] = BraketItems_js_1.BraketItem,
+        _a)
+});
+//# sourceMappingURL=BraketConfiguration.js.map
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.Configuration = MathJax._.input.tex.Configuration.Configuration;
+exports.ConfigurationHandler = MathJax._.input.tex.Configuration.ConfigurationHandler;
+exports.ParserConfiguration = MathJax._.input.tex.Configuration.ParserConfiguration;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.MmlStack = MathJax._.input.tex.StackItem.MmlStack;
+exports.BaseItem = MathJax._.input.tex.StackItem.BaseItem;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.ParseUtil["default"];
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var SymbolMap_js_1 = __webpack_require__(9);
+var BraketMethods_js_1 = __webpack_require__(1);
+new SymbolMap_js_1.CommandMap('Braket-macros', {
+    bra: ['Macro', '{\\langle {#1} \\vert}', 1],
+    ket: ['Macro', '{\\vert {#1} \\rangle}', 1],
+    braket: ['Braket', '\u27E8', '\u27E9', false, Infinity],
+    'set': ['Braket', '{', '}', false, 1],
+    Bra: ['Macro', '{\\left\\langle {#1} \\right\\vert}', 1],
+    Ket: ['Macro', '{\\left\\vert {#1} \\right\\rangle}', 1],
+    Braket: ['Braket', '\u27E8', '\u27E9', true, Infinity],
+    Set: ['Braket', '{', '}', true, 1],
+    ketbra: ['Macro', '{\\vert {#1} \\rangle\\langle {#2} \\vert}', 2],
+    Ketbra: ['Macro', '{\\left\\vert {#1} \\right\\rangle\\left\\langle {#2} \\right\\vert}', 2],
+    '|': 'Bar'
+}, BraketMethods_js_1.default);
+new SymbolMap_js_1.MacroMap('Braket-characters', {
+    '|': 'Bar'
+}, BraketMethods_js_1.default);
+//# sourceMappingURL=BraketMappings.js.map
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.AbstractSymbolMap = MathJax._.input.tex.SymbolMap.AbstractSymbolMap;
+exports.RegExpMap = MathJax._.input.tex.SymbolMap.RegExpMap;
+exports.AbstractParseMap = MathJax._.input.tex.SymbolMap.AbstractParseMap;
+exports.CharacterMap = MathJax._.input.tex.SymbolMap.CharacterMap;
+exports.DelimiterMap = MathJax._.input.tex.SymbolMap.DelimiterMap;
+exports.MacroMap = MathJax._.input.tex.SymbolMap.MacroMap;
+exports.CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+exports.EnvironmentMap = MathJax._.input.tex.SymbolMap.EnvironmentMap;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.base.BaseMethods["default"];
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.TexError["default"];
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
+var global = __webpack_require__(3);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/braket/BraketConfiguration.js
+var BraketConfiguration = __webpack_require__(4);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/braket/BraketItems.js
+var BraketItems = __webpack_require__(0);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/braket/BraketMethods.js
+var BraketMethods = __webpack_require__(1);
+
+// CONCATENATED MODULE: ./lib/braket.js
+
+
+
+
+Object(global["combineWithMathJax"])({
+  _: {
+    input: {
+      tex: {
+        braket: {
+          BraketConfiguration: BraketConfiguration,
+          BraketItems: BraketItems,
+          BraketMethods: BraketMethods
+        }
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./braket.js
+
+
+/***/ })
+/******/ ]);

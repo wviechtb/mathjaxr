@@ -1,1 +1,1275 @@
-!function(a){var r={};function n(t){if(r[t])return r[t].exports;var e=r[t]={i:t,l:!1,exports:{}};return a[t].call(e.exports,e,e.exports,n),e.l=!0,e.exports}n.m=a,n.c=r,n.d=function(t,e,a){n.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:a})},n.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var a=Object.create(null);if(n.r(a),Object.defineProperty(a,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(a,r,function(t){return e[t]}.bind(null,r));return a},n.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return n.d(e,"a",e),e},n.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},n.p="",n(n.s=17)}([function(t,e,a){"use strict";var r,n=this&&this.__extends||(r=function(t,e){return(r=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(t,e){t.__proto__=e}||function(t,e){for(var a in e)e.hasOwnProperty(a)&&(t[a]=e[a])})(t,e)},function(t,e){function a(){this.constructor=t}r(t,e),t.prototype=null===e?Object.create(e):(a.prototype=e.prototype,new a)});Object.defineProperty(e,"__esModule",{value:!0});var i,o=a(8),s=a(2),c=a(3),l=(i=o.BaseItem,n(u,i),Object.defineProperty(u.prototype,"kind",{get:function(){return"auto open"},enumerable:!0,configurable:!0}),Object.defineProperty(u.prototype,"isOpen",{get:function(){return!0},enumerable:!0,configurable:!0}),u.prototype.toMml=function(){var t=this.factory.configuration.parser,e=this.getProperty("right");if(this.getProperty("smash")){var a=i.prototype.toMml.call(this),r=t.create("node","mpadded",[a],{height:0,depth:0});this.Clear(),this.Push(t.create("node","TeXAtom",[r]))}e&&this.Push(new c.default(e,t.stack.env,t.configuration).mml());var n=i.prototype.toMml.call(this);return s.default.fenced(this.factory.configuration,this.getProperty("open"),n,this.getProperty("close"),this.getProperty("big"))},u.prototype.checkItem=function(t){var e=t.getProperty("autoclose");return e&&e===this.getProperty("close")?this.getProperty("ignore")?(this.Clear(),[[],!0]):[[this.toMml()],!0]:i.prototype.checkItem.call(this,t)},u);function u(){return null!==i&&i.apply(this,arguments)||this}e.AutoOpen=l},function(t,e,a){"use strict";var s=this&&this.__read||function(t,e){var a="function"==typeof Symbol&&t[Symbol.iterator];if(!a)return t;var r,n,i=a.call(t),o=[];try{for(;(void 0===e||0<e--)&&!(r=i.next()).done;)o.push(r.value)}catch(t){n={error:t}}finally{try{r&&!r.done&&(a=i.return)&&a.call(i)}finally{if(n)throw n.error}}return o};Object.defineProperty(e,"__esModule",{value:!0});var r=a(11),x=a(3),v=a(12),g=a(4),h=a(2),M=a(13),c=a(14),n={},y={"(":")","[":"]","{":"}","|":"|"},b=/^(b|B)i(g{1,2})$/;n.Quantity=function(t,e,a,r,n,i,o){void 0===a&&(a="("),void 0===r&&(r=")"),void 0===n&&(n=!1),void 0===i&&(i=""),void 0===o&&(o="");var s=!!n&&t.GetStar(),c=t.GetNext(),l=t.i,u=null;if("\\"===c){if(t.i++,!(u=t.GetCS()).match(b)){var m=t.create("node","mrow");return t.Push(h.default.fenced(t.configuration,a,m,r)),void(t.i=l)}c=t.GetNext()}var d=y[c];if(n&&"{"!==c)throw new v.default("MissingArgFor","Missing argument for %1",t.currentCS);if(!d){m=t.create("node","mrow");return t.Push(h.default.fenced(t.configuration,a,m,r)),void(t.i=l)}if(i){var f=t.create("token","mi",{texClass:g.TEXCLASS.OP},i);o&&M.default.setAttribute(f,"mathvariant",o),t.Push(t.itemFactory.create("fn",f))}if("{"===c){var p=t.GetArgument(e);return c=n?a:"\\{",d=n?r:"\\}",p=s?c+" "+p+" "+d:u?"\\"+u+"l"+c+" "+p+" \\"+u+"r"+d:"\\left"+c+" "+p+" \\right"+d,void t.Push(new x.default(p,t.stack.env,t.configuration).mml())}n&&(c=a,d=r),t.i++,t.Push(t.itemFactory.create("auto open").setProperties({open:c,close:d,big:u}))},n.Eval=function(t,e){var a=t.GetStar(),r=t.GetNext();if("{"!==r){if("("===r||"["===r)return t.i++,void t.Push(t.itemFactory.create("auto open").setProperties({open:r,close:"|",smash:a,right:"\\vphantom{\\int}"}));throw new v.default("MissingArgFor","Missing argument for %1",t.currentCS)}var n=t.GetArgument(e),i="\\left. "+(a?"\\smash{"+n+"}":n)+" \\vphantom{\\int}\\right|";t.string=t.string.slice(0,t.i)+i+t.string.slice(t.i)},n.Commutator=function(t,e,a,r){void 0===a&&(a="["),void 0===r&&(r="]");var n=t.GetStar(),i=t.GetNext(),o=null;if("\\"===i){if(t.i++,!(o=t.GetCS()).match(b))throw new v.default("MissingArgFor","Missing argument for %1",t.currentCS);i=t.GetNext()}if("{"!==i)throw new v.default("MissingArgFor","Missing argument for %1",t.currentCS);var s=t.GetArgument(e)+","+t.GetArgument(e);s=n?a+" "+s+" "+r:o?"\\"+o+"l"+a+" "+s+" \\"+o+"r"+r:"\\left"+a+" "+s+" \\right"+r,t.Push(new x.default(s,t.stack.env,t.configuration).mml())};var l=[65,90],u=[97,122],m=[913,937],d=[945,969],f=[48,57];function p(t,e){return t>=e[0]&&t<=e[1]}function P(t,e,a,r){var n=t.configuration.parser,i=c.NodeFactory.createToken(t,e,a,r),o=r.charCodeAt(0);return 1===r.length&&!n.stack.env.font&&n.stack.env.vectorFont&&(p(o,l)||p(o,u)||p(o,m)||p(o,f)||p(o,d)&&n.stack.env.vectorStar||M.default.getAttribute(i,"accent"))&&M.default.setAttribute(i,"mathvariant",n.stack.env.vectorFont),i}n.VectorBold=function(t,e){var a=t.GetStar(),r=t.GetArgument(e),n=t.configuration.nodeFactory.get("token"),i=t.stack.env.font;delete t.stack.env.font,t.configuration.nodeFactory.set("token",P),t.stack.env.vectorFont=a?"bold-italic":"bold",t.stack.env.vectorStar=a;var o=new x.default(r,t.stack.env,t.configuration).mml();i&&(t.stack.env.font=i),delete t.stack.env.vectorFont,delete t.stack.env.vectorStar,t.configuration.nodeFactory.set("token",n),t.Push(o)},n.StarMacro=function(t,e,a){for(var r=[],n=3;n<arguments.length;n++)r[n-3]=arguments[n];var i=t.GetStar(),o=[];if(a)for(var s=o.length;s<a;s++)o.push(t.GetArgument(e));var c=r.join(i?"*":"");if(c=h.default.substituteArgs(t,o,c),t.string=h.default.addArgs(t,c,t.string.slice(t.i)),t.i=0,++t.macroCount>t.configuration.options.maxMacros)throw new v.default("MaxMacroSub1","MathJax maximum macro substitution count exceeded; is there a recursive macro call?")};function i(t,e,a,r,n){var i=new x.default(r,t.stack.env,t.configuration).mml();t.Push(t.itemFactory.create(e,i));var o=t.GetNext(),s=y[o];if(s){var c=-1!==n.indexOf(o);if("{"===o){var l=(c?"\\left\\{":"")+" "+t.GetArgument(a)+" "+(c?"\\right\\}":"");return t.string=l+t.string.slice(t.i),t.i=0,0}c&&(t.i++,t.Push(t.itemFactory.create("auto open").setProperties({open:o,close:s})))}}function A(t,e,a){var r=s(t,3),n=r[0],i=r[1],o=r[2];return e&&a?"\\left\\langle{"+n+"}\\middle\\vert{"+i+"}\\middle\\vert{"+o+"}\\right\\rangle":e?"\\langle{"+n+"}\\vert{"+i+"}\\vert{"+o+"}\\rangle":"\\left\\langle{"+n+"}\\right\\vert{"+i+"}\\left\\vert{"+o+"}\\right\\rangle"}n.OperatorApplication=function(t,e,a){for(var r=[],n=3;n<arguments.length;n++)r[n-3]=arguments[n];i(t,"fn",e,a,r)},n.VectorOperator=function(t,e,a){for(var r=[],n=3;n<arguments.length;n++)r[n-3]=arguments[n];i(t,"mml",e,a,r)},n.Expression=function(t,e,a,r){void 0===a&&(a=!0),void 0===r&&(r=""),r=r||e.slice(1);var n=a?t.GetBrackets(e):null,i=t.create("token","mi",{texClass:g.TEXCLASS.OP},r);if(n){var o=new x.default(n,t.stack.env,t.configuration).mml();i=t.create("node","msup",[i,o])}t.Push(t.itemFactory.create("fn",i)),"("===t.GetNext()&&(t.i++,t.Push(t.itemFactory.create("auto open").setProperties({open:"(",close:")"})))},n.Qqtext=function(t,e,a){var r=(t.GetStar()?"":"\\quad")+"\\text{"+(a||t.GetArgument(e))+"}\\quad ";t.string=t.string.slice(0,t.i)+r+t.string.slice(t.i)},n.Differential=function(t,e,a){var r=t.GetBrackets(e),n=null!=r?"^{"+r+"}":" ",i="("===t.GetNext(),o="{"===t.GetNext(),s=a+n;if(i||o)if(o){s+=t.GetArgument(e);c=new x.default(s,t.stack.env,t.configuration).mml();t.Push(t.create("node","TeXAtom",[c],{texClass:g.TEXCLASS.OP}))}else t.Push(new x.default(s,t.stack.env,t.configuration).mml()),t.i++,t.Push(t.itemFactory.create("auto open").setProperties({open:"(",close:")"}));else{s+=t.GetArgument(e,!0)||"";var c=new x.default(s,t.stack.env,t.configuration).mml();t.Push(c)}},n.Derivative=function(t,e,a,r){var n=t.GetStar(),i=t.GetBrackets(e),o=1,s=[];for(s.push(t.GetArgument(e));"{"===t.GetNext()&&o<a;)s.push(t.GetArgument(e)),o++;var c=!1,l=" ",u=" ";2<a&&2<s.length?(l="^{"+(s.length-1)+"}",c=!0):null!=i&&(2<a&&1<s.length&&(c=!0),u=l="^{"+i+"}");for(var m=n?"\\flatfrac":"\\frac",d=1<s.length?s[0]:"",f=1<s.length?s[1]:s[0],p="",v=2,g=void 0;g=s[v];v++)p+=r+" "+g;var h=m+"{"+r+l+d+"}{"+r+" "+f+u+" "+p+"}";t.Push(new x.default(h,t.stack.env,t.configuration).mml()),"("===t.GetNext()&&(t.i++,t.Push(t.itemFactory.create("auto open").setProperties({open:"(",close:")",ignore:c})))},n.Bra=function(t,e){var a=t.GetStar(),r=t.GetArgument(e),n="",i=!1,o=!1;if("\\"===t.GetNext()){var s=t.i;t.i++;var c=t.GetCS(),l=t.lookup("macro",c);l&&"ket"===l.symbol?(i=!0,s=t.i,o=t.GetStar(),"{"===t.GetNext()?n=t.GetArgument(c,!0):(t.i=s,o=!1)):t.i=s}var u="";u=i?a||o?"\\langle{"+r+"}\\vert{"+n+"}\\rangle":"\\left\\langle{"+r+"}\\middle\\vert{"+n+"}\\right\\rangle":a||o?"\\langle{"+r+"}\\vert":"\\left\\langle{"+r+"}\\right\\vert{"+n+"}",t.Push(new x.default(u,t.stack.env,t.configuration).mml())},n.Ket=function(t,e){var a=t.GetStar(),r=t.GetArgument(e),n=a?"\\vert{"+r+"}\\rangle":"\\left\\vert{"+r+"}\\right\\rangle";t.Push(new x.default(n,t.stack.env,t.configuration).mml())},n.BraKet=function(t,e){var a=t.GetStar(),r=t.GetArgument(e),n=null;"{"===t.GetNext()&&(n=t.GetArgument(e,!0));var i="";i=null==n?a?"\\langle{"+r+"}\\vert{"+r+"}\\rangle":"\\left\\langle{"+r+"}\\middle\\vert{"+r+"}\\right\\rangle":a?"\\langle{"+r+"}\\vert{"+n+"}\\rangle":"\\left\\langle{"+r+"}\\middle\\vert{"+n+"}\\right\\rangle",t.Push(new x.default(i,t.stack.env,t.configuration).mml())},n.KetBra=function(t,e){var a=t.GetStar(),r=t.GetArgument(e),n=null;"{"===t.GetNext()&&(n=t.GetArgument(e,!0));var i="";i=null==n?a?"\\vert{"+r+"}\\rangle\\!\\langle{"+r+"}\\vert":"\\left\\vert{"+r+"}\\middle\\rangle\\!\\middle\\langle{"+r+"}\\right\\vert":a?"\\vert{"+r+"}\\rangle\\!\\langle{"+n+"}\\vert":"\\left\\vert{"+r+"}\\middle\\rangle\\!\\middle\\langle{"+n+"}\\right\\vert",t.Push(new x.default(i,t.stack.env,t.configuration).mml())},n.Expectation=function(t,e){var a=t.GetStar(),r=a&&t.GetStar(),n=(t.GetNext(),t.GetArgument(e)),i=null;"{"===t.GetNext()&&(i=t.GetArgument(e,!0));var o=n&&i?A([i,n,i],a,r):a?"\\langle {"+n+"} \\rangle":"\\left\\langle {"+n+"} \\right\\rangle";t.Push(new x.default(o,t.stack.env,t.configuration).mml())},n.MatrixElement=function(t,e){var a=t.GetStar(),r=a&&t.GetStar(),n=(t.GetNext(),A([t.GetArgument(e),t.GetArgument(e),t.GetArgument(e)],a,r));t.Push(new x.default(n,t.stack.env,t.configuration).mml())},n.MatrixQuantity=function(t,e,a){var r=t.GetStar(),n=a?"smallmatrix":"array",i="",o="",s="";switch(t.GetNext()){case"{":i=t.GetArgument(e);break;case"(":t.i++,o=r?"\\lgroup":"(",s=r?"\\rgroup":")",i=t.GetUpTo(e,")");break;case"[":t.i++,o="[",s="]",i=t.GetUpTo(e,"]");break;case"|":t.i++,s=o="|",i=t.GetUpTo(e,"|");break;default:o="(",s=")"}var c=(o?"\\left":"")+o+"\\begin{"+n+"}{} "+i+"\\end{"+n+"}"+(o?"\\right":"")+s;t.Push(new x.default(c,t.stack.env,t.configuration).mml())},n.IdentityMatrix=function(t,e){var a=t.GetArgument(e),r=parseInt(a,10);if(isNaN(r))throw new v.default("InvalidNumber","Invalid number");if(r<=1)return t.string="1"+t.string.slice(t.i),void(t.i=0);for(var n=Array(r).fill("0"),i=[],o=0;o<r;o++){var s=n.slice();s[o]="1",i.push(s.join(" & "))}t.string=i.join("\\\\ ")+t.string.slice(t.i),t.i=0},n.XMatrix=function(t,e){var a=t.GetStar(),r=t.GetArgument(e),n=t.GetArgument(e),i=t.GetArgument(e),o=parseInt(n,10),s=parseInt(i,10);if(isNaN(o)||isNaN(s)||s.toString()!==i||o.toString()!==n)throw new v.default("InvalidNumber","Invalid number");if(o=o<1?1:o,s=s<1?1:s,!a){var c=Array(s).fill(r).join(" & "),l=Array(o).fill(c).join("\\\\ ");return t.string=l+t.string.slice(t.i),void(t.i=0)}var u="";if(1===o&&1===s)u=r;else if(1===o){c=[];for(var m=1;m<=s;m++)c.push(r+"_{"+m+"}");u=c.join(" & ")}else if(1===s){for(c=[],m=1;m<=o;m++)c.push(r+"_{"+m+"}");u=c.join("\\\\ ")}else{var d=[];for(m=1;m<=o;m++){c=[];for(var f=1;f<=s;f++)c.push(r+"_{{"+m+"}{"+f+"}}");d.push(c.join(" & "))}u=d.join("\\\\ ")}t.string=u+t.string.slice(t.i),t.i=0},n.PauliMatrix=function(t,e){var a=t.GetArgument(e),r=a.slice(1);switch(a[0]){case"0":r+=" 1 & 0\\\\ 0 & 1";break;case"1":case"x":r+=" 0 & 1\\\\ 1 & 0";break;case"2":case"y":r+=" 0 & -i\\\\ i & 0";break;case"3":case"z":r+=" 1 & 0\\\\ 0 & -1"}t.string=r+t.string.slice(t.i),t.i=0},n.DiagonalMatrix=function(e,t,a){if("{"===e.GetNext()){var r=e.i,n=(e.GetArgument(t),e.i);e.i=r+1;for(var i=[],o="",s=e.i;s<n;){try{o=e.GetUpTo(t,",")}catch(t){e.i=n,i.push(e.string.slice(s,n-1));break}if(e.i>=n){i.push(e.string.slice(s,n));break}s=e.i,i.push(o)}e.string=function(t,e){for(var a=t.length,r=[],n=0;n<a;n++)r.push(Array(e?a-n:n+1).join("&")+"\\mqty{"+t[n]+"}");return r.join("\\\\ ")}(i,a)+e.string.slice(n),e.i=0}},n.AutoClose=function(t,e,a){var r=t.create("token","mo",{stretchy:!1},e),n=t.itemFactory.create("mml",r).setProperties({autoclose:e});t.Push(n)},n.Macro=r.default.Macro,n.NamedFn=r.default.NamedFn,n.Array=r.default.Array,e.default=n},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=MathJax._.input.tex.ParseUtil.default},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=MathJax._.input.tex.TexParser.default},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.TEXCLASS=MathJax._.core.MmlTree.MmlNode.TEXCLASS,e.TEXCLASSNAMES=MathJax._.core.MmlTree.MmlNode.TEXCLASSNAMES,e.indentAttributes=MathJax._.core.MmlTree.MmlNode.indentAttributes,e.AbstractMmlNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlNode,e.AbstractMmlTokenNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlTokenNode,e.AbstractMmlLayoutNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlLayoutNode,e.AbstractMmlBaseNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlBaseNode,e.AbstractMmlEmptyNode=MathJax._.core.MmlTree.MmlNode.AbstractMmlEmptyNode,e.TextNode=MathJax._.core.MmlTree.MmlNode.TextNode,e.XMLNode=MathJax._.core.MmlTree.MmlNode.XMLNode},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.isObject=MathJax._.components.global.isObject,e.combineConfig=MathJax._.components.global.combineConfig,e.combineDefaults=MathJax._.components.global.combineDefaults,e.combineWithMathJax=MathJax._.components.global.combineWithMathJax,e.MathJax=MathJax._.components.global.MathJax},function(t,e,a){"use strict";var r;Object.defineProperty(e,"__esModule",{value:!0});var n=a(7),i=a(0);a(9),e.PhysicsConfiguration=n.Configuration.create("physics",{handler:{macro:["Physics-automatic-bracing-macros","Physics-vector-macros","Physics-vector-chars","Physics-derivative-macros","Physics-expressions-macros","Physics-quick-quad-macros","Physics-bra-ket-macros","Physics-matrix-macros"],character:["Physics-characters"],environment:["Physics-aux-envs"]},items:((r={})[i.AutoOpen.prototype.kind]=i.AutoOpen,r)})},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.Configuration=MathJax._.input.tex.Configuration.Configuration,e.ConfigurationHandler=MathJax._.input.tex.Configuration.ConfigurationHandler},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.MmlStack=MathJax._.input.tex.StackItem.MmlStack,e.BaseItem=MathJax._.input.tex.StackItem.BaseItem},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var r=a(10),n=a(1),i=a(15),o=a(16),s=a(4);new r.CommandMap("Physics-automatic-bracing-macros",{quantity:"Quantity",qty:"Quantity",pqty:["Quantity","(",")",!0],bqty:["Quantity","[","]",!0],vqty:["Quantity","|","|",!0],Bqty:["Quantity","{","}",!0],absolutevalue:["Quantity","|","|",!0],abs:["Quantity","|","|",!0],norm:["Quantity","\\|","\\|",!0],evaluated:"Eval",eval:"Eval",order:["Quantity","(",")",!0,"O",i.TexConstant.Variant.CALLIGRAPHIC],commutator:"Commutator",comm:"Commutator",anticommutator:["Commutator","\\{","\\}"],acomm:["Commutator","\\{","\\}"],poissonbracket:["Commutator","\\{","\\}"],pb:["Commutator","\\{","\\}"]},n.default),new r.CharacterMap("Physics-vector-chars",o.default.mathchar0mi,{dotproduct:["\u22c5",{mathvariant:i.TexConstant.Variant.BOLD}],vdot:["\u22c5",{mathvariant:i.TexConstant.Variant.BOLD}],crossproduct:"\xd7",cross:"\xd7",cp:"\xd7",gradientnabla:["\u2207",{mathvariant:i.TexConstant.Variant.BOLD}],real:["\u211c",{mathvariant:i.TexConstant.Variant.NORMAL}],imaginary:["\u2111",{mathvariant:i.TexConstant.Variant.NORMAL}]}),new r.CommandMap("Physics-vector-macros",{vectorbold:"VectorBold",vb:"VectorBold",vectorarrow:["StarMacro",1,"\\vec{\\vb","{#1}}"],va:["StarMacro",1,"\\vec{\\vb","{#1}}"],vectorunit:["StarMacro",1,"\\hat{\\vb","{#1}}"],vu:["StarMacro",1,"\\hat{\\vb","{#1}}"],gradient:["OperatorApplication","\\gradientnabla","(","["],grad:["OperatorApplication","\\gradientnabla","(","["],divergence:["VectorOperator","\\gradientnabla\\vdot","(","["],div:["VectorOperator","\\gradientnabla\\vdot","(","["],curl:["VectorOperator","\\gradientnabla\\crossproduct","(","["],laplacian:["OperatorApplication","\\nabla^2","(","["]},n.default),new r.CommandMap("Physics-expressions-macros",{sin:"Expression",sinh:"Expression",arcsin:"Expression",asin:"Expression",cos:"Expression",cosh:"Expression",arccos:"Expression",acos:"Expression",tan:"Expression",tanh:"Expression",arctan:"Expression",atan:"Expression",csc:"Expression",csch:"Expression",arccsc:"Expression",acsc:"Expression",sec:"Expression",sech:"Expression",arcsec:"Expression",asec:"Expression",cot:"Expression",coth:"Expression",arccot:"Expression",acot:"Expression",exp:["Expression",!1],log:"Expression",ln:"Expression",det:["Expression",!1],Pr:["Expression",!1],tr:["Expression",!1],trace:["Expression",!1,"tr"],Tr:["Expression",!1],Trace:["Expression",!1,"Tr"],rank:"NamedFn",erf:["Expression",!1],Res:["OperatorApplication","{\\rm Res}","(","[","{"],principalvalue:["OperatorApplication","{\\cal P}"],pv:["OperatorApplication","{\\cal P}"],PV:["OperatorApplication","{\\rm P.V.}"],Re:["OperatorApplication","{\\rm Re}","{"],Im:["OperatorApplication","{\\rm Im}","{"],sine:["NamedFn","sin"],hypsine:["NamedFn","sinh"],arcsine:["NamedFn","arcsin"],asine:["NamedFn","asin"],cosine:["NamedFn","cos"],hypcosine:["NamedFn","cosh"],arccosine:["NamedFn","arccos"],acosine:["NamedFn","acos"],tangent:["NamedFn","tan"],hyptangent:["NamedFn","tanh"],arctangent:["NamedFn","arctan"],atangent:["NamedFn","atan"],cosecant:["NamedFn","csc"],hypcosecant:["NamedFn","csch"],arccosecant:["NamedFn","arccsc"],acosecant:["NamedFn","acsc"],secant:["NamedFn","sec"],hypsecant:["NamedFn","sech"],arcsecant:["NamedFn","arcsec"],asecant:["NamedFn","asec"],cotangent:["NamedFn","cot"],hypcotangent:["NamedFn","coth"],arccotangent:["NamedFn","arccot"],acotangent:["NamedFn","acot"],exponential:["NamedFn","exp"],logarithm:["NamedFn","log"],naturallogarithm:["NamedFn","ln"],determinant:["NamedFn","det"],Probability:["NamedFn","Pr"]},n.default),new r.CommandMap("Physics-quick-quad-macros",{qqtext:"Qqtext",qq:"Qqtext",qcomma:["Macro","\\qqtext*{,}"],qc:["Macro","\\qqtext*{,}"],qcc:["Qqtext","c.c."],qif:["Qqtext","if"],qthen:["Qqtext","then"],qelse:["Qqtext","else"],qotherwise:["Qqtext","otherwise"],qunless:["Qqtext","unless"],qgiven:["Qqtext","given"],qusing:["Qqtext","using"],qassume:["Qqtext","assume"],"qsince,":["Qqtext","since,"],qlet:["Qqtext","let"],qfor:["Qqtext","for"],qall:["Qqtext","all"],qeven:["Qqtext","even"],qodd:["Qqtext","odd"],qinteger:["Qqtext","integer"],qand:["Qqtext","and"],qor:["Qqtext","or"],qas:["Qqtext","as"],qin:["Qqtext","in"]},n.default),new r.CommandMap("Physics-derivative-macros",{flatfrac:["Macro","\\left.#1\\middle/#2\\right.",2],differential:["Differential","{\\rm d}"],dd:["Differential","{\\rm d}"],variation:["Differential","\\delta"],var:["Differential","\\delta"],derivative:["Derivative",2,"{\\rm d}"],dv:["Derivative",2,"{\\rm d}"],partialderivative:["Derivative",3,"\\partial"],pderivative:["Derivative",3,"\\partial"],pdv:["Derivative",3,"\\partial"],functionalderivative:["Derivative",2,"\\delta"],fderivative:["Derivative",2,"\\delta"],fdv:["Derivative",2,"\\delta"]},n.default),new r.CommandMap("Physics-bra-ket-macros",{bra:"Bra",ket:"Ket",innerproduct:"BraKet",braket:"BraKet",outerproduct:"KetBra",dyad:"KetBra",ketbra:"KetBra",op:"KetBra",expectationvalue:"Expectation",expval:"Expectation",ev:"Expectation",matrixelement:"MatrixElement",matrixel:"MatrixElement",mel:"MatrixElement"},n.default),new r.CommandMap("Physics-matrix-macros",{matrixquantity:"MatrixQuantity",mqty:"MatrixQuantity",pmqty:["Macro","\\mqty(#1)",1],Pmqty:["Macro","\\mqty*(#1)",1],bmqty:["Macro","\\mqty[#1]",1],vmqty:["Macro","\\mqty|#1|",1],smallmatrixquantity:["MatrixQuantity",!0],smqty:["MatrixQuantity",!0],spmqty:["Macro","\\smqty(#1)",1],sPmqty:["Macro","\\smqty*(#1)",1],sbmqty:["Macro","\\smqty[#1]",1],svmqty:["Macro","\\smqty|#1|",1],matrixdeterminant:["Macro","\\vmqty{#1}",1],mdet:["Macro","\\vmqty{#1}",1],smdet:["Macro","\\svmqty{#1}",1],identitymatrix:"IdentityMatrix",imat:"IdentityMatrix",xmatrix:"XMatrix",xmat:"XMatrix",zeromatrix:["Macro","\\xmat{0}{#1}{#2}",2],zmat:["Macro","\\xmat{0}{#1}{#2}",2],paulimatrix:"PauliMatrix",pmat:"PauliMatrix",diagonalmatrix:"DiagonalMatrix",dmat:"DiagonalMatrix",antidiagonalmatrix:["DiagonalMatrix",!0],admat:["DiagonalMatrix",!0]},n.default),new r.EnvironmentMap("Physics-aux-envs",o.default.environment,{smallmatrix:["Array",null,null,null,"c","0.333em",".2em","S",1]},n.default),new r.MacroMap("Physics-characters",{"|":["AutoClose",s.TEXCLASS.ORD],")":"AutoClose","]":"AutoClose"},n.default)},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.AbstractSymbolMap=MathJax._.input.tex.SymbolMap.AbstractSymbolMap,e.RegExpMap=MathJax._.input.tex.SymbolMap.RegExpMap,e.AbstractParseMap=MathJax._.input.tex.SymbolMap.AbstractParseMap,e.CharacterMap=MathJax._.input.tex.SymbolMap.CharacterMap,e.DelimiterMap=MathJax._.input.tex.SymbolMap.DelimiterMap,e.MacroMap=MathJax._.input.tex.SymbolMap.MacroMap,e.CommandMap=MathJax._.input.tex.SymbolMap.CommandMap,e.EnvironmentMap=MathJax._.input.tex.SymbolMap.EnvironmentMap},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=MathJax._.input.tex.base.BaseMethods.default},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=MathJax._.input.tex.TexError.default},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=MathJax._.input.tex.NodeUtil.default},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.NodeFactory=MathJax._.input.tex.NodeFactory.NodeFactory},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.TexConstant=MathJax._.input.tex.TexConstants.TexConstant},function(t,e,a){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=MathJax._.input.tex.ParseMethods.default},function(t,e,a){"use strict";a.r(e);var r=a(5),n=a(6),i=a(0),o=a(1);Object(r.combineWithMathJax)({_:{input:{tex:{physics:{PhysicsConfiguration:n,PhysicsItems:i,PhysicsMethods:o}}}}})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AutoOpen = void 0;
+var StackItem_js_1 = __webpack_require__(8);
+var ParseUtil_js_1 = __webpack_require__(2);
+var TexParser_js_1 = __webpack_require__(3);
+var AutoOpen = (function (_super) {
+    __extends(AutoOpen, _super);
+    function AutoOpen() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(AutoOpen.prototype, "kind", {
+        get: function () {
+            return 'auto open';
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(AutoOpen.prototype, "isOpen", {
+        get: function () {
+            return true;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    AutoOpen.prototype.toMml = function () {
+        var parser = this.factory.configuration.parser;
+        var right = this.getProperty('right');
+        if (this.getProperty('smash')) {
+            var mml_1 = _super.prototype.toMml.call(this);
+            var smash = parser.create('node', 'mpadded', [mml_1], { height: 0, depth: 0 });
+            this.Clear();
+            this.Push(parser.create('node', 'TeXAtom', [smash]));
+        }
+        if (right) {
+            this.Push(new TexParser_js_1.default(right, parser.stack.env, parser.configuration).mml());
+        }
+        var mml = _super.prototype.toMml.call(this);
+        return ParseUtil_js_1.default.fenced(this.factory.configuration, this.getProperty('open'), mml, this.getProperty('close'), this.getProperty('big'));
+    };
+    AutoOpen.prototype.checkItem = function (item) {
+        var close = item.getProperty('autoclose');
+        if (close && close === this.getProperty('close')) {
+            if (this.getProperty('ignore')) {
+                this.Clear();
+                return [[], true];
+            }
+            return [[this.toMml()], true];
+        }
+        return _super.prototype.checkItem.call(this, item);
+    };
+    return AutoOpen;
+}(StackItem_js_1.BaseItem));
+exports.AutoOpen = AutoOpen;
+//# sourceMappingURL=PhysicsItems.js.map
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var BaseMethods_js_1 = __webpack_require__(11);
+var TexParser_js_1 = __webpack_require__(3);
+var TexError_js_1 = __webpack_require__(12);
+var MmlNode_js_1 = __webpack_require__(4);
+var ParseUtil_js_1 = __webpack_require__(2);
+var NodeUtil_js_1 = __webpack_require__(13);
+var NodeFactory_js_1 = __webpack_require__(14);
+var PhysicsMethods = {};
+var pairs = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+    '|': '|',
+};
+var biggs = /^(b|B)i(g{1,2})$/;
+PhysicsMethods.Quantity = function (parser, name, open, close, arg, named, variant) {
+    if (open === void 0) { open = '('; }
+    if (close === void 0) { close = ')'; }
+    if (arg === void 0) { arg = false; }
+    if (named === void 0) { named = ''; }
+    if (variant === void 0) { variant = ''; }
+    var star = arg ? parser.GetStar() : false;
+    var next = parser.GetNext();
+    var position = parser.i;
+    var big = null;
+    if (next === '\\') {
+        parser.i++;
+        big = parser.GetCS();
+        if (!big.match(biggs)) {
+            var empty = parser.create('node', 'mrow');
+            parser.Push(ParseUtil_js_1.default.fenced(parser.configuration, open, empty, close));
+            parser.i = position;
+            return;
+        }
+        next = parser.GetNext();
+    }
+    var right = pairs[next];
+    if (arg && next !== '{') {
+        throw new TexError_js_1.default('MissingArgFor', 'Missing argument for %1', parser.currentCS);
+    }
+    if (!right) {
+        var empty = parser.create('node', 'mrow');
+        parser.Push(ParseUtil_js_1.default.fenced(parser.configuration, open, empty, close));
+        parser.i = position;
+        return;
+    }
+    if (named) {
+        var mml = parser.create('token', 'mi', { texClass: MmlNode_js_1.TEXCLASS.OP }, named);
+        if (variant) {
+            NodeUtil_js_1.default.setAttribute(mml, 'mathvariant', variant);
+        }
+        parser.Push(parser.itemFactory.create('fn', mml));
+    }
+    if (next === '{') {
+        var argument = parser.GetArgument(name);
+        next = arg ? open : '\\{';
+        right = arg ? close : '\\}';
+        argument = star ? next + ' ' + argument + ' ' + right :
+            (big ?
+                '\\' + big + 'l' + next + ' ' + argument + ' ' + '\\' + big + 'r' + right :
+                '\\left' + next + ' ' + argument + ' ' + '\\right' + right);
+        parser.Push(new TexParser_js_1.default(argument, parser.stack.env, parser.configuration).mml());
+        return;
+    }
+    if (arg) {
+        next = open;
+        right = close;
+    }
+    parser.i++;
+    parser.Push(parser.itemFactory.create('auto open')
+        .setProperties({ open: next, close: right, big: big }));
+};
+PhysicsMethods.Eval = function (parser, name) {
+    var star = parser.GetStar();
+    var next = parser.GetNext();
+    if (next === '{') {
+        var arg = parser.GetArgument(name);
+        var replace = '\\left. ' +
+            (star ? '\\smash{' + arg + '}' : arg) +
+            ' ' + '\\vphantom{\\int}\\right|';
+        parser.string = parser.string.slice(0, parser.i) + replace +
+            parser.string.slice(parser.i);
+        return;
+    }
+    if (next === '(' || next === '[') {
+        parser.i++;
+        parser.Push(parser.itemFactory.create('auto open')
+            .setProperties({ open: next, close: '|',
+            smash: star, right: '\\vphantom{\\int}' }));
+        return;
+    }
+    throw new TexError_js_1.default('MissingArgFor', 'Missing argument for %1', parser.currentCS);
+};
+PhysicsMethods.Commutator = function (parser, name, open, close) {
+    if (open === void 0) { open = '['; }
+    if (close === void 0) { close = ']'; }
+    var star = parser.GetStar();
+    var next = parser.GetNext();
+    var big = null;
+    if (next === '\\') {
+        parser.i++;
+        big = parser.GetCS();
+        if (!big.match(biggs)) {
+            throw new TexError_js_1.default('MissingArgFor', 'Missing argument for %1', parser.currentCS);
+        }
+        next = parser.GetNext();
+    }
+    if (next !== '{') {
+        throw new TexError_js_1.default('MissingArgFor', 'Missing argument for %1', parser.currentCS);
+    }
+    var arg1 = parser.GetArgument(name);
+    var arg2 = parser.GetArgument(name);
+    var argument = arg1 + ',' + arg2;
+    argument = star ? open + ' ' + argument + ' ' + close :
+        (big ?
+            '\\' + big + 'l' + open + ' ' + argument + ' ' + '\\' + big + 'r' + close :
+            '\\left' + open + ' ' + argument + ' ' + '\\right' + close);
+    parser.Push(new TexParser_js_1.default(argument, parser.stack.env, parser.configuration).mml());
+};
+var latinCap = [0x41, 0x5A];
+var latinSmall = [0x61, 0x7A];
+var greekCap = [0x391, 0x3A9];
+var greekSmall = [0x3B1, 0x3C9];
+var digits = [0x30, 0x39];
+function inRange(value, range) {
+    return (value >= range[0] && value <= range[1]);
+}
+function createVectorToken(factory, kind, def, text) {
+    var parser = factory.configuration.parser;
+    var token = NodeFactory_js_1.NodeFactory.createToken(factory, kind, def, text);
+    var code = text.codePointAt(0);
+    if (text.length === 1 && !parser.stack.env.font &&
+        parser.stack.env.vectorFont &&
+        (inRange(code, latinCap) || inRange(code, latinSmall) ||
+            inRange(code, greekCap) || inRange(code, digits) ||
+            (inRange(code, greekSmall) && parser.stack.env.vectorStar) ||
+            NodeUtil_js_1.default.getAttribute(token, 'accent'))) {
+        NodeUtil_js_1.default.setAttribute(token, 'mathvariant', parser.stack.env.vectorFont);
+    }
+    return token;
+}
+PhysicsMethods.VectorBold = function (parser, name) {
+    var star = parser.GetStar();
+    var arg = parser.GetArgument(name);
+    var oldToken = parser.configuration.nodeFactory.get('token');
+    var oldFont = parser.stack.env.font;
+    delete parser.stack.env.font;
+    parser.configuration.nodeFactory.set('token', createVectorToken);
+    parser.stack.env.vectorFont = star ? 'bold-italic' : 'bold';
+    parser.stack.env.vectorStar = star;
+    var node = new TexParser_js_1.default(arg, parser.stack.env, parser.configuration).mml();
+    if (oldFont) {
+        parser.stack.env.font = oldFont;
+    }
+    delete parser.stack.env.vectorFont;
+    delete parser.stack.env.vectorStar;
+    parser.configuration.nodeFactory.set('token', oldToken);
+    parser.Push(node);
+};
+PhysicsMethods.StarMacro = function (parser, name, argcount) {
+    var parts = [];
+    for (var _i = 3; _i < arguments.length; _i++) {
+        parts[_i - 3] = arguments[_i];
+    }
+    var star = parser.GetStar();
+    var args = [];
+    if (argcount) {
+        for (var i = args.length; i < argcount; i++) {
+            args.push(parser.GetArgument(name));
+        }
+    }
+    var macro = parts.join(star ? '*' : '');
+    macro = ParseUtil_js_1.default.substituteArgs(parser, args, macro);
+    parser.string = ParseUtil_js_1.default.addArgs(parser, macro, parser.string.slice(parser.i));
+    parser.i = 0;
+    if (++parser.macroCount > parser.configuration.options['maxMacros']) {
+        throw new TexError_js_1.default('MaxMacroSub1', 'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+    }
+};
+var vectorApplication = function (parser, kind, name, operator, fences) {
+    var op = new TexParser_js_1.default(operator, parser.stack.env, parser.configuration).mml();
+    parser.Push(parser.itemFactory.create(kind, op));
+    var left = parser.GetNext();
+    var right = pairs[left];
+    if (!right) {
+        return;
+    }
+    var lfence = '', rfence = '', arg = '';
+    var enlarge = fences.indexOf(left) !== -1;
+    if (left === '{') {
+        arg = parser.GetArgument(name);
+        lfence = enlarge ? '\\left\\{' : '';
+        rfence = enlarge ? '\\right\\}' : '';
+        var macro = lfence + ' ' + arg + ' ' + rfence;
+        parser.string = macro + parser.string.slice(parser.i);
+        parser.i = 0;
+        return;
+    }
+    if (!enlarge) {
+        return;
+    }
+    parser.i++;
+    parser.Push(parser.itemFactory.create('auto open')
+        .setProperties({ open: left, close: right }));
+};
+PhysicsMethods.OperatorApplication = function (parser, name, operator) {
+    var fences = [];
+    for (var _i = 3; _i < arguments.length; _i++) {
+        fences[_i - 3] = arguments[_i];
+    }
+    vectorApplication(parser, 'fn', name, operator, fences);
+};
+PhysicsMethods.VectorOperator = function (parser, name, operator) {
+    var fences = [];
+    for (var _i = 3; _i < arguments.length; _i++) {
+        fences[_i - 3] = arguments[_i];
+    }
+    vectorApplication(parser, 'mml', name, operator, fences);
+};
+PhysicsMethods.Expression = function (parser, name, opt, id) {
+    if (opt === void 0) { opt = true; }
+    if (id === void 0) { id = ''; }
+    id = id || name.slice(1);
+    var exp = opt ? parser.GetBrackets(name) : null;
+    var mml = parser.create('token', 'mi', { texClass: MmlNode_js_1.TEXCLASS.OP }, id);
+    if (exp) {
+        var sup = new TexParser_js_1.default(exp, parser.stack.env, parser.configuration).mml();
+        mml = parser.create('node', 'msup', [mml, sup]);
+    }
+    parser.Push(parser.itemFactory.create('fn', mml));
+    if (parser.GetNext() !== '(') {
+        return;
+    }
+    parser.i++;
+    parser.Push(parser.itemFactory.create('auto open')
+        .setProperties({ open: '(', close: ')' }));
+};
+PhysicsMethods.Qqtext = function (parser, name, text) {
+    var star = parser.GetStar();
+    var arg = text ? text : parser.GetArgument(name);
+    var replace = (star ? '' : '\\quad') + '\\text{' + arg + '}\\quad ';
+    parser.string = parser.string.slice(0, parser.i) + replace +
+        parser.string.slice(parser.i);
+};
+PhysicsMethods.Differential = function (parser, name, op) {
+    var optArg = parser.GetBrackets(name);
+    var power = optArg != null ? '^{' + optArg + '}' : ' ';
+    var parens = parser.GetNext() === '(';
+    var braces = parser.GetNext() === '{';
+    var macro = op + power;
+    if (!(parens || braces)) {
+        macro += parser.GetArgument(name, true) || '';
+        var mml = new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml();
+        parser.Push(mml);
+        return;
+    }
+    if (braces) {
+        macro += parser.GetArgument(name);
+        var mml = new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml();
+        parser.Push(parser.create('node', 'TeXAtom', [mml], { texClass: MmlNode_js_1.TEXCLASS.OP }));
+        return;
+    }
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+    parser.i++;
+    parser.Push(parser.itemFactory.create('auto open')
+        .setProperties({ open: '(', close: ')' }));
+};
+PhysicsMethods.Derivative = function (parser, name, argMax, op) {
+    var star = parser.GetStar();
+    var optArg = parser.GetBrackets(name);
+    var argCounter = 1;
+    var args = [];
+    args.push(parser.GetArgument(name));
+    while (parser.GetNext() === '{' && argCounter < argMax) {
+        args.push(parser.GetArgument(name));
+        argCounter++;
+    }
+    var ignore = false;
+    var power1 = ' ';
+    var power2 = ' ';
+    if (argMax > 2 && args.length > 2) {
+        power1 = '^{' + (args.length - 1) + '}';
+        ignore = true;
+    }
+    else if (optArg != null) {
+        if (argMax > 2 && args.length > 1) {
+            ignore = true;
+        }
+        power1 = '^{' + optArg + '}';
+        power2 = power1;
+    }
+    var frac = star ? '\\flatfrac' : '\\frac';
+    var first = args.length > 1 ? args[0] : '';
+    var second = args.length > 1 ? args[1] : args[0];
+    var rest = '';
+    for (var i = 2, arg = void 0; arg = args[i]; i++) {
+        rest += op + ' ' + arg;
+    }
+    var macro = frac + '{' + op + power1 + first + '}' +
+        '{' + op + ' ' + second + power2 + ' ' + rest + '}';
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+    if (parser.GetNext() === '(') {
+        parser.i++;
+        parser.Push(parser.itemFactory.create('auto open')
+            .setProperties({ open: '(', close: ')', ignore: ignore }));
+    }
+};
+PhysicsMethods.Bra = function (parser, name) {
+    var starBra = parser.GetStar();
+    var bra = parser.GetArgument(name);
+    var ket = '';
+    var hasKet = false;
+    var starKet = false;
+    if (parser.GetNext() === '\\') {
+        var saveI = parser.i;
+        parser.i++;
+        var cs = parser.GetCS();
+        var symbol = parser.lookup('macro', cs);
+        if (symbol && symbol.symbol === 'ket') {
+            hasKet = true;
+            saveI = parser.i;
+            starKet = parser.GetStar();
+            if (parser.GetNext() === '{') {
+                ket = parser.GetArgument(cs, true);
+            }
+            else {
+                parser.i = saveI;
+                starKet = false;
+            }
+        }
+        else {
+            parser.i = saveI;
+        }
+    }
+    var macro = '';
+    if (hasKet) {
+        macro = (starBra || starKet) ?
+            "\\langle{" + bra + "}\\vert{" + ket + "}\\rangle" :
+            "\\left\\langle{" + bra + "}\\middle\\vert{" + ket + "}\\right\\rangle";
+    }
+    else {
+        macro = (starBra || starKet) ?
+            "\\langle{" + bra + "}\\vert" : "\\left\\langle{" + bra + "}\\right\\vert{" + ket + "}";
+    }
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+};
+PhysicsMethods.Ket = function (parser, name) {
+    var star = parser.GetStar();
+    var ket = parser.GetArgument(name);
+    var macro = star ? "\\vert{" + ket + "}\\rangle" :
+        "\\left\\vert{" + ket + "}\\right\\rangle";
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+};
+PhysicsMethods.BraKet = function (parser, name) {
+    var star = parser.GetStar();
+    var bra = parser.GetArgument(name);
+    var ket = null;
+    if (parser.GetNext() === '{') {
+        ket = parser.GetArgument(name, true);
+    }
+    var macro = '';
+    if (ket == null) {
+        macro = star ?
+            "\\langle{" + bra + "}\\vert{" + bra + "}\\rangle" :
+            "\\left\\langle{" + bra + "}\\middle\\vert{" + bra + "}\\right\\rangle";
+    }
+    else {
+        macro = star ?
+            "\\langle{" + bra + "}\\vert{" + ket + "}\\rangle" :
+            "\\left\\langle{" + bra + "}\\middle\\vert{" + ket + "}\\right\\rangle";
+    }
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+};
+PhysicsMethods.KetBra = function (parser, name) {
+    var star = parser.GetStar();
+    var ket = parser.GetArgument(name);
+    var bra = null;
+    if (parser.GetNext() === '{') {
+        bra = parser.GetArgument(name, true);
+    }
+    var macro = '';
+    if (bra == null) {
+        macro = star ?
+            "\\vert{" + ket + "}\\rangle\\!\\langle{" + ket + "}\\vert" :
+            "\\left\\vert{" + ket + "}\\middle\\rangle\\!\\middle\\langle{" + ket + "}\\right\\vert";
+    }
+    else {
+        macro = star ?
+            "\\vert{" + ket + "}\\rangle\\!\\langle{" + bra + "}\\vert" :
+            "\\left\\vert{" + ket + "}\\middle\\rangle\\!\\middle\\langle{" + bra + "}\\right\\vert";
+    }
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+};
+function outputBraket(_a, star1, star2) {
+    var _b = __read(_a, 3), arg1 = _b[0], arg2 = _b[1], arg3 = _b[2];
+    return (star1 && star2) ?
+        "\\left\\langle{" + arg1 + "}\\middle\\vert{" + arg2 + "}\\middle\\vert{" + arg3 + "}\\right\\rangle" :
+        (star1 ? "\\langle{" + arg1 + "}\\vert{" + arg2 + "}\\vert{" + arg3 + "}\\rangle" :
+            "\\left\\langle{" + arg1 + "}\\right\\vert{" + arg2 + "}\\left\\vert{" + arg3 + "}\\right\\rangle");
+}
+PhysicsMethods.Expectation = function (parser, name) {
+    var star1 = parser.GetStar();
+    var star2 = star1 && parser.GetStar();
+    var arg1 = parser.GetArgument(name);
+    var arg2 = null;
+    if (parser.GetNext() === '{') {
+        arg2 = parser.GetArgument(name, true);
+    }
+    var macro = (arg1 && arg2) ?
+        outputBraket([arg2, arg1, arg2], star1, star2) :
+        (star1 ? "\\langle {" + arg1 + "} \\rangle" :
+            "\\left\\langle {" + arg1 + "} \\right\\rangle");
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+};
+PhysicsMethods.MatrixElement = function (parser, name) {
+    var star1 = parser.GetStar();
+    var star2 = star1 && parser.GetStar();
+    var arg1 = parser.GetArgument(name);
+    var arg2 = parser.GetArgument(name);
+    var arg3 = parser.GetArgument(name);
+    var macro = outputBraket([arg1, arg2, arg3], star1, star2);
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+};
+PhysicsMethods.MatrixQuantity = function (parser, name, small) {
+    var star = parser.GetStar();
+    var next = parser.GetNext();
+    var array = small ? 'smallmatrix' : 'array';
+    var arg = '';
+    var open = '';
+    var close = '';
+    switch (next) {
+        case '{':
+            arg = parser.GetArgument(name);
+            break;
+        case '(':
+            parser.i++;
+            open = star ? '\\lgroup' : '(';
+            close = star ? '\\rgroup' : ')';
+            arg = parser.GetUpTo(name, ')');
+            break;
+        case '[':
+            parser.i++;
+            open = '[';
+            close = ']';
+            arg = parser.GetUpTo(name, ']');
+            break;
+        case '|':
+            parser.i++;
+            open = '|';
+            close = '|';
+            arg = parser.GetUpTo(name, '|');
+            break;
+        default:
+            open = '(';
+            close = ')';
+            break;
+    }
+    var macro = (open ? '\\left' : '') + open +
+        '\\begin{' + array + '}{} ' + arg + '\\end{' + array + '}' +
+        (open ? '\\right' : '') + close;
+    parser.Push(new TexParser_js_1.default(macro, parser.stack.env, parser.configuration).mml());
+};
+PhysicsMethods.IdentityMatrix = function (parser, name) {
+    var arg = parser.GetArgument(name);
+    var size = parseInt(arg, 10);
+    if (isNaN(size)) {
+        throw new TexError_js_1.default('InvalidNumber', 'Invalid number');
+    }
+    if (size <= 1) {
+        parser.string = '1' + parser.string.slice(parser.i);
+        parser.i = 0;
+        return;
+    }
+    var zeros = Array(size).fill('0');
+    var columns = [];
+    for (var i = 0; i < size; i++) {
+        var row = zeros.slice();
+        row[i] = '1';
+        columns.push(row.join(' & '));
+    }
+    parser.string = columns.join('\\\\ ') + parser.string.slice(parser.i);
+    parser.i = 0;
+};
+PhysicsMethods.XMatrix = function (parser, name) {
+    var star = parser.GetStar();
+    var arg1 = parser.GetArgument(name);
+    var arg2 = parser.GetArgument(name);
+    var arg3 = parser.GetArgument(name);
+    var n = parseInt(arg2, 10);
+    var m = parseInt(arg3, 10);
+    if (isNaN(n) || isNaN(m) || m.toString() !== arg3 || n.toString() !== arg2) {
+        throw new TexError_js_1.default('InvalidNumber', 'Invalid number');
+    }
+    n = n < 1 ? 1 : n;
+    m = m < 1 ? 1 : m;
+    if (!star) {
+        var row = Array(m).fill(arg1).join(' & ');
+        var matrix_1 = Array(n).fill(row).join('\\\\ ');
+        parser.string = matrix_1 + parser.string.slice(parser.i);
+        parser.i = 0;
+        return;
+    }
+    var matrix = '';
+    if (n === 1 && m === 1) {
+        matrix = arg1;
+    }
+    else if (n === 1) {
+        var row = [];
+        for (var i = 1; i <= m; i++) {
+            row.push(arg1 + "_{" + i + "}");
+        }
+        matrix = row.join(' & ');
+    }
+    else if (m === 1) {
+        var row = [];
+        for (var i = 1; i <= n; i++) {
+            row.push(arg1 + "_{" + i + "}");
+        }
+        matrix = row.join('\\\\ ');
+    }
+    else {
+        var rows = [];
+        for (var i = 1; i <= n; i++) {
+            var row = [];
+            for (var j = 1; j <= m; j++) {
+                row.push(arg1 + "_{{" + i + "}{" + j + "}}");
+            }
+            rows.push(row.join(' & '));
+        }
+        matrix = rows.join('\\\\ ');
+    }
+    parser.string = matrix + parser.string.slice(parser.i);
+    parser.i = 0;
+    return;
+};
+PhysicsMethods.PauliMatrix = function (parser, name) {
+    var arg = parser.GetArgument(name);
+    var matrix = arg.slice(1);
+    switch (arg[0]) {
+        case '0':
+            matrix += ' 1 & 0\\\\ 0 & 1';
+            break;
+        case '1':
+        case 'x':
+            matrix += ' 0 & 1\\\\ 1 & 0';
+            break;
+        case '2':
+        case 'y':
+            matrix += ' 0 & -i\\\\ i & 0';
+            break;
+        case '3':
+        case 'z':
+            matrix += ' 1 & 0\\\\ 0 & -1';
+            break;
+        default:
+    }
+    parser.string = matrix + parser.string.slice(parser.i);
+    parser.i = 0;
+};
+PhysicsMethods.DiagonalMatrix = function (parser, name, anti) {
+    if (parser.GetNext() !== '{') {
+        return;
+    }
+    var startI = parser.i;
+    parser.GetArgument(name);
+    var endI = parser.i;
+    parser.i = startI + 1;
+    var elements = [];
+    var element = '';
+    var currentI = parser.i;
+    while (currentI < endI) {
+        try {
+            element = parser.GetUpTo(name, ',');
+        }
+        catch (e) {
+            parser.i = endI;
+            elements.push(parser.string.slice(currentI, endI - 1));
+            break;
+        }
+        if (parser.i >= endI) {
+            elements.push(parser.string.slice(currentI, endI));
+            break;
+        }
+        currentI = parser.i;
+        elements.push(element);
+    }
+    parser.string = makeDiagMatrix(elements, anti) + parser.string.slice(endI);
+    parser.i = 0;
+};
+function makeDiagMatrix(elements, anti) {
+    var length = elements.length;
+    var matrix = [];
+    for (var i = 0; i < length; i++) {
+        matrix.push(Array(anti ? length - i : i + 1).join('&') +
+            '\\mqty{' + elements[i] + '}');
+    }
+    return matrix.join('\\\\ ');
+}
+PhysicsMethods.AutoClose = function (parser, fence, _texclass) {
+    var mo = parser.create('token', 'mo', { stretchy: false }, fence);
+    var item = parser.itemFactory.create('mml', mo).
+        setProperties({ autoclose: fence });
+    parser.Push(item);
+};
+PhysicsMethods.Macro = BaseMethods_js_1.default.Macro;
+PhysicsMethods.NamedFn = BaseMethods_js_1.default.NamedFn;
+PhysicsMethods.Array = BaseMethods_js_1.default.Array;
+exports.default = PhysicsMethods;
+//# sourceMappingURL=PhysicsMethods.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.ParseUtil["default"];
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.TexParser["default"];
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.TEXCLASS = MathJax._.core.MmlTree.MmlNode.TEXCLASS;
+exports.TEXCLASSNAMES = MathJax._.core.MmlTree.MmlNode.TEXCLASSNAMES;
+exports.indentAttributes = MathJax._.core.MmlTree.MmlNode.indentAttributes;
+exports.AbstractMmlNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlNode;
+exports.AbstractMmlTokenNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlTokenNode;
+exports.AbstractMmlLayoutNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlLayoutNode;
+exports.AbstractMmlBaseNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlBaseNode;
+exports.AbstractMmlEmptyNode = MathJax._.core.MmlTree.MmlNode.AbstractMmlEmptyNode;
+exports.TextNode = MathJax._.core.MmlTree.MmlNode.TextNode;
+exports.XMLNode = MathJax._.core.MmlTree.MmlNode.XMLNode;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.isObject = MathJax._.components.global.isObject;
+exports.combineConfig = MathJax._.components.global.combineConfig;
+exports.combineDefaults = MathJax._.components.global.combineDefaults;
+exports.combineWithMathJax = MathJax._.components.global.combineWithMathJax;
+exports.MathJax = MathJax._.components.global.MathJax;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PhysicsConfiguration = void 0;
+var Configuration_js_1 = __webpack_require__(7);
+var PhysicsItems_js_1 = __webpack_require__(0);
+__webpack_require__(9);
+exports.PhysicsConfiguration = Configuration_js_1.Configuration.create('physics', {
+    handler: {
+        macro: [
+            'Physics-automatic-bracing-macros',
+            'Physics-vector-macros',
+            'Physics-vector-chars',
+            'Physics-derivative-macros',
+            'Physics-expressions-macros',
+            'Physics-quick-quad-macros',
+            'Physics-bra-ket-macros',
+            'Physics-matrix-macros'
+        ],
+        character: ['Physics-characters'],
+        environment: ['Physics-aux-envs']
+    },
+    items: (_a = {},
+        _a[PhysicsItems_js_1.AutoOpen.prototype.kind] = PhysicsItems_js_1.AutoOpen,
+        _a)
+});
+//# sourceMappingURL=PhysicsConfiguration.js.map
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.Configuration = MathJax._.input.tex.Configuration.Configuration;
+exports.ConfigurationHandler = MathJax._.input.tex.Configuration.ConfigurationHandler;
+exports.ParserConfiguration = MathJax._.input.tex.Configuration.ParserConfiguration;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.MmlStack = MathJax._.input.tex.StackItem.MmlStack;
+exports.BaseItem = MathJax._.input.tex.StackItem.BaseItem;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var SymbolMap_js_1 = __webpack_require__(10);
+var PhysicsMethods_js_1 = __webpack_require__(1);
+var TexConstants_js_1 = __webpack_require__(15);
+var ParseMethods_js_1 = __webpack_require__(16);
+var MmlNode_js_1 = __webpack_require__(4);
+new SymbolMap_js_1.CommandMap('Physics-automatic-bracing-macros', {
+    'quantity': 'Quantity',
+    'qty': 'Quantity',
+    'pqty': ['Quantity', '(', ')', true],
+    'bqty': ['Quantity', '[', ']', true],
+    'vqty': ['Quantity', '|', '|', true],
+    'Bqty': ['Quantity', '{', '}', true],
+    'absolutevalue': ['Quantity', '|', '|', true],
+    'abs': ['Quantity', '|', '|', true],
+    'norm': ['Quantity', '\\|', '\\|', true],
+    'evaluated': 'Eval',
+    'eval': 'Eval',
+    'order': ['Quantity', '(', ')', true, 'O',
+        TexConstants_js_1.TexConstant.Variant.CALLIGRAPHIC],
+    'commutator': 'Commutator',
+    'comm': 'Commutator',
+    'anticommutator': ['Commutator', '\\{', '\\}'],
+    'acomm': ['Commutator', '\\{', '\\}'],
+    'poissonbracket': ['Commutator', '\\{', '\\}'],
+    'pb': ['Commutator', '\\{', '\\}']
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.CharacterMap('Physics-vector-chars', ParseMethods_js_1.default.mathchar0mi, {
+    dotproduct: ['\u22C5', { mathvariant: TexConstants_js_1.TexConstant.Variant.BOLD }],
+    vdot: ['\u22C5', { mathvariant: TexConstants_js_1.TexConstant.Variant.BOLD }],
+    crossproduct: '\u00D7',
+    cross: '\u00D7',
+    cp: '\u00D7',
+    gradientnabla: ['\u2207', { mathvariant: TexConstants_js_1.TexConstant.Variant.BOLD }],
+    real: ['\u211C', { mathvariant: TexConstants_js_1.TexConstant.Variant.NORMAL }],
+    imaginary: ['\u2111', { mathvariant: TexConstants_js_1.TexConstant.Variant.NORMAL }]
+});
+new SymbolMap_js_1.CommandMap('Physics-vector-macros', {
+    'vectorbold': 'VectorBold',
+    'vb': 'VectorBold',
+    'vectorarrow': ['StarMacro', 1, '\\vec{\\vb', '{#1}}'],
+    'va': ['StarMacro', 1, '\\vec{\\vb', '{#1}}'],
+    'vectorunit': ['StarMacro', 1, '\\hat{\\vb', '{#1}}'],
+    'vu': ['StarMacro', 1, '\\hat{\\vb', '{#1}}'],
+    'gradient': ['OperatorApplication', '\\gradientnabla', '(', '['],
+    'grad': ['OperatorApplication', '\\gradientnabla', '(', '['],
+    'divergence': ['VectorOperator', '\\gradientnabla\\vdot', '(', '['],
+    'div': ['VectorOperator', '\\gradientnabla\\vdot', '(', '['],
+    'curl': ['VectorOperator',
+        '\\gradientnabla\\crossproduct', '(', '['],
+    'laplacian': ['OperatorApplication', '\\nabla^2', '(', '['],
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.CommandMap('Physics-expressions-macros', {
+    'sin': 'Expression',
+    'sinh': 'Expression',
+    'arcsin': 'Expression',
+    'asin': 'Expression',
+    'cos': 'Expression',
+    'cosh': 'Expression',
+    'arccos': 'Expression',
+    'acos': 'Expression',
+    'tan': 'Expression',
+    'tanh': 'Expression',
+    'arctan': 'Expression',
+    'atan': 'Expression',
+    'csc': 'Expression',
+    'csch': 'Expression',
+    'arccsc': 'Expression',
+    'acsc': 'Expression',
+    'sec': 'Expression',
+    'sech': 'Expression',
+    'arcsec': 'Expression',
+    'asec': 'Expression',
+    'cot': 'Expression',
+    'coth': 'Expression',
+    'arccot': 'Expression',
+    'acot': 'Expression',
+    'exp': ['Expression', false],
+    'log': 'Expression',
+    'ln': 'Expression',
+    'det': ['Expression', false],
+    'Pr': ['Expression', false],
+    'tr': ['Expression', false],
+    'trace': ['Expression', false, 'tr'],
+    'Tr': ['Expression', false],
+    'Trace': ['Expression', false, 'Tr'],
+    'rank': 'NamedFn',
+    'erf': ['Expression', false],
+    'Res': ['OperatorApplication', '{\\rm Res}', '(', '[', '{'],
+    'principalvalue': ['OperatorApplication', '{\\cal P}'],
+    'pv': ['OperatorApplication', '{\\cal P}'],
+    'PV': ['OperatorApplication', '{\\rm P.V.}'],
+    'Re': ['OperatorApplication', '{\\rm Re}', '{'],
+    'Im': ['OperatorApplication', '{\\rm Im}', '{'],
+    'sine': ['NamedFn', 'sin'],
+    'hypsine': ['NamedFn', 'sinh'],
+    'arcsine': ['NamedFn', 'arcsin'],
+    'asine': ['NamedFn', 'asin'],
+    'cosine': ['NamedFn', 'cos'],
+    'hypcosine': ['NamedFn', 'cosh'],
+    'arccosine': ['NamedFn', 'arccos'],
+    'acosine': ['NamedFn', 'acos'],
+    'tangent': ['NamedFn', 'tan'],
+    'hyptangent': ['NamedFn', 'tanh'],
+    'arctangent': ['NamedFn', 'arctan'],
+    'atangent': ['NamedFn', 'atan'],
+    'cosecant': ['NamedFn', 'csc'],
+    'hypcosecant': ['NamedFn', 'csch'],
+    'arccosecant': ['NamedFn', 'arccsc'],
+    'acosecant': ['NamedFn', 'acsc'],
+    'secant': ['NamedFn', 'sec'],
+    'hypsecant': ['NamedFn', 'sech'],
+    'arcsecant': ['NamedFn', 'arcsec'],
+    'asecant': ['NamedFn', 'asec'],
+    'cotangent': ['NamedFn', 'cot'],
+    'hypcotangent': ['NamedFn', 'coth'],
+    'arccotangent': ['NamedFn', 'arccot'],
+    'acotangent': ['NamedFn', 'acot'],
+    'exponential': ['NamedFn', 'exp'],
+    'logarithm': ['NamedFn', 'log'],
+    'naturallogarithm': ['NamedFn', 'ln'],
+    'determinant': ['NamedFn', 'det'],
+    'Probability': ['NamedFn', 'Pr'],
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.CommandMap('Physics-quick-quad-macros', {
+    'qqtext': 'Qqtext',
+    'qq': 'Qqtext',
+    'qcomma': ['Macro', '\\qqtext*{,}'],
+    'qc': ['Macro', '\\qqtext*{,}'],
+    'qcc': ['Qqtext', 'c.c.'],
+    'qif': ['Qqtext', 'if'],
+    'qthen': ['Qqtext', 'then'],
+    'qelse': ['Qqtext', 'else'],
+    'qotherwise': ['Qqtext', 'otherwise'],
+    'qunless': ['Qqtext', 'unless'],
+    'qgiven': ['Qqtext', 'given'],
+    'qusing': ['Qqtext', 'using'],
+    'qassume': ['Qqtext', 'assume'],
+    'qsince,': ['Qqtext', 'since,'],
+    'qlet': ['Qqtext', 'let'],
+    'qfor': ['Qqtext', 'for'],
+    'qall': ['Qqtext', 'all'],
+    'qeven': ['Qqtext', 'even'],
+    'qodd': ['Qqtext', 'odd'],
+    'qinteger': ['Qqtext', 'integer'],
+    'qand': ['Qqtext', 'and'],
+    'qor': ['Qqtext', 'or'],
+    'qas': ['Qqtext', 'as'],
+    'qin': ['Qqtext', 'in'],
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.CommandMap('Physics-derivative-macros', {
+    'flatfrac': ['Macro', '\\left.#1\\middle/#2\\right.', 2],
+    'differential': ['Differential', '{\\rm d}'],
+    'dd': ['Differential', '{\\rm d}'],
+    'variation': ['Differential', '\\delta'],
+    'var': ['Differential', '\\delta'],
+    'derivative': ['Derivative', 2, '{\\rm d}'],
+    'dv': ['Derivative', 2, '{\\rm d}'],
+    'partialderivative': ['Derivative', 3, '\\partial'],
+    'pderivative': ['Derivative', 3, '\\partial'],
+    'pdv': ['Derivative', 3, '\\partial'],
+    'functionalderivative': ['Derivative', 2, '\\delta'],
+    'fderivative': ['Derivative', 2, '\\delta'],
+    'fdv': ['Derivative', 2, '\\delta'],
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.CommandMap('Physics-bra-ket-macros', {
+    'bra': 'Bra',
+    'ket': 'Ket',
+    'innerproduct': 'BraKet',
+    'braket': 'BraKet',
+    'outerproduct': 'KetBra',
+    'dyad': 'KetBra',
+    'ketbra': 'KetBra',
+    'op': 'KetBra',
+    'expectationvalue': 'Expectation',
+    'expval': 'Expectation',
+    'ev': 'Expectation',
+    'matrixelement': 'MatrixElement',
+    'matrixel': 'MatrixElement',
+    'mel': 'MatrixElement',
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.CommandMap('Physics-matrix-macros', {
+    'matrixquantity': 'MatrixQuantity',
+    'mqty': 'MatrixQuantity',
+    'pmqty': ['Macro', '\\mqty(#1)', 1],
+    'Pmqty': ['Macro', '\\mqty*(#1)', 1],
+    'bmqty': ['Macro', '\\mqty[#1]', 1],
+    'vmqty': ['Macro', '\\mqty|#1|', 1],
+    'smallmatrixquantity': ['MatrixQuantity', true],
+    'smqty': ['MatrixQuantity', true],
+    'spmqty': ['Macro', '\\smqty(#1)', 1],
+    'sPmqty': ['Macro', '\\smqty*(#1)', 1],
+    'sbmqty': ['Macro', '\\smqty[#1]', 1],
+    'svmqty': ['Macro', '\\smqty|#1|', 1],
+    'matrixdeterminant': ['Macro', '\\vmqty{#1}', 1],
+    'mdet': ['Macro', '\\vmqty{#1}', 1],
+    'smdet': ['Macro', '\\svmqty{#1}', 1],
+    'identitymatrix': 'IdentityMatrix',
+    'imat': 'IdentityMatrix',
+    'xmatrix': 'XMatrix',
+    'xmat': 'XMatrix',
+    'zeromatrix': ['Macro', '\\xmat{0}{#1}{#2}', 2],
+    'zmat': ['Macro', '\\xmat{0}{#1}{#2}', 2],
+    'paulimatrix': 'PauliMatrix',
+    'pmat': 'PauliMatrix',
+    'diagonalmatrix': 'DiagonalMatrix',
+    'dmat': 'DiagonalMatrix',
+    'antidiagonalmatrix': ['DiagonalMatrix', true],
+    'admat': ['DiagonalMatrix', true]
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.EnvironmentMap('Physics-aux-envs', ParseMethods_js_1.default.environment, {
+    smallmatrix: ['Array', null, null, null, 'c', '0.333em', '.2em', 'S', 1]
+}, PhysicsMethods_js_1.default);
+new SymbolMap_js_1.MacroMap('Physics-characters', {
+    '|': ['AutoClose', MmlNode_js_1.TEXCLASS.ORD],
+    ')': 'AutoClose',
+    ']': 'AutoClose'
+}, PhysicsMethods_js_1.default);
+//# sourceMappingURL=PhysicsMappings.js.map
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.AbstractSymbolMap = MathJax._.input.tex.SymbolMap.AbstractSymbolMap;
+exports.RegExpMap = MathJax._.input.tex.SymbolMap.RegExpMap;
+exports.AbstractParseMap = MathJax._.input.tex.SymbolMap.AbstractParseMap;
+exports.CharacterMap = MathJax._.input.tex.SymbolMap.CharacterMap;
+exports.DelimiterMap = MathJax._.input.tex.SymbolMap.DelimiterMap;
+exports.MacroMap = MathJax._.input.tex.SymbolMap.MacroMap;
+exports.CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+exports.EnvironmentMap = MathJax._.input.tex.SymbolMap.EnvironmentMap;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.base.BaseMethods["default"];
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.TexError["default"];
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.NodeUtil["default"];
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.NodeFactory = MathJax._.input.tex.NodeFactory.NodeFactory;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.TexConstant = MathJax._.input.tex.TexConstants.TexConstant;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.ParseMethods["default"];
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
+var global = __webpack_require__(5);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/physics/PhysicsConfiguration.js
+var PhysicsConfiguration = __webpack_require__(6);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/physics/PhysicsItems.js
+var PhysicsItems = __webpack_require__(0);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/physics/PhysicsMethods.js
+var PhysicsMethods = __webpack_require__(1);
+
+// CONCATENATED MODULE: ./lib/physics.js
+
+
+
+
+Object(global["combineWithMathJax"])({
+  _: {
+    input: {
+      tex: {
+        physics: {
+          PhysicsConfiguration: PhysicsConfiguration,
+          PhysicsItems: PhysicsItems,
+          PhysicsMethods: PhysicsMethods
+        }
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./physics.js
+
+
+/***/ })
+/******/ ]);

@@ -1,4 +1,4 @@
-preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE) {
+preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE) {
 
    if (missing(Rdfile))
       stop("Need to specify 'Rdfile' argument.")
@@ -54,10 +54,16 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE) {
 
    if (type == "html") {
 
+      if (dark) {
+         css <- system.file("doc/R_dark.css", package = "mathjaxr")
+      } else {
+         css <- system.file("html/R.css", package = "mathjaxr")
+      }
+
       # convert Rd to HTML version
       html <- tools::Rd2HTML(Rdfile.loc, outfile,
          macros = macros, permissive = TRUE,
-         stylesheet = system.file("html/R.css", package = "mathjaxr"))
+         stylesheet = css)
 
       # use viewer if available (as in RStudio); otherwise use browseURL()
       viewer <- getOption("viewer")

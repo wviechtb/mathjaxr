@@ -1,1 +1,961 @@
-!function(r){var o={};function n(e){if(o[e])return o[e].exports;var t=o[e]={i:e,l:!1,exports:{}};return r[e].call(t.exports,t,t.exports,n),t.l=!0,t.exports}n.m=r,n.c=o,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(t,e){if(1&e&&(t=n(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var o in t)n.d(r,o,function(e){return t[e]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=15)}([function(e,w,t){"use strict";var r,l=this&&this.__read||function(e,t){var r="function"==typeof Symbol&&e[Symbol.iterator];if(!r)return e;var o,n,a=r.call(e),i=[];try{for(;(void 0===t||0<t--)&&!(o=a.next()).done;)i.push(o.value)}catch(e){n={error:e}}finally{try{o&&!o.done&&(r=a.return)&&r.call(a)}finally{if(n)throw n.error}}return i},T=this&&this.__values||function(e){var t="function"==typeof Symbol&&Symbol.iterator,r=t&&e[t],o=0;if(r)return r.call(e);if(e&&"number"==typeof e.length)return{next:function(){return e&&o>=e.length&&(e=void 0),{value:e&&e[o++],done:!e}}};throw new TypeError(t?"Object is not iterable.":"Symbol.iterator is not defined.")};Object.defineProperty(w,"__esModule",{value:!0});function u(e){return B.root=e,o.outputJax.getBBox(B,o).w}function I(e){for(var t=0;e&&!s.default.isType(e,"mtable");){if(s.default.isType(e,"text"))return null;s.default.isType(e,"mrow")?(e=e.childNodes[0],t=0):(e=e.parent.childNodes[t],t++)}return e}function C(e,t){return e.childNodes["up"===t?1:0].childNodes[0].childNodes[0].childNodes[0].childNodes[0]}function S(e,t){return e.childNodes[t].childNodes[0].childNodes[0]}function N(e){return S(e,0)}function A(e,t){return e.childNodes["up"===t?0:1].childNodes[0].childNodes[0].childNodes[0]}function j(e){for(;e&&!s.default.isType(e,"mtd");)e=e.parent;return e}function L(e){for(;e&&null==w.getProperty(e,"inference");)e=e.parent;return e}function k(e,t,r){void 0===r&&(r=!1);var o=0;if(e===t)return o;if(e!==t.parent){var n=e.childNodes,a=r?n.length-1:0;s.default.isType(n[a],"mspace")&&(o+=u(n[a])),e=t.parent}if(e===t)return o;var i=e.childNodes,l=r?i.length-1:0;return i[l]!==t&&(o+=u(i[l])),o}function O(e,t){void 0===t&&(t=!1);var r=I(e),o=A(r,w.getProperty(r,"inferenceRule"));return k(e,r,t)+(u(r)-u(o))/2}function J(e,t,r,o){if(void 0===o&&(o=!1),w.getProperty(t,"inferenceRule")||w.getProperty(t,"labelledRule")){var n=e.nodeFactory.create("node","mrow");t.parent.replaceChild(n,t),n.setChildren([t]),d(t,n),t=n}var a=o?t.childNodes.length-1:0,i=t.childNodes[a];s.default.isType(i,"mspace")?s.default.setAttribute(i,"width",c.default.Em(c.default.dimen2em(s.default.getAttribute(i,"width"))+r)):(i=e.nodeFactory.create("node","mspace",[],{width:c.default.Em(r)}),o?t.appendChild(i):(i.parent=t).childNodes.unshift(i))}function f(e,t,r,o,n){var a=e.nodeFactory.create("node","mspace",[],{width:c.default.Em(n)});if("left"===o){var i=t.childNodes[r].childNodes[0];(a.parent=i).childNodes.unshift(a)}else t.childNodes[r].appendChild(a);w.setProperty(t.parent,"sequentAdjust_"+o,n)}var s=t(10),c=t(4),o=null,B=null,d=function(r,o){["inference","proof","maxAdjust","labelledRule"].forEach(function(e){var t=w.getProperty(r,e);null!=t&&(w.setProperty(o,e,t),w.removeProperty(r,e))})},R=function(e,t){for(var r=t.pop();t.length;){var o=t.pop(),n=l(p(r,o),2),a=n[0],i=n[1];w.getProperty(r.parent,"axiom")&&(f(e,a<0?r:o,0,"left",Math.abs(a)),f(e,i<0?r:o,2,"right",Math.abs(i))),r=o}},p=function(e,t){var r=u(e.childNodes[2]),o=u(t.childNodes[2]);return[u(e.childNodes[0])-u(t.childNodes[0]),r-o]};w.balanceRules=function(e){var t,r;B=new e.document.options.MathItem("",null,e.math.display);var o=e.data;!function(e){var t=e.nodeLists.sequent;if(t)for(var r=t.length-1,o=void 0;o=t[r];r--)if(w.getProperty(o,"sequentProcessed"))w.removeProperty(o,"sequentProcessed");else{var n=[],a=L(o);if(1===w.getProperty(a,"inference")){for(n.push(o);1===w.getProperty(a,"inference");){a=I(a);var i=N(C(a,w.getProperty(a,"inferenceRule"))),l=w.getProperty(i,"inferenceRule")?A(i,w.getProperty(i,"inferenceRule")):i;w.getProperty(l,"sequent")&&(o=l.childNodes[0],n.push(o),w.setProperty(o,"sequentProcessed",!0)),a=i}R(e,n)}}}(o);var n,a,i=o.nodeLists.inference||[];try{for(var l=T(i),u=l.next();!u.done;u=l.next()){var f=u.value,s=w.getProperty(f,"proof"),c=(w.getProperty(f,"labelledRule"),I(f)),d=C(c,w.getProperty(c,"inferenceRule")),p=N(d);if(w.getProperty(p,"inference")){var m=O(p);if(m){J(o,p,-m);var h=k(f,c,!1);J(o,f,m-h)}}var y=S(a=d,a.childNodes.length-1);if(null!=w.getProperty(y,"inference")){var v=O(y,!0);J(o,y,-v,!0);var P=k(f,c,!0),g=w.getProperty(f,"maxAdjust");null!=g&&(v=Math.max(v,g));var b=void 0;if(!s&&(b=j(f))){var x=(n=b).parent.childNodes[n.parent.childNodes.indexOf(n)+1];if(x){var M=o.nodeFactory.create("node","mspace",[],{width:v-P+"em"});x.appendChild(M),f.removeProperty("maxAdjust")}else{var _=L(b);_&&(v=w.getProperty(_,"maxAdjust")?Math.max(w.getProperty(_,"maxAdjust"),v):v,w.setProperty(_,"maxAdjust",v))}}else J(o,w.getProperty(f,"proof")?f:f.parent,v-P,!0)}}}catch(e){t={error:e}}finally{try{u&&!u.done&&(r=l.return)&&r.call(l)}finally{if(t)throw t.error}}};var n="bspr_",a=((r={}).bspr_maxAdjust=!0,r);w.setProperty=function(e,t,r){s.default.setProperty(e,n+t,r)},w.getProperty=function(e,t){return s.default.getProperty(e,n+t)},w.removeProperty=function(e,t){e.removeProperty(n+t)},w.makeBsprAttributes=function(e){e.data.root.walkTree(function(t,e){var r=[];t.getPropertyNames().forEach(function(e){!a[e]&&e.match(RegExp("^"+n))&&r.push(e+":"+t.getProperty(e))}),r.length&&s.default.setAttribute(t,"semantics",r.join(";"))})},w.saveDocument=function(e){if(!("getBBox"in(o=e.document).outputJax))throw Error("The bussproofs extension requires an output jax with a getBBox() method")},w.clearDocument=function(e){o=null}},function(e,t,r){"use strict";var o,n=this&&this.__extends||(o=function(e,t){return(o=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])})(e,t)},function(e,t){function r(){this.constructor=e}o(e,t),e.prototype=null===t?Object.create(t):(r.prototype=t.prototype,new r)});Object.defineProperty(t,"__esModule",{value:!0});var a,i=r(3),l=r(8),u=r(9),f=r(0),s=(a=l.BaseItem,n(c,a),Object.defineProperty(c.prototype,"kind",{get:function(){return"proofTree"},enumerable:!0,configurable:!0}),c.prototype.checkItem=function(e){if(e.isKind("end")&&"prooftree"===e.getName()){var t=this.toMml();return f.setProperty(t,"proof",!0),[[this.factory.create("mml",t),e],!0]}if(e.isKind("stop"))throw new i.default("EnvMissingEnd","Missing \\end{%1}",this.getName());return this.innerStack.Push(e),l.BaseItem.fail},c.prototype.toMml=function(){var e=a.prototype.toMml.call(this),t=this.innerStack.Top();if(t.isKind("start")&&!t.Size())return e;this.innerStack.Push(this.factory.create("stop"));var r=this.innerStack.Top().toMml();return this.create("node","mrow",[r,e],{})},c);function c(){var e=null!==a&&a.apply(this,arguments)||this;return e.leftLabel=null,e.rigthLabel=null,e.innerStack=new u.default(e.factory,{},!0),e}t.ProofTreeItem=s},function(e,t,r){"use strict";var m=this&&this.__read||function(e,t){var r="function"==typeof Symbol&&e[Symbol.iterator];if(!r)return e;var o,n,a=r.call(e),i=[];try{for(;(void 0===t||0<t--)&&!(o=a.next()).done;)i.push(o.value)}catch(e){n={error:e}}finally{try{o&&!o.done&&(r=a.return)&&r.call(a)}finally{if(n)throw n.error}}return i},a=this&&this.__spread||function(){for(var e=[],t=0;t<arguments.length;t++)e=e.concat(m(arguments[t]));return e};Object.defineProperty(t,"__esModule",{value:!0});var h=r(3),y=r(12),i=r(4),v=r(0),o={Prooftree:function(e,t){return e.Push(t),e.itemFactory.create("proofTree").setProperties({name:t.getName(),line:"solid",currentLine:"solid",rootAtTop:!1})},Axiom:function(e,t){var r=e.stack.Top();if("proofTree"!==r.kind)throw new h.default("IllegalProofCommand","Proof commands only allowed in prooftree environment.");var o=d(e,e.GetArgument(t));v.setProperty(o,"axiom",!0),r.Push(o)}},d=function(e,t){var r=i.default.internalMath(e,i.default.trimSpaces(t),0);if(!r[0].childNodes[0].childNodes.length)return e.create("node","mrow",[]);var o=e.create("node","mspace",[],{width:".5ex"}),n=e.create("node","mspace",[],{width:".5ex"});return e.create("node","mrow",a([o],r,[n]))};function p(e,t,r,o,n,a,i){var l,u,f,s,c=e.create("node","mtr",[e.create("node","mtd",[t],{})],{}),d=e.create("node","mtr",[e.create("node","mtd",r,{})],{}),p=e.create("node","mtable",i?[d,c]:[c,d],{align:"top 2",rowlines:a,framespacing:"0 0"});if(v.setProperty(p,"inferenceRule",i?"up":"down"),o&&(l=e.create("node","mpadded",[o],{height:"+.5em",width:"+.5em",voffset:"-.15em"}),v.setProperty(l,"prooflabel","left")),n&&(u=e.create("node","mpadded",[n],{height:"+.5em",width:"+.5em",voffset:"-.15em"}),v.setProperty(u,"prooflabel","right")),o&&n)f=[l,p,u],s="both";else if(o)f=[l,p],s="left";else{if(!n)return p;f=[p,u],s="right"}return p=e.create("node","mrow",f),v.setProperty(p,"labelledRule",s),p}function P(e,t){if("$"!==e.GetNext())throw new h.default("IllegalUseOfCommand","Use of %1 does not match it's definition.",t);e.i++;var r=e.GetUpTo(t,"$");if(-1===r.indexOf("\\fCenter"))throw new h.default("IllegalUseOfCommand","Missing \\fCenter in %1.",t);var o=m(r.split("\\fCenter"),2),n=o[0],a=o[1],i=new y.default(n,e.stack.env,e.configuration).mml(),l=new y.default(a,e.stack.env,e.configuration).mml(),u=new y.default("\\fCenter",e.stack.env,e.configuration).mml(),f=e.create("node","mtd",[i],{}),s=e.create("node","mtd",[u],{}),c=e.create("node","mtd",[l],{}),d=e.create("node","mtr",[f,s,c],{}),p=e.create("node","mtable",[d],{columnspacing:".5ex",columnalign:"center 2"});return v.setProperty(p,"sequent",!0),e.configuration.addNode("sequent",d),p}o.Inference=function(e,t,r){var o=e.stack.Top();if("proofTree"!==o.kind)throw new h.default("IllegalProofCommand","Proof commands only allowed in prooftree environment.");if(o.Size()<r)throw new h.default("BadProofTree","Proof tree badly specified.");for(var n=o.getProperty("rootAtTop"),a=1!==r||o.Peek()[0].childNodes.length?r:0,i=[];i.length&&i.unshift(e.create("node","mtd",[],{})),i.unshift(e.create("node","mtd",[o.Pop()],{rowalign:n?"top":"bottom"})),0<--r;);var l=e.create("node","mtr",i,{}),u=e.create("node","mtable",[l],{framespacing:"0 0"}),f=d(e,e.GetArgument(t)),s=o.getProperty("currentLine");s!==o.getProperty("line")&&o.setProperty("currentLine",o.getProperty("line"));var c=p(e,u,[f],o.getProperty("left"),o.getProperty("right"),s,n);o.setProperty("left",null),o.setProperty("right",null),v.setProperty(c,"inference",a),e.configuration.addNode("inference",c),o.Push(c)},o.Label=function(e,t,r){var o=e.stack.Top();if("proofTree"!==o.kind)throw new h.default("IllegalProofCommand","Proof commands only allowed in prooftree environment.");var n=i.default.internalMath(e,e.GetArgument(t),0),a=1<n.length?e.create("node","mrow",n,{}):n[0];o.setProperty(r,a)},o.SetLine=function(e,t,r,o){var n=e.stack.Top();if("proofTree"!==n.kind)throw new h.default("IllegalProofCommand","Proof commands only allowed in prooftree environment.");n.setProperty("currentLine",r),o&&n.setProperty("line",r)},o.RootAtTop=function(e,t,r){var o=e.stack.Top();if("proofTree"!==o.kind)throw new h.default("IllegalProofCommand","Proof commands only allowed in prooftree environment.");o.setProperty("rootAtTop",r)},o.AxiomF=function(e,t){var r=e.stack.Top();if("proofTree"!==r.kind)throw new h.default("IllegalProofCommand","Proof commands only allowed in prooftree environment.");var o=P(e,t);v.setProperty(o,"axiom",!0),r.Push(o)},o.FCenter=function(e,t){},o.InferenceF=function(e,t,r){var o=e.stack.Top();if("proofTree"!==o.kind)throw new h.default("IllegalProofCommand","Proof commands only allowed in prooftree environment.");if(o.Size()<r)throw new h.default("BadProofTree","Proof tree badly specified.");for(var n=o.getProperty("rootAtTop"),a=1!==r||o.Peek()[0].childNodes.length?r:0,i=[];i.length&&i.unshift(e.create("node","mtd",[],{})),i.unshift(e.create("node","mtd",[o.Pop()],{rowalign:n?"top":"bottom"})),0<--r;);var l=e.create("node","mtr",i,{}),u=e.create("node","mtable",[l],{framespacing:"0 0"}),f=P(e,t),s=o.getProperty("currentLine");s!==o.getProperty("line")&&o.setProperty("currentLine",o.getProperty("line"));var c=p(e,u,[f],o.getProperty("left"),o.getProperty("right"),s,n);o.setProperty("left",null),o.setProperty("right",null),v.setProperty(c,"inference",a),e.configuration.addNode("inference",c),o.Push(c)},t.default=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.TexError.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.ParseUtil.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.isObject=MathJax._.components.global.isObject,t.combineConfig=MathJax._.components.global.combineConfig,t.combineDefaults=MathJax._.components.global.combineDefaults,t.combineWithMathJax=MathJax._.components.global.combineWithMathJax,t.MathJax=MathJax._.components.global.MathJax},function(e,t,r){"use strict";var o;Object.defineProperty(t,"__esModule",{value:!0});var n=r(7),a=r(1),i=r(0);r(11),t.BussproofsConfiguration=n.Configuration.create("bussproofs",{handler:{macro:["Bussproofs-macros"],environment:["Bussproofs-environments"]},items:((o={})[a.ProofTreeItem.prototype.kind]=a.ProofTreeItem,o),preprocessors:[[i.saveDocument,1]],postprocessors:[[i.clearDocument,3],[i.makeBsprAttributes,2],[i.balanceRules,1]]})},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Configuration=MathJax._.input.tex.Configuration.Configuration,t.ConfigurationHandler=MathJax._.input.tex.Configuration.ConfigurationHandler},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.MmlStack=MathJax._.input.tex.StackItem.MmlStack,t.BaseItem=MathJax._.input.tex.StackItem.BaseItem},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.Stack.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.NodeUtil.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var o=r(2),n=r(13),a=r(14);new a.CommandMap("Bussproofs-macros",{AxiomC:"Axiom",UnaryInfC:["Inference",1],BinaryInfC:["Inference",2],TrinaryInfC:["Inference",3],QuaternaryInfC:["Inference",4],QuinaryInfC:["Inference",5],RightLabel:["Label","right"],LeftLabel:["Label","left"],AXC:"Axiom",UIC:["Inference",1],BIC:["Inference",2],TIC:["Inference",3],RL:["Label","right"],LL:["Label","left"],noLine:["SetLine","none",!1],singleLine:["SetLine","solid",!1],solidLine:["SetLine","solid",!1],dashedLine:["SetLine","dashed",!1],alwaysNoLine:["SetLine","none",!0],alwaysSingleLine:["SetLine","solid",!0],alwaysSolidLine:["SetLine","solid",!0],alwaysDashedLine:["SetLine","dashed",!0],rootAtTop:["RootAtTop",!0],alwaysRootAtTop:["RootAtTop",!0],rootAtBottom:["RootAtTop",!1],alwaysRootAtBottom:["RootAtTop",!1],fCenter:"FCenter",Axiom:"AxiomF",UnaryInf:["InferenceF",1],BinaryInf:["InferenceF",2],TrinaryInf:["InferenceF",3],QuaternaryInf:["InferenceF",4],QuinaryInf:["InferenceF",5]},o.default),new a.EnvironmentMap("Bussproofs-environments",n.default.environment,{prooftree:["Prooftree",null,!1]},o.default)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.TexParser.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=MathJax._.input.tex.ParseMethods.default},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.AbstractSymbolMap=MathJax._.input.tex.SymbolMap.AbstractSymbolMap,t.RegExpMap=MathJax._.input.tex.SymbolMap.RegExpMap,t.AbstractParseMap=MathJax._.input.tex.SymbolMap.AbstractParseMap,t.CharacterMap=MathJax._.input.tex.SymbolMap.CharacterMap,t.DelimiterMap=MathJax._.input.tex.SymbolMap.DelimiterMap,t.MacroMap=MathJax._.input.tex.SymbolMap.MacroMap,t.CommandMap=MathJax._.input.tex.SymbolMap.CommandMap,t.EnvironmentMap=MathJax._.input.tex.SymbolMap.EnvironmentMap},function(e,t,r){"use strict";r.r(t);var o=r(5),n=r(6),a=r(1),i=r(2),l=r(0);Object(o.combineWithMathJax)({_:{input:{tex:{bussproofs:{BussproofsConfiguration:n,BussproofsItems:a,BussproofsMethods:i,BussproofsUtil:l}}}}})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __values = (this && this.__values) || function(o) {
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+    if (m) return m.call(o);
+    if (o && typeof o.length === "number") return {
+        next: function () {
+            if (o && i >= o.length) o = void 0;
+            return { value: o && o[i++], done: !o };
+        }
+    };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+};
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.clearDocument = exports.saveDocument = exports.makeBsprAttributes = exports.removeProperty = exports.getProperty = exports.setProperty = exports.balanceRules = void 0;
+var NodeUtil_js_1 = __webpack_require__(10);
+var ParseUtil_js_1 = __webpack_require__(4);
+var doc = null;
+var item = null;
+var getBBox = function (node) {
+    item.root = node;
+    var width = doc.outputJax.getBBox(item, doc).w;
+    return width;
+};
+var getRule = function (node) {
+    var i = 0;
+    while (node && !NodeUtil_js_1.default.isType(node, 'mtable')) {
+        if (NodeUtil_js_1.default.isType(node, 'text')) {
+            return null;
+        }
+        if (NodeUtil_js_1.default.isType(node, 'mrow')) {
+            node = node.childNodes[0];
+            i = 0;
+            continue;
+        }
+        node = node.parent.childNodes[i];
+        i++;
+    }
+    return node;
+};
+var getPremises = function (rule, direction) {
+    return rule.childNodes[direction === 'up' ? 1 : 0].childNodes[0].
+        childNodes[0].childNodes[0].childNodes[0];
+};
+var getPremise = function (premises, n) {
+    return premises.childNodes[n].childNodes[0].childNodes[0];
+};
+var firstPremise = function (premises) {
+    return getPremise(premises, 0);
+};
+var lastPremise = function (premises) {
+    return getPremise(premises, premises.childNodes.length - 1);
+};
+var getConclusion = function (rule, direction) {
+    return rule.childNodes[direction === 'up' ? 0 : 1].childNodes[0].childNodes[0].childNodes[0];
+};
+var getColumn = function (inf) {
+    while (inf && !NodeUtil_js_1.default.isType(inf, 'mtd')) {
+        inf = inf.parent;
+    }
+    return inf;
+};
+var nextSibling = function (inf) {
+    return inf.parent.childNodes[inf.parent.childNodes.indexOf(inf) + 1];
+};
+var previousSibling = function (inf) {
+    return inf.parent.childNodes[inf.parent.childNodes.indexOf(inf) - 1];
+};
+var getParentInf = function (inf) {
+    while (inf && exports.getProperty(inf, 'inference') == null) {
+        inf = inf.parent;
+    }
+    return inf;
+};
+var getSpaces = function (inf, rule, right) {
+    if (right === void 0) { right = false; }
+    var result = 0;
+    if (inf === rule) {
+        return result;
+    }
+    if (inf !== rule.parent) {
+        var children_1 = inf.childNodes;
+        var index_1 = right ? children_1.length - 1 : 0;
+        if (NodeUtil_js_1.default.isType(children_1[index_1], 'mspace')) {
+            result += getBBox(children_1[index_1]);
+        }
+        inf = rule.parent;
+    }
+    if (inf === rule) {
+        return result;
+    }
+    var children = inf.childNodes;
+    var index = right ? children.length - 1 : 0;
+    if (children[index] !== rule) {
+        result += getBBox(children[index]);
+    }
+    return result;
+};
+var adjustValue = function (inf, right) {
+    if (right === void 0) { right = false; }
+    var rule = getRule(inf);
+    var conc = getConclusion(rule, exports.getProperty(rule, 'inferenceRule'));
+    var w = getSpaces(inf, rule, right);
+    var x = getBBox(rule);
+    var y = getBBox(conc);
+    return w + ((x - y) / 2);
+};
+var addSpace = function (config, inf, space, right) {
+    if (right === void 0) { right = false; }
+    if (exports.getProperty(inf, 'inferenceRule') ||
+        exports.getProperty(inf, 'labelledRule')) {
+        var mrow = config.nodeFactory.create('node', 'mrow');
+        inf.parent.replaceChild(mrow, inf);
+        mrow.setChildren([inf]);
+        moveProperties(inf, mrow);
+        inf = mrow;
+    }
+    var index = right ? inf.childNodes.length - 1 : 0;
+    var mspace = inf.childNodes[index];
+    if (NodeUtil_js_1.default.isType(mspace, 'mspace')) {
+        NodeUtil_js_1.default.setAttribute(mspace, 'width', ParseUtil_js_1.default.Em(ParseUtil_js_1.default.dimen2em(NodeUtil_js_1.default.getAttribute(mspace, 'width')) + space));
+        return;
+    }
+    mspace = config.nodeFactory.create('node', 'mspace', [], { width: ParseUtil_js_1.default.Em(space) });
+    if (right) {
+        inf.appendChild(mspace);
+        return;
+    }
+    mspace.parent = inf;
+    inf.childNodes.unshift(mspace);
+};
+var moveProperties = function (src, dest) {
+    var props = ['inference', 'proof', 'maxAdjust', 'labelledRule'];
+    props.forEach(function (x) {
+        var value = exports.getProperty(src, x);
+        if (value != null) {
+            exports.setProperty(dest, x, value);
+            exports.removeProperty(src, x);
+        }
+    });
+};
+var adjustSequents = function (config) {
+    var sequents = config.nodeLists['sequent'];
+    if (!sequents) {
+        return;
+    }
+    for (var i = sequents.length - 1, seq = void 0; seq = sequents[i]; i--) {
+        if (exports.getProperty(seq, 'sequentProcessed')) {
+            exports.removeProperty(seq, 'sequentProcessed');
+            continue;
+        }
+        var collect = [];
+        var inf = getParentInf(seq);
+        if (exports.getProperty(inf, 'inference') !== 1) {
+            continue;
+        }
+        collect.push(seq);
+        while (exports.getProperty(inf, 'inference') === 1) {
+            inf = getRule(inf);
+            var premise = firstPremise(getPremises(inf, exports.getProperty(inf, 'inferenceRule')));
+            var sequent = (exports.getProperty(premise, 'inferenceRule')) ?
+                getConclusion(premise, exports.getProperty(premise, 'inferenceRule')) :
+                premise;
+            if (exports.getProperty(sequent, 'sequent')) {
+                seq = sequent.childNodes[0];
+                collect.push(seq);
+                exports.setProperty(seq, 'sequentProcessed', true);
+            }
+            inf = premise;
+        }
+        adjustSequentPairwise(config, collect);
+    }
+};
+var addSequentSpace = function (config, sequent, position, direction, width) {
+    var mspace = config.nodeFactory.create('node', 'mspace', [], { width: ParseUtil_js_1.default.Em(width) });
+    if (direction === 'left') {
+        var row = sequent.childNodes[position].childNodes[0];
+        mspace.parent = row;
+        row.childNodes.unshift(mspace);
+    }
+    else {
+        sequent.childNodes[position].appendChild(mspace);
+    }
+    exports.setProperty(sequent.parent, 'sequentAdjust_' + direction, width);
+};
+var adjustSequentPairwise = function (config, sequents) {
+    var top = sequents.pop();
+    while (sequents.length) {
+        var bottom = sequents.pop();
+        var _a = __read(compareSequents(top, bottom), 2), left = _a[0], right = _a[1];
+        if (exports.getProperty(top.parent, 'axiom')) {
+            addSequentSpace(config, left < 0 ? top : bottom, 0, 'left', Math.abs(left));
+            addSequentSpace(config, right < 0 ? top : bottom, 2, 'right', Math.abs(right));
+        }
+        top = bottom;
+    }
+};
+var compareSequents = function (top, bottom) {
+    var tr = getBBox(top.childNodes[2]);
+    var br = getBBox(bottom.childNodes[2]);
+    var tl = getBBox(top.childNodes[0]);
+    var bl = getBBox(bottom.childNodes[0]);
+    var dl = tl - bl;
+    var dr = tr - br;
+    return [dl, dr];
+};
+exports.balanceRules = function (arg) {
+    var e_1, _a;
+    item = new arg.document.options.MathItem('', null, arg.math.display);
+    var config = arg.data;
+    adjustSequents(config);
+    var inferences = config.nodeLists['inference'] || [];
+    try {
+        for (var inferences_1 = __values(inferences), inferences_1_1 = inferences_1.next(); !inferences_1_1.done; inferences_1_1 = inferences_1.next()) {
+            var inf = inferences_1_1.value;
+            var isProof = exports.getProperty(inf, 'proof');
+            var rule = getRule(inf);
+            var premises = getPremises(rule, exports.getProperty(rule, 'inferenceRule'));
+            var premiseF = firstPremise(premises);
+            if (exports.getProperty(premiseF, 'inference')) {
+                var adjust_1 = adjustValue(premiseF);
+                if (adjust_1) {
+                    addSpace(config, premiseF, -adjust_1);
+                    var w_1 = getSpaces(inf, rule, false);
+                    addSpace(config, inf, adjust_1 - w_1);
+                }
+            }
+            var premiseL = lastPremise(premises);
+            if (exports.getProperty(premiseL, 'inference') == null) {
+                continue;
+            }
+            var adjust = adjustValue(premiseL, true);
+            addSpace(config, premiseL, -adjust, true);
+            var w = getSpaces(inf, rule, true);
+            var maxAdjust = exports.getProperty(inf, 'maxAdjust');
+            if (maxAdjust != null) {
+                adjust = Math.max(adjust, maxAdjust);
+            }
+            var column = void 0;
+            if (isProof || !(column = getColumn(inf))) {
+                addSpace(config, exports.getProperty(inf, 'proof') ? inf : inf.parent, adjust - w, true);
+                continue;
+            }
+            var sibling = nextSibling(column);
+            if (sibling) {
+                var pos = config.nodeFactory.create('node', 'mspace', [], { width: adjust - w + 'em' });
+                sibling.appendChild(pos);
+                inf.removeProperty('maxAdjust');
+                continue;
+            }
+            var parentRule = getParentInf(column);
+            if (!parentRule) {
+                continue;
+            }
+            adjust = exports.getProperty(parentRule, 'maxAdjust') ?
+                Math.max(exports.getProperty(parentRule, 'maxAdjust'), adjust) : adjust;
+            exports.setProperty(parentRule, 'maxAdjust', adjust);
+        }
+    }
+    catch (e_1_1) { e_1 = { error: e_1_1 }; }
+    finally {
+        try {
+            if (inferences_1_1 && !inferences_1_1.done && (_a = inferences_1.return)) _a.call(inferences_1);
+        }
+        finally { if (e_1) throw e_1.error; }
+    }
+};
+var property_prefix = 'bspr_';
+var blacklistedProperties = (_a = {},
+    _a[property_prefix + 'maxAdjust'] = true,
+    _a);
+exports.setProperty = function (node, property, value) {
+    NodeUtil_js_1.default.setProperty(node, property_prefix + property, value);
+};
+exports.getProperty = function (node, property) {
+    return NodeUtil_js_1.default.getProperty(node, property_prefix + property);
+};
+exports.removeProperty = function (node, property) {
+    node.removeProperty(property_prefix + property);
+};
+exports.makeBsprAttributes = function (arg) {
+    arg.data.root.walkTree(function (mml, _data) {
+        var attr = [];
+        mml.getPropertyNames().forEach(function (x) {
+            if (!blacklistedProperties[x] && x.match(RegExp('^' + property_prefix))) {
+                attr.push(x + ':' + mml.getProperty(x));
+            }
+        });
+        if (attr.length) {
+            NodeUtil_js_1.default.setAttribute(mml, 'semantics', attr.join(';'));
+        }
+    });
+};
+exports.saveDocument = function (arg) {
+    doc = arg.document;
+    if (!('getBBox' in doc.outputJax)) {
+        throw Error('The bussproofs extension requires an output jax with a getBBox() method');
+    }
+};
+exports.clearDocument = function (_arg) {
+    doc = null;
+};
+//# sourceMappingURL=BussproofsUtil.js.map
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProofTreeItem = void 0;
+var TexError_js_1 = __webpack_require__(3);
+var StackItem_js_1 = __webpack_require__(8);
+var Stack_js_1 = __webpack_require__(9);
+var BussproofsUtil = __webpack_require__(0);
+var ProofTreeItem = (function (_super) {
+    __extends(ProofTreeItem, _super);
+    function ProofTreeItem() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.leftLabel = null;
+        _this.rigthLabel = null;
+        _this.innerStack = new Stack_js_1.default(_this.factory, {}, true);
+        return _this;
+    }
+    Object.defineProperty(ProofTreeItem.prototype, "kind", {
+        get: function () {
+            return 'proofTree';
+        },
+        enumerable: false,
+        configurable: true
+    });
+    ProofTreeItem.prototype.checkItem = function (item) {
+        if (item.isKind('end') && item.getName() === 'prooftree') {
+            var node = this.toMml();
+            BussproofsUtil.setProperty(node, 'proof', true);
+            return [[this.factory.create('mml', node), item], true];
+        }
+        if (item.isKind('stop')) {
+            throw new TexError_js_1.default('EnvMissingEnd', 'Missing \\end{%1}', this.getName());
+        }
+        this.innerStack.Push(item);
+        return StackItem_js_1.BaseItem.fail;
+    };
+    ProofTreeItem.prototype.toMml = function () {
+        var tree = _super.prototype.toMml.call(this);
+        var start = this.innerStack.Top();
+        if (start.isKind('start') && !start.Size()) {
+            return tree;
+        }
+        this.innerStack.Push(this.factory.create('stop'));
+        var prefix = this.innerStack.Top().toMml();
+        return this.create('node', 'mrow', [prefix, tree], {});
+    };
+    return ProofTreeItem;
+}(StackItem_js_1.BaseItem));
+exports.ProofTreeItem = ProofTreeItem;
+//# sourceMappingURL=BussproofsItems.js.map
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __read = (this && this.__read) || function (o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+};
+var __spread = (this && this.__spread) || function () {
+    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
+    return ar;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var TexError_js_1 = __webpack_require__(3);
+var TexParser_js_1 = __webpack_require__(12);
+var ParseUtil_js_1 = __webpack_require__(4);
+var BussproofsUtil = __webpack_require__(0);
+var BussproofsMethods = {};
+BussproofsMethods.Prooftree = function (parser, begin) {
+    parser.Push(begin);
+    var newItem = parser.itemFactory.create('proofTree').
+        setProperties({ name: begin.getName(),
+        line: 'solid', currentLine: 'solid', rootAtTop: false });
+    return newItem;
+};
+BussproofsMethods.Axiom = function (parser, name) {
+    var top = parser.stack.Top();
+    if (top.kind !== 'proofTree') {
+        throw new TexError_js_1.default('IllegalProofCommand', 'Proof commands only allowed in prooftree environment.');
+    }
+    var content = paddedContent(parser, parser.GetArgument(name));
+    BussproofsUtil.setProperty(content, 'axiom', true);
+    top.Push(content);
+};
+var paddedContent = function (parser, content) {
+    var nodes = ParseUtil_js_1.default.internalMath(parser, ParseUtil_js_1.default.trimSpaces(content), 0);
+    if (!nodes[0].childNodes[0].childNodes.length) {
+        return parser.create('node', 'mrow', []);
+    }
+    var lpad = parser.create('node', 'mspace', [], { width: '.5ex' });
+    var rpad = parser.create('node', 'mspace', [], { width: '.5ex' });
+    return parser.create('node', 'mrow', __spread([lpad], nodes, [rpad]));
+};
+BussproofsMethods.Inference = function (parser, name, n) {
+    var top = parser.stack.Top();
+    if (top.kind !== 'proofTree') {
+        throw new TexError_js_1.default('IllegalProofCommand', 'Proof commands only allowed in prooftree environment.');
+    }
+    if (top.Size() < n) {
+        throw new TexError_js_1.default('BadProofTree', 'Proof tree badly specified.');
+    }
+    var rootAtTop = top.getProperty('rootAtTop');
+    var childCount = (n === 1 && !top.Peek()[0].childNodes.length) ? 0 : n;
+    var children = [];
+    do {
+        if (children.length) {
+            children.unshift(parser.create('node', 'mtd', [], {}));
+        }
+        children.unshift(parser.create('node', 'mtd', [top.Pop()], { 'rowalign': (rootAtTop ? 'top' : 'bottom') }));
+        n--;
+    } while (n > 0);
+    var row = parser.create('node', 'mtr', children, {});
+    var table = parser.create('node', 'mtable', [row], { framespacing: '0 0' });
+    var conclusion = paddedContent(parser, parser.GetArgument(name));
+    var style = top.getProperty('currentLine');
+    if (style !== top.getProperty('line')) {
+        top.setProperty('currentLine', top.getProperty('line'));
+    }
+    var rule = createRule(parser, table, [conclusion], top.getProperty('left'), top.getProperty('right'), style, rootAtTop);
+    top.setProperty('left', null);
+    top.setProperty('right', null);
+    BussproofsUtil.setProperty(rule, 'inference', childCount);
+    parser.configuration.addNode('inference', rule);
+    top.Push(rule);
+};
+function createRule(parser, premise, conclusions, left, right, style, rootAtTop) {
+    var upper = parser.create('node', 'mtr', [parser.create('node', 'mtd', [premise], {})], {});
+    var lower = parser.create('node', 'mtr', [parser.create('node', 'mtd', conclusions, {})], {});
+    var rule = parser.create('node', 'mtable', rootAtTop ? [lower, upper] : [upper, lower], { align: 'top 2', rowlines: style, framespacing: '0 0' });
+    BussproofsUtil.setProperty(rule, 'inferenceRule', rootAtTop ? 'up' : 'down');
+    var leftLabel, rightLabel;
+    if (left) {
+        leftLabel = parser.create('node', 'mpadded', [left], { height: '+.5em', width: '+.5em', voffset: '-.15em' });
+        BussproofsUtil.setProperty(leftLabel, 'prooflabel', 'left');
+    }
+    if (right) {
+        rightLabel = parser.create('node', 'mpadded', [right], { height: '+.5em', width: '+.5em', voffset: '-.15em' });
+        BussproofsUtil.setProperty(rightLabel, 'prooflabel', 'right');
+    }
+    var children, label;
+    if (left && right) {
+        children = [leftLabel, rule, rightLabel];
+        label = 'both';
+    }
+    else if (left) {
+        children = [leftLabel, rule];
+        label = 'left';
+    }
+    else if (right) {
+        children = [rule, rightLabel];
+        label = 'right';
+    }
+    else {
+        return rule;
+    }
+    rule = parser.create('node', 'mrow', children);
+    BussproofsUtil.setProperty(rule, 'labelledRule', label);
+    return rule;
+}
+BussproofsMethods.Label = function (parser, name, side) {
+    var top = parser.stack.Top();
+    if (top.kind !== 'proofTree') {
+        throw new TexError_js_1.default('IllegalProofCommand', 'Proof commands only allowed in prooftree environment.');
+    }
+    var content = ParseUtil_js_1.default.internalMath(parser, parser.GetArgument(name), 0);
+    var label = (content.length > 1) ?
+        parser.create('node', 'mrow', content, {}) : content[0];
+    top.setProperty(side, label);
+};
+BussproofsMethods.SetLine = function (parser, _name, style, always) {
+    var top = parser.stack.Top();
+    if (top.kind !== 'proofTree') {
+        throw new TexError_js_1.default('IllegalProofCommand', 'Proof commands only allowed in prooftree environment.');
+    }
+    top.setProperty('currentLine', style);
+    if (always) {
+        top.setProperty('line', style);
+    }
+};
+BussproofsMethods.RootAtTop = function (parser, _name, where) {
+    var top = parser.stack.Top();
+    if (top.kind !== 'proofTree') {
+        throw new TexError_js_1.default('IllegalProofCommand', 'Proof commands only allowed in prooftree environment.');
+    }
+    top.setProperty('rootAtTop', where);
+};
+BussproofsMethods.AxiomF = function (parser, name) {
+    var top = parser.stack.Top();
+    if (top.kind !== 'proofTree') {
+        throw new TexError_js_1.default('IllegalProofCommand', 'Proof commands only allowed in prooftree environment.');
+    }
+    var line = parseFCenterLine(parser, name);
+    BussproofsUtil.setProperty(line, 'axiom', true);
+    top.Push(line);
+};
+function parseFCenterLine(parser, name) {
+    var dollar = parser.GetNext();
+    if (dollar !== '$') {
+        throw new TexError_js_1.default('IllegalUseOfCommand', 'Use of %1 does not match it\'s definition.', name);
+    }
+    parser.i++;
+    var axiom = parser.GetUpTo(name, '$');
+    if (axiom.indexOf('\\fCenter') === -1) {
+        throw new TexError_js_1.default('IllegalUseOfCommand', 'Missing \\fCenter in %1.', name);
+    }
+    var _a = __read(axiom.split('\\fCenter'), 2), prem = _a[0], conc = _a[1];
+    var premise = (new TexParser_js_1.default(prem, parser.stack.env, parser.configuration)).mml();
+    var conclusion = (new TexParser_js_1.default(conc, parser.stack.env, parser.configuration)).mml();
+    var fcenter = (new TexParser_js_1.default('\\fCenter', parser.stack.env, parser.configuration)).mml();
+    var left = parser.create('node', 'mtd', [premise], {});
+    var middle = parser.create('node', 'mtd', [fcenter], {});
+    var right = parser.create('node', 'mtd', [conclusion], {});
+    var row = parser.create('node', 'mtr', [left, middle, right], {});
+    var table = parser.create('node', 'mtable', [row], { columnspacing: '.5ex', columnalign: 'center 2' });
+    BussproofsUtil.setProperty(table, 'sequent', true);
+    parser.configuration.addNode('sequent', row);
+    return table;
+}
+BussproofsMethods.FCenter = function (_parser, _name) { };
+BussproofsMethods.InferenceF = function (parser, name, n) {
+    var top = parser.stack.Top();
+    if (top.kind !== 'proofTree') {
+        throw new TexError_js_1.default('IllegalProofCommand', 'Proof commands only allowed in prooftree environment.');
+    }
+    if (top.Size() < n) {
+        throw new TexError_js_1.default('BadProofTree', 'Proof tree badly specified.');
+    }
+    var rootAtTop = top.getProperty('rootAtTop');
+    var childCount = (n === 1 && !top.Peek()[0].childNodes.length) ? 0 : n;
+    var children = [];
+    do {
+        if (children.length) {
+            children.unshift(parser.create('node', 'mtd', [], {}));
+        }
+        children.unshift(parser.create('node', 'mtd', [top.Pop()], { 'rowalign': (rootAtTop ? 'top' : 'bottom') }));
+        n--;
+    } while (n > 0);
+    var row = parser.create('node', 'mtr', children, {});
+    var table = parser.create('node', 'mtable', [row], { framespacing: '0 0' });
+    var conclusion = parseFCenterLine(parser, name);
+    var style = top.getProperty('currentLine');
+    if (style !== top.getProperty('line')) {
+        top.setProperty('currentLine', top.getProperty('line'));
+    }
+    var rule = createRule(parser, table, [conclusion], top.getProperty('left'), top.getProperty('right'), style, rootAtTop);
+    top.setProperty('left', null);
+    top.setProperty('right', null);
+    BussproofsUtil.setProperty(rule, 'inference', childCount);
+    parser.configuration.addNode('inference', rule);
+    top.Push(rule);
+};
+exports.default = BussproofsMethods;
+//# sourceMappingURL=BussproofsMethods.js.map
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.TexError["default"];
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.ParseUtil["default"];
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.isObject = MathJax._.components.global.isObject;
+exports.combineConfig = MathJax._.components.global.combineConfig;
+exports.combineDefaults = MathJax._.components.global.combineDefaults;
+exports.combineWithMathJax = MathJax._.components.global.combineWithMathJax;
+exports.MathJax = MathJax._.components.global.MathJax;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BussproofsConfiguration = void 0;
+var Configuration_js_1 = __webpack_require__(7);
+var BussproofsItems_js_1 = __webpack_require__(1);
+var BussproofsUtil_js_1 = __webpack_require__(0);
+__webpack_require__(11);
+exports.BussproofsConfiguration = Configuration_js_1.Configuration.create('bussproofs', {
+    handler: {
+        macro: ['Bussproofs-macros'],
+        environment: ['Bussproofs-environments']
+    },
+    items: (_a = {},
+        _a[BussproofsItems_js_1.ProofTreeItem.prototype.kind] = BussproofsItems_js_1.ProofTreeItem,
+        _a),
+    preprocessors: [
+        [BussproofsUtil_js_1.saveDocument, 1]
+    ],
+    postprocessors: [
+        [BussproofsUtil_js_1.clearDocument, 3],
+        [BussproofsUtil_js_1.makeBsprAttributes, 2],
+        [BussproofsUtil_js_1.balanceRules, 1]
+    ]
+});
+//# sourceMappingURL=BussproofsConfiguration.js.map
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.Configuration = MathJax._.input.tex.Configuration.Configuration;
+exports.ConfigurationHandler = MathJax._.input.tex.Configuration.ConfigurationHandler;
+exports.ParserConfiguration = MathJax._.input.tex.Configuration.ParserConfiguration;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.MmlStack = MathJax._.input.tex.StackItem.MmlStack;
+exports.BaseItem = MathJax._.input.tex.StackItem.BaseItem;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.Stack["default"];
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.NodeUtil["default"];
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var BussproofsMethods_js_1 = __webpack_require__(2);
+var ParseMethods_js_1 = __webpack_require__(13);
+var SymbolMap_js_1 = __webpack_require__(14);
+new SymbolMap_js_1.CommandMap('Bussproofs-macros', {
+    AxiomC: 'Axiom',
+    UnaryInfC: ['Inference', 1],
+    BinaryInfC: ['Inference', 2],
+    TrinaryInfC: ['Inference', 3],
+    QuaternaryInfC: ['Inference', 4],
+    QuinaryInfC: ['Inference', 5],
+    RightLabel: ['Label', 'right'],
+    LeftLabel: ['Label', 'left'],
+    AXC: 'Axiom',
+    UIC: ['Inference', 1],
+    BIC: ['Inference', 2],
+    TIC: ['Inference', 3],
+    RL: ['Label', 'right'],
+    LL: ['Label', 'left'],
+    noLine: ['SetLine', 'none', false],
+    singleLine: ['SetLine', 'solid', false],
+    solidLine: ['SetLine', 'solid', false],
+    dashedLine: ['SetLine', 'dashed', false],
+    alwaysNoLine: ['SetLine', 'none', true],
+    alwaysSingleLine: ['SetLine', 'solid', true],
+    alwaysSolidLine: ['SetLine', 'solid', true],
+    alwaysDashedLine: ['SetLine', 'dashed', true],
+    rootAtTop: ['RootAtTop', true],
+    alwaysRootAtTop: ['RootAtTop', true],
+    rootAtBottom: ['RootAtTop', false],
+    alwaysRootAtBottom: ['RootAtTop', false],
+    fCenter: 'FCenter',
+    Axiom: 'AxiomF',
+    UnaryInf: ['InferenceF', 1],
+    BinaryInf: ['InferenceF', 2],
+    TrinaryInf: ['InferenceF', 3],
+    QuaternaryInf: ['InferenceF', 4],
+    QuinaryInf: ['InferenceF', 5]
+}, BussproofsMethods_js_1.default);
+new SymbolMap_js_1.EnvironmentMap('Bussproofs-environments', ParseMethods_js_1.default.environment, {
+    prooftree: ['Prooftree', null, false]
+}, BussproofsMethods_js_1.default);
+//# sourceMappingURL=BussproofsMappings.js.map
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.TexParser["default"];
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports["default"] = MathJax._.input.tex.ParseMethods["default"];
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports.AbstractSymbolMap = MathJax._.input.tex.SymbolMap.AbstractSymbolMap;
+exports.RegExpMap = MathJax._.input.tex.SymbolMap.RegExpMap;
+exports.AbstractParseMap = MathJax._.input.tex.SymbolMap.AbstractParseMap;
+exports.CharacterMap = MathJax._.input.tex.SymbolMap.CharacterMap;
+exports.DelimiterMap = MathJax._.input.tex.SymbolMap.DelimiterMap;
+exports.MacroMap = MathJax._.input.tex.SymbolMap.MacroMap;
+exports.CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+exports.EnvironmentMap = MathJax._.input.tex.SymbolMap.EnvironmentMap;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/components/src/core/lib/components/global.js
+var global = __webpack_require__(5);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/bussproofs/BussproofsConfiguration.js
+var BussproofsConfiguration = __webpack_require__(6);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/bussproofs/BussproofsItems.js
+var BussproofsItems = __webpack_require__(1);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/bussproofs/BussproofsMethods.js
+var BussproofsMethods = __webpack_require__(2);
+
+// EXTERNAL MODULE: /home/wviechtb/work/software/mathjaxr/mjsource/js/input/tex/bussproofs/BussproofsUtil.js
+var BussproofsUtil = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./lib/bussproofs.js
+
+
+
+
+
+Object(global["combineWithMathJax"])({
+  _: {
+    input: {
+      tex: {
+        bussproofs: {
+          BussproofsConfiguration: BussproofsConfiguration,
+          BussproofsItems: BussproofsItems,
+          BussproofsMethods: BussproofsMethods,
+          BussproofsUtil: BussproofsUtil
+        }
+      }
+    }
+  }
+});
+// CONCATENATED MODULE: ./bussproofs.js
+
+
+/***/ })
+/******/ ]);
