@@ -1,7 +1,7 @@
 mathjaxr: Using Mathjax in Rd Files
 ===================================
 
-[![Build Status](https://travis-ci.org/wviechtb/mathjaxr.svg?branch=master)](https://travis-ci.org/wviechtb/mathjaxr)
+[![R build status](https://github.com/wviechtb/mathjaxr/workflows/R-CMD-check/badge.svg)](https://github.com/wviechtb/mathjaxr/actions)
 [![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)](https://CRAN.R-project.org/package=mathjaxr)
 ![devel Version](https://img.shields.io/badge/devel-1.1--1-brightgreen.svg)
 
@@ -17,7 +17,7 @@ One can then enable the use of MathJax by calling the `\loadmathjax` macro (that
 
 An inline equation can then be added with the `\mjeqn{latex}{ascii}` macro, with the LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain text help). With the `\mjdeqn{latex}{ascii}` macro, one can add 'displayed equations' (as in LaTeX's `displaymath` environment).
 
-Single argument versions of these macros, namely `\mjseqn{latexascii}` and `\mjsdeqn{latexascii}`, are also available. For the rare case that one must specify different LaTeX commands for the PDF and HTML pages, there are also triple argument versions of these macros, namely `\mjteqn{pdflatex}{htmllatex}{ascii}` and `\mjtdeqn{pdflatex}{htmllatex}{ascii}`.
+Single argument versions of these macros, `\mjseqn{latexascii}` and `\mjsdeqn{latexascii}`, are also available. For the relatively rare case that one must specify different LaTeX commands for the PDF and HTML pages, there are also triple argument versions of these macros, namely `\mjteqn{pdflatex}{htmllatex}{ascii}` and `\mjtdeqn{pdflatex}{htmllatex}{ascii}`.
 
 ## Details
 
