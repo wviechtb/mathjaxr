@@ -8,4 +8,4 @@ License: GPL-3
 Encoding: UTF-8
 URL: https://github.com/wviechtb/mathjaxr
 BugReports: https://github.com/wviechtb/mathjaxr/issues
-LinkingTo: js
+Suggests: js
