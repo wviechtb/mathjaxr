@@ -3,7 +3,7 @@ mathjaxr: Using Mathjax in Rd Files
 
 [![R build status](https://github.com/wviechtb/mathjaxr/workflows/R-CMD-check/badge.svg)](https://github.com/wviechtb/mathjaxr/actions)
 [![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)](https://CRAN.R-project.org/package=mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-1.1--2-brightgreen.svg)
+![devel Version](https://img.shields.io/badge/devel-1.1--3-brightgreen.svg)
 
 ## Description
 

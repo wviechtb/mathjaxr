@@ -1,8 +1,8 @@
-# mathjaxr 1.1-2 (2021-01-29)
+# mathjaxr 1.1-3 (2021-01-30)
 
 * upgraded MathJax version to 3.1.2
 
-* MathJax is now bundled with non-minified js files
+* MathJax is now bundled with non-minified javascript files; upon installation from the source package, the javascript files are minified if the `js` package is available
 
 * `preview_rd()` now tries to load any package-specific macros before rendering a help page
 

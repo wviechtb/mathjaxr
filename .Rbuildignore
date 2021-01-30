@@ -5,4 +5,3 @@
 ^docs$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^inst/doc/mathjax
