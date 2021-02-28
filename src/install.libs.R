@@ -12,7 +12,7 @@ for (f in jsfiles) {
       dir.create(dir, recursive = TRUE)
    if (minify) {
       mini <- js::uglify_files(file.path(srcdir, f), unused = FALSE)
-      writeLines(mini, file.path(dir, basename(f)))
+      writeLines(mini, file.path(dir, basename(f)), useBytes = TRUE)
    } else {
       file.copy(file.path(srcdir, f), file.path(destdir, f))
    }

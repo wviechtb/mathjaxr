@@ -1,6 +1,7 @@
 body {
     background: rgb(26, 26, 26);
     color: rgb(187, 187, 187);
+    /*max-width: 50%;*/
 }
 
 a:link {

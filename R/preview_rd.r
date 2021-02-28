@@ -54,10 +54,16 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
 
    if (type == "html") {
 
-      if (dark) {
-         css <- system.file("doc/R_dark.css", package = "mathjaxr")
+      if (.Platform$OS.type == "windows") {
+         prefix <- "file://"
       } else {
-         css <- system.file("html/R.css", package = "mathjaxr")
+         prefix <- ""
+      }
+
+      if (dark) {
+         css <- paste0(prefix, system.file("doc/R_dark.css", package = "mathjaxr"))
+      } else {
+         css <- paste0(prefix, system.file("html/R.css", package = "mathjaxr"))
       }
 
       # convert Rd to HTML version
@@ -100,22 +106,39 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
 
       pkg <- character(0)
 
+      # try to get the package name and RdMacros field from DESCRIPTION
       if (file.exists(ifelse(basename(getwd()) == "man", "../DESCRIPTION", "DESCRIPTION"))) {
-         pkg <- suppressWarnings(try(read.dcf(ifelse(basename(getwd()) == "man", "../DESCRIPTION", "DESCRIPTION"), fields="Package"), silent=TRUE))
-         if (inherits(pkg, "try-error") || is.na(pkg[1]))
+         pkg      <- suppressWarnings(try(read.dcf(ifelse(basename(getwd()) == "man", "../DESCRIPTION", "DESCRIPTION"), fields="Package"),  silent = TRUE))
+         RdMacros <- suppressWarnings(try(read.dcf(ifelse(basename(getwd()) == "man", "../DESCRIPTION", "DESCRIPTION"), fields="RdMacros"), silent = TRUE))
+         if (inherits(pkg, "try-error") || is.na(pkg[1]) || !dir.exists(ifelse(basename(getwd()) == "man", "macros", "man/macros"))) # if there is no man/macros dir, the package has no macros
             pkg <- character(0)
+         if (inherits(RdMacros, "try-error") || is.na(RdMacros[1]))
+            RdMacros <- character(0)
       }
 
-      if (length(pkg) > 0L) {
-         RdMacros <- paste0("mathjaxr,", pkg)
+      if (length(RdMacros) > 0L) {
+         # remove mathjaxr from RdMacros
+         RdMacros <- trimws(strsplit(RdMacros, ",", fixed = TRUE)[[1]])
+         RdMacros <- RdMacros[RdMacros != "mathjaxr"]
+         if (length(RdMacros) > 1L)
+            RdMacros <- paste0(RdMacros, collapse=",")
+         if (length(RdMacros) > 0L) {
+            RdMacros <- paste0("mathjaxr,", RdMacros)
+         } else {
+            RdMacros <- "mathjaxr"
+         }
       } else {
          RdMacros <- "mathjaxr"
       }
 
+      if (length(pkg) > 0L)
+         RdMacros <- paste0(RdMacros, ",", pkg)
+
       #cmd <- paste0("CMD Rd2pdf --no-index --no-description --force --batch --RdMacros=mathjaxr ", ifelse(view, "", "--no-preview"), " --output=", outfile, " ", Rdfile.loc)
       #cmd <- paste0("CMD Rd2pdf --no-index --no-description --force --batch --RdMacros=mathjaxr --no-preview --output=", outfile, " ", Rdfile.loc)
       cmd <- paste0("CMD Rd2pdf --no-index --no-description --force --batch --RdMacros=", RdMacros, " --no-preview --output=", outfile, " ", Rdfile.loc)
-      system2("R", cmd, wait=TRUE, stdout = ifelse(verbose >= 2, "", tempfile("stdout")))
+      #system2("R", cmd, wait = TRUE, stderr = if (verbose >=2) "" else NULL, stdout = if (verbose >= 2) "" else tempfile("stdout"))
+      system2("R", cmd, wait = TRUE, stdout = ifelse(verbose >= 2, "", tempfile("stdout")))
 
       if (.Platform$OS.type == "windows") {
          shell.exec(outfile)

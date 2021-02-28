@@ -29,7 +29,7 @@ preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE)
    Due to some limitations as to how MathJax can be loaded via the \pkg{mathjaxr} package, MathJax must be loaded via the CDN when using the \code{preview_rd()} function. Hence, rendering of equations in HTML will only work in the preview with an active internet connection.
 }
 \author{
-   Wolfgang Viechtbauer \email{wvb@wvbauer.com} \url{http://www.wvbauer.com/}
+   Wolfgang Viechtbauer \email{wvb@wvbauer.com} \url{https://www.wvbauer.com/}
 }
 \examples{
 \dontrun{

@@ -20,7 +20,7 @@
    Single argument versions of these macros, \code{\\mjseqn{latexascii}} and \code{\\mjsdeqn{latexascii}}, are also available. For the relatively rare case that one must specify different \LaTeX commands for the PDF and HTML pages, there are also triple argument versions of these macros, namely \code{\\mjteqn{pdflatex}{htmllatex}{ascii}} and \code{\\mjtdeqn{pdflatex}{htmllatex}{ascii}}.
 }
 \details{
-   The Javascript code for MathJax is contained in this package. If a user viewing a help page has \pkg{mathjaxr} installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site \url{https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js}. To force use of the CDN site, the user can set the environment variable \env{MATHJAXR_USECDN} to any non-blank value. The URL for a diferent CDN can be specified via the environment variable \env{MATHJAXR_CDN}.
+   The Javascript code for MathJax is contained in this package. If a user viewing a help page has \pkg{mathjaxr} installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site \url{https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js}. To force use of the CDN site, the user can set the environment variable \env{MATHJAXR_USECDN} to any non-blank value (e.g., \code{Sys.setenv(MATHJAXR_USECDN=TRUE)}). The URL for a diferent CDN can be specified via the environment variable \env{MATHJAXR_CDN}.
 
    Package authors who want to ensure that users can see the rendered equations in the HTML help pages also when offline should add \pkg{mathjaxr} to \verb{Imports}. To avoid the note from \sQuote{\verb{R CMD check}} that \sQuote{\verb{All declared Imports should be used}}, one can add \verb{import(mathjaxr)} to \file{NAMESPACE}.
 }
@@ -40,6 +40,6 @@
    \code{\link{preview_rd}}
 }
 \author{
-   Wolfgang Viechtbauer \email{wvb@wvbauer.com} \url{http://www.wvbauer.com/}
+   Wolfgang Viechtbauer \email{wvb@wvbauer.com} \url{https://www.wvbauer.com/}
 }
 \keyword{package}
