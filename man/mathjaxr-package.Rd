@@ -9,8 +9,9 @@
 
    \enumerate{
       \item install the \pkg{mathjaxr} package,
-      \item add \verb{mathjaxr} to \verb{Suggests} or \verb{Imports} in the \file{DESCRIPTION} file of their package,
-      \item add \verb{mathjaxr} to \verb{RdMacros} in the \file{DESCRIPTION} file of their package (or add \verb{RdMacros: mathjaxr} if the \file{DESCRIPTION} file does not yet contain a \verb{RdMacros} entry)
+      \item add \verb{mathjaxr} to \verb{Imports} in the \file{DESCRIPTION} file of their package,
+      \item add \verb{mathjaxr} to \verb{RdMacros} in the \file{DESCRIPTION} file of their package (or add \verb{RdMacros: mathjaxr} if the \file{DESCRIPTION} file does not yet contain a \verb{RdMacros} entry),
+      \item add \verb{import(mathjaxr)} in the \file{NAMESPACE} file of their package.
    }
 
    One can then enable the use of MathJax by calling the \code{\\loadmathjax} macro (that is provided by the \pkg{mathjaxr} package) within the \verb{\\description{}} section of an Rd file (or within the \verb{@description} section if you use \pkg{roxygen2}).
@@ -21,8 +22,6 @@
 }
 \details{
    The Javascript code for MathJax is contained in this package. If a user viewing a help page has \pkg{mathjaxr} installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site \url{https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js}. To force use of the CDN site, the user can set the environment variable \env{MATHJAXR_USECDN} to any non-blank value (e.g., \code{Sys.setenv(MATHJAXR_USECDN=TRUE)}). The URL for a diferent CDN can be specified via the environment variable \env{MATHJAXR_CDN}.
-
-   Package authors who want to ensure that users can see the rendered equations in the HTML help pages also when offline should add \pkg{mathjaxr} to \verb{Imports}. To avoid the note from \sQuote{\verb{R CMD check}} that \sQuote{\verb{All declared Imports should be used}}, one can add \verb{import(mathjaxr)} to \file{NAMESPACE}.
 }
 \section{Issues}{
    Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See \href{https://docs.mathjax.org/en/latest/input/tex/html.html}{here} for further details. Adding space around these symbols should solve this problem (e.g., instead of writing \code{\\mjseqn{i<j}}, one should write \code{\\mjseqn{i < j}}). Do not use the \code{\\lt} and \code{\\gt} macros provided by MathJax as these will cause problems when rendering the PDF help pages.

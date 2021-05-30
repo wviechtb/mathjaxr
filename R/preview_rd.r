@@ -14,6 +14,15 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
    on.exit(Sys.setenv(MATHJAXR_USECDN = mjcdn))
    Sys.setenv(MATHJAXR_USECDN = "TRUE")
 
+   # temporarily set working dir to location of Rdfile
+   wd <- getwd()
+   dn <- dirname(Rdfile)
+   setwd(dn)
+   on.exit(setwd(wd), add=TRUE)
+
+   # strip path from Rdfile
+   Rdfile <- basename(Rdfile)
+
    # list all .Rd and .rd files in the current dir
    Rdfiles <- list.files(pattern = ".*\\.Rd$")
    rdfiles <- list.files(pattern = ".*\\.rd$")

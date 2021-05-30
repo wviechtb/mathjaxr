@@ -1,3 +1,7 @@
+# mathjaxr 1.5-0 (2021-05-30)
+
+* updated instructions for making use of the package
+
 # mathjaxr 1.4-0 (2021-03-01)
 
 * fixed issue with minifying the javascript files upon installation under Windows
