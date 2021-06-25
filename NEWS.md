@@ -1,4 +1,4 @@
-# mathjaxr 1.5-0 (2021-05-30)
+# mathjaxr 1.5-1 (2021-06-25)
 
 * updated instructions for making use of the package
 

@@ -14,7 +14,7 @@
       \item add \verb{import(mathjaxr)} in the \file{NAMESPACE} file of their package.
    }
 
-   One can then enable the use of MathJax by calling the \code{\\loadmathjax} macro (that is provided by the \pkg{mathjaxr} package) within the \verb{\\description{}} section of an Rd file (or within the \verb{@description} section if you use \pkg{roxygen2}).
+   One can then enable the use of MathJax by calling the \code{\\loadmathjax} macro (that is provided by the \pkg{mathjaxr} package) within the \verb{\\description{}} section of an Rd file (or within the \verb{@description} section when using \pkg{roxygen2}).
 
    An inline equation can then be added with the \code{\\mjeqn{latex}{ascii}} macro, with the \LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain text help). With the \code{\\mjdeqn{latex}{ascii}} macro, one can add \sQuote{displayed equations} (as in \LaTeX's \code{displaymath} environment).
 
@@ -29,6 +29,8 @@
    Curly braces/brackets in equations also cause problems. Using \code{\\lbrace} and \code{\\rbrace} (possibly in combination with \code{\\left} and \code{\\right} to make them sufficiently large) is a solution (e.g., \code{\\mjeqn{\\left\\lbrace ... \\right\\rbrace}{\\{...\\}}} should render nicely in the PDF/HTML help pages and the plain-text version).
 
    Using the percent symbol (i.e., \%) inside of equations is also problematic. The percent symbol needs to be \sQuote{escaped} by using a backslash, but backslashes need to be escaped as well. For this to work, we need to use the correct number of backslashes, which works slightly differently for producing the PDF, HTML, and plain-text help pages. The equation \code{\\mjteqn{100\\\\\\\%}{100\\\\\\\\\\\\\\\%}{100\\\%}} should be rendered correctly in all three help pages.
+
+   When starting a paragraph with \code{\\mjeqn{latex}{ascii}}, a line break is automatically added, which is typically undesirable. This can be circumvented by starting the paragraph with \code{\\if{html}{\\eqn{}}} (i.e., adding an \sQuote{empty} equation) followed by the \code{\\mjeqn{latex}{ascii}} equation.
 
    Finally, while MathJax supports a large number of \LaTeX commands, only the math-mode commands are implemented. See \href{https://docs.mathjax.org/en/latest/input/tex/macros/index.html}{here} for a list of the supported commands.
 }
