@@ -3,7 +3,7 @@ mathjaxr: Using Mathjax in Rd Files
 
 [![R build status](https://github.com/wviechtb/mathjaxr/workflows/R-CMD-check/badge.svg)](https://github.com/wviechtb/mathjaxr/actions)
 [![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)](https://CRAN.R-project.org/package=mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-1.5--1-brightgreen.svg)
+![devel Version](https://img.shields.io/badge/devel-1.5--2-brightgreen.svg)
 
 ## Description
 
@@ -24,17 +24,14 @@ Single argument versions of these macros, `\mjseqn{latexascii}` and `\mjsdeqn{la
 
 The Javascript code for MathJax is contained in this package. If a user viewing a help page has `mathjaxr` installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js. To force use of the CDN site, the user can set the environment variable `MATHJAXR_USECDN` to any non-blank value (e.g., `Sys.setenv(MATHJAXR_USECDN=TRUE)`). The URL for a diferent CDN can be specified via the environment variable `MATHJAXR_CDN`.
 
-## Issues
+## Notes/Issues
 
-Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. Adding space around these symbols should solve this problem (e.g., instead of writing `\mjseqn{i<j}`, write `\mjseqn{i < j}`). Do not use the `\lt` and `\gt` macros provided by MathJax as these will cause problems when rendering the PDF help pages.
-
-Curly braces/brackets in equations also cause problems. Using `\lbrace` and `\rbrace` (possibly in combination with `\left` and `\right` to make them sufficiently large) is a solution (e.g., `\mjeqn{\left\lbrace ... \right\rbrace}{\{...\}}` should render nicely in the PDF/HTML help pages and the plain-text version).
-
-Using the percent symbol (i.e., %) inside of equations is also problematic. The percent symbol needs to be 'escaped' by using a backslash, but backslashes need to be escaped as well. For this to work, we need to use the correct number of backslashes, which works slightly differently when producing the PDF, HTML, and plain-text help pages. The equation `\mjteqn{100\\\%}{100\\\\\\\%}{100\\%}` should be rendered correctly in all three help pages.
-
-When starting a paragraph with `\mjeqn{latex}{ascii}`, a line break is automatically added, which is typically undesirable. This can be circumvented by starting the paragraph with `\if{html}{\eqn{}}` (i.e., adding an 'empty' equation) followed by the `\mjeqn{latex}{ascii}` equation.
-
-Finally, while MathJax supports a large number of LaTeX commands, only the math-mode commands are implemented. See [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) for a list of the supported commands.
+- Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. Adding space around these symbols should solve this problem (e.g., instead of writing `\mjseqn{i<j}`, write `\mjseqn{i < j}`). Do not use the `\lt` and `\gt` macros provided by MathJax as these will cause problems when rendering the PDF help pages.
+- Curly braces/brackets in equations also cause problems. Using `\lbrace` and `\rbrace` (possibly in combination with `\left` and `\right` to make them sufficiently large) is a solution (e.g., `\mjeqn{\left\lbrace ... \right\rbrace}{\{...\}}` should render nicely in the PDF/HTML help pages and the plain-text version).
+- Using the percent symbol (i.e., %) inside of equations is also problematic. The percent symbol needs to be 'escaped' by using a backslash, but backslashes need to be escaped as well. For this to work, we need to use the correct number of backslashes, which works slightly differently when producing the PDF, HTML, and plain-text help pages. The equation `\mjteqn{100\\\%}{100\\\\\\\%}{100\\%}` should be rendered correctly in all three help pages.
+- When starting a paragraph with `\mjeqn{latex}{ascii}`, a line break is automatically added, which is typically undesirable. This can be circumvented by starting the paragraph with `\if{html}{\eqn{}}` (i.e., adding an 'empty' equation) followed by the `\mjeqn{latex}{ascii}` equation.
+- While MathJax supports a large number of LaTeX commands, only the math-mode commands are implemented. See [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) for a list of the supported commands.
+- When using R via an RStudio Server, MathJax equations in the help files are not automatically rendered (this is not a problem on RStudio Desktop). A solution to get the rendering to work in RStudio Server is to add `server-add-header=X-Content-Type-Options:` to `/etc/rstudio/rserver.conf` (and then restarting the server). This of course requires admin rights on the machine running the server.
 
 ## Example
 
