@@ -1,3 +1,7 @@
+# mathjaxr devel
+
+* fixed issue with `\mjeqn` coming first in a paragraph (issue #11)
+
 # mathjaxr 1.5-2 (2021-09-15)
 
 * updated instructions for making use of the package
