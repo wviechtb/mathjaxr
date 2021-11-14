@@ -5,7 +5,7 @@
    Function to preview the rendered version of an Rd file.
 }
 \usage{
-preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE)
+preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE, \dots)
 }
 \arguments{
    \item{Rdfile}{character string with the name of the Rd file to preview (either with or without the \code{.Rd} or \code{.rd} extension).}
@@ -13,6 +13,7 @@ preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE)
    \item{type}{character string indicating which version should be rendered (either \code{"html"}, \code{"txt"}, or \code{"pdf"}).}
    \item{verbose}{logical indicating whether diagnostic output will be shown.}
    \item{dark}{logical indicating whether the rendererd HTML page should use a dark mode.}
+   \item{\dots}{other arguments.}
 }
 \details{
    The function is useful when writing a help file that contains MathJax equations. Instead of having to reinstall the package under development to check if the equations are being rendered correctly, one can just set the current working directory to the root of the package (or its \code{man} directory) and then use \code{preview_rd()} to preview the HTML, plain-text, or PDF version of an Rd file on the fly.

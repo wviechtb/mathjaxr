@@ -1,4 +1,4 @@
-preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE) {
+preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE, ...) {
 
    if (missing(Rdfile))
       stop("Need to specify 'Rdfile' argument.")
@@ -7,6 +7,8 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
 
    if (type == "text")
       type <- "txt"
+
+   ddd <- list(...)
 
    # need to load MathJax from the CDN since the \mathjaxr macro
    # won't be able to load MathJax from the local installation
@@ -69,16 +71,20 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
          prefix <- ""
       }
 
-      if (dark) {
-         css <- paste0(prefix, system.file("doc/R_dark.css", package = "mathjaxr"))
+      if (!is.null(ddd$css)) {
+         css <- paste0(prefix, ddd$css)
       } else {
-         css <- paste0(prefix, system.file("html/R.css", package = "mathjaxr"))
+         if (dark) {
+            css <- paste0(prefix, system.file("doc/R_dark.css", package = "mathjaxr"))
+         } else {
+            css <- paste0(prefix, system.file("html/R.css", package = "mathjaxr"))
+         }
       }
 
       # convert Rd to HTML version
       html <- tools::Rd2HTML(Rdfile.loc, outfile,
-         macros = macros, permissive = TRUE,
-         stylesheet = css)
+         macros = macros, permissive = TRUE, dynamic = isTRUE(ddd$dynamic),
+         stylesheet = css, stages=c("build", "install", "render"))
 
       # use viewer if available (as in RStudio); otherwise use browseURL()
       viewer <- getOption("viewer")
