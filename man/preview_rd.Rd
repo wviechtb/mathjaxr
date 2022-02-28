@@ -10,7 +10,7 @@ preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE, \d
 \arguments{
    \item{Rdfile}{character string with the name of the Rd file to preview (either with or without the \code{.Rd} or \code{.rd} extension).}
    \item{view}{logical indicating whether the rendered version of the help file should be displayed.}
-   \item{type}{character string indicating which version should be rendered (either \code{"html"}, \code{"txt"}, or \code{"pdf"}).}
+   \item{type}{character string indicating which version should be rendered (either \code{"html"}, \code{"txt"}/\code{"text"}, or \code{"pdf"}).}
    \item{verbose}{logical indicating whether diagnostic output will be shown.}
    \item{dark}{logical indicating whether the rendererd HTML page should use a dark mode.}
    \item{\dots}{other arguments.}
@@ -18,7 +18,7 @@ preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE, \d
 \details{
    The function is useful when writing a help file that contains MathJax equations. Instead of having to reinstall the package under development to check if the equations are being rendered correctly, one can just set the current working directory to the root of the package (or its \code{man} directory) and then use \code{preview_rd()} to preview the HTML, plain-text, or PDF version of an Rd file on the fly.
 
-   For \code{type="html"}, the HTML page will be opened in the browser with the \code{\link{browseURL}} function. When making further changes to the Rd file, reopening the page each time \code{preview_rd()} is called is inconvenient as this will usually open up a new tab in the browser. Setting \code{view=FALSE} prevents this. Reloading the page in the open tab should then reflect the updates. In RStudio, the generated HTML version will be displayed in the \sQuote{Viewer} pane and the \code{view} argument is then irrelevant.
+   For \code{type="html"}, the HTML page will be opened in the browser with the \code{\link{browseURL}} function. When making further changes to the Rd file, reopening the page each time with \code{preview_rd()} is inconvenient as this will usually open up a new tab in the browser. Setting \code{view=FALSE} prevents this. Reloading the page in the open tab should then reflect the updates. In RStudio, the generated HTML version will be displayed in the \sQuote{Viewer} pane and the \code{view} argument is then irrelevant.
 
    Setting \code{dark=TRUE} (in combination with \code{type="html"}) renders the HTML page in dark mode. Unfortunately, this does not work in RStudio.
 
@@ -27,6 +27,8 @@ preview_rd(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark = FALSE, \d
    For \code{type="pdf"}, the PDF is generated using \command{R CMD Rd2pdf} and should open up in the default PDF viewer.
 }
 \note{
+   Any links to local help pages used in the Rd file to preview will be shown in the rendered HTML or PDF help file, but are non-functional.
+
    Due to some limitations as to how MathJax can be loaded via the \pkg{mathjaxr} package, MathJax must be loaded via the CDN when using the \code{preview_rd()} function. Hence, rendering of equations in HTML will only work in the preview with an active internet connection.
 }
 \author{
