@@ -1,3 +1,7 @@
+# mathjaxr 1.7-0 (2022-02-28)
+
+* version bump for devel version
+
 # mathjaxr 1.6-0 (2022-02-28)
 
 * upgraded MathJax version to 3.2.0
