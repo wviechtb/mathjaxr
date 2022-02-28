@@ -1,4 +1,4 @@
-# mathjaxr 1.5-4 (2022-02-28)
+# mathjaxr 1.6-0 (2022-02-28)
 
 * upgraded MathJax version to 3.2.0
 * updated instructions for making use of the package
