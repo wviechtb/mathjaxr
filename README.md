@@ -57,7 +57,7 @@ install.packages("remotes")
 remotes::install_github("wviechtb/mathjaxr")
 ```
 
-This builds the package from source based on the current version on [GitHub](https://github.com/wviechtb/mathjaxr).
+This builds the package from source based on the current version on [GitHub](https://github.com/wviechtb/mathjaxr). Note that Windows users must have [Rtools](https://cran.r-project.org/bin/windows/Rtools/rtools40.html) installed for this to work.
 
 ## Meta
 
