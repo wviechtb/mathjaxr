@@ -1,4 +1,4 @@
-# mathjaxr 1.7-0 (2022-02-28)
+# mathjaxr 1.7-1 (2024-07-09)
 
 * version bump for devel version
 

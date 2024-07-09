@@ -2,8 +2,8 @@ mathjaxr: Using Mathjax in Rd Files
 ===================================
 
 [![R build status](https://github.com/wviechtb/mathjaxr/workflows/R-CMD-check/badge.svg)](https://github.com/wviechtb/mathjaxr/actions)
-[![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)](https://CRAN.R-project.org/package=mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-1.7--0-brightgreen.svg)
+[![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)](https://cran.r-project.org/package=mathjaxr)
+![devel Version](https://img.shields.io/badge/devel-1.7--1-brightgreen.svg)
 
 ## Description
 
@@ -12,7 +12,8 @@ The `mathjaxr` package allows for easy inclusion of [MathJax](https://www.mathja
 1. install the `mathjaxr` package,
 2. add `mathjaxr` to `Imports` in the `DESCRIPTION` file of their package,
 3. add `mathjaxr` to `RdMacros` in the `DESCRIPTION` file of their package (or add `RdMacros: mathjaxr` if the `DESCRIPTION` file does not yet contain a `RdMacros` entry),
-4. add `import(mathjaxr)` in the `NAMESPACE` file of their package.
+4. add `BuildManual: TRUE` to the `DESCRIPTION` file,
+5. add `import(mathjaxr)` in the `NAMESPACE` file of their package.
 
 One can then enable the use of MathJax by calling the `\loadmathjax` macro (that is provided by the `mathjaxr` package) within the `\description{}` section of an Rd file (or within the `@description` section when using `roxygen2`).
 
@@ -34,13 +35,7 @@ The Javascript code for MathJax is contained in this package. If a user viewing 
 
 ## Example
 
-The probability density function of a normal distribution is given by
-
-<p align="center">
-<img src="https://render.githubusercontent.com/render/math?math=%5CLarge%20f(x)%20%3D%20%5Cfrac%7B1%7D%7B%5Csqrt%7B2%5Cpi%7D%20%5Csigma%7D%20e%5E%7B-%5Cfrac%7B1%7D%7B2%7D%5Cleft(%5Cfrac%7Bx-%5Cmu%7D%7B%5Csigma%7D%5Cright)%5E2%7D%2C">
-</p>
-
-where ![\mu](https://render.githubusercontent.com/render/math?math=%5Cmu) denotes the mean of the distribution and ![\sigma](https://render.githubusercontent.com/render/math?math=%5Csigma) its standard deviation.
+The probability density function of a normal distribution is given by $$f(x) = \frac{1}{\sqrt{2\pi} \sigma} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}$$ where $\mu$ denotes the mean of the distribution and $\sigma$ its standard deviation.
 
 ## Installation
 

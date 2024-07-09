@@ -1,60 +1,98 @@
+@media screen {
+    .container {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 900px;
+    }
+}
+
+.rimage img { /* from knitr - for examples and demos */
+    width: 96%;
+    margin-left: 2%;
+}
+
+.katex { font-size: 1.1em; }
+
+code {
+    color: inherit;
+    background: inherit;
+}
+
 body {
+    line-height: 1.4;
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: black;*/
     color: rgb(187, 187, 187);
-    /*max-width: 50%;*/
 }
 
 a:link {
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: blue;*/
     color: rgb(84, 158, 255);
 }
 
 a:visited {
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: rgb(50%, 0%, 50%);*/
     color: rgb(84, 158, 255);
-    /*color: rgb(44, 118, 215);*/
 }
 
 h1 {
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: rgb(55%, 55%, 55%);*/
     color: rgb(255, 255, 255);
     font-family: monospace;
-    font-size: x-large;
+    font-size: 1.4em; /* x-large; */
     text-align: center;
 }
 
 h2 {
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: rgb(40%, 40%, 40%);*/
     color: rgb(255, 255, 255);
     font-family: monospace;
-    font-size: large;
+    font-size: 1.2em; /* large; */
     text-align: center;
 }
 
 h3 {
-    background: rgb(26, 26, 26);
+    /*background: white;*/
+    background: rgb(52, 52, 52);
+    /*color: rgb(40%, 40%, 40%);*/
     color: rgb(255, 255, 255);
     font-family: monospace;
-    font-size: large;
+    font-size: 1.2em; /* large; */
 }
 
 h4 {
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: rgb(40%, 40%, 40%);*/
     color: rgb(255, 255, 255);
     font-family: monospace;
     font-style: italic;
-    font-size: large;
+    font-size: 1.2em; /* large; */
 }
 
 h5 {
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: rgb(40%, 40%, 40%);*/
     color: rgb(255, 255, 255);
     font-family: monospace;
-    font-size: 100%;
 }
 
 h6 {
+    /*background: white;*/
     background: rgb(26, 26, 26);
+    /*color: rgb(40%, 40%, 40%);*/
     color: rgb(255, 255, 255);
     font-family: monospace;
     font-style: italic;
@@ -98,3 +136,18 @@ span.samp{
 div.vignettes a:hover {
     background: rgb(85%, 85%, 85%);
 }
+
+.source {
+    color: inherit;
+    background: rgb(26, 26, 26);
+}
+
+tr {
+    vertical-align: top;
+}
+
+span.rlang {
+    font-family: Courier New, Courier;
+    color: #666666;
+}
+

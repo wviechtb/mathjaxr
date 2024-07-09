@@ -11,6 +11,7 @@
       \item install the \pkg{mathjaxr} package,
       \item add \verb{mathjaxr} to \verb{Imports} in the \file{DESCRIPTION} file of their package,
       \item add \verb{mathjaxr} to \verb{RdMacros} in the \file{DESCRIPTION} file of their package (or add \verb{RdMacros: mathjaxr} if the \file{DESCRIPTION} file does not yet contain a \verb{RdMacros} entry),
+      \item add \verb{BuildManual: TRUE} to the \file{DESCRIPTION} file,
       \item add \verb{import(mathjaxr)} in the \file{NAMESPACE} file of their package.
    }
 
