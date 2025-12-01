@@ -3,7 +3,7 @@ mathjaxr: Using Mathjax in Rd Files
 
 [![R build status](https://github.com/wviechtb/mathjaxr/workflows/R-CMD-check/badge.svg)](https://github.com/wviechtb/mathjaxr/actions)
 [![CRAN Version](https://www.r-pkg.org/badges/version/mathjaxr)](https://cran.r-project.org/package=mathjaxr)
-![devel Version](https://img.shields.io/badge/devel-1.7--2-brightgreen.svg)
+![devel Version](https://img.shields.io/badge/devel-2.1--0-brightgreen.svg)
 
 ## Description
 
@@ -17,17 +17,17 @@ The `mathjaxr` package allows for easy inclusion of [MathJax](https://www.mathja
 
 One can then enable the use of MathJax by calling the `\loadmathjax` macro (that is provided by the `mathjaxr` package) within the `\description{}` section of an Rd file (or within the `@description` section when using `roxygen2`).
 
-An inline equation can then be added with the `\mjeqn{latex}{ascii}` macro, with the LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain text help). With the `\mjdeqn{latex}{ascii}` macro, one can add 'displayed equations' (as in LaTeX's `displaymath` environment).
+An inline equation can then be added with the `\mjeqn{latex}{ascii}` macro, with the LaTeX commands for the equation given between the first set of curly brackets (which will be rendered in the HTML and PDF help pages) and the plain-text version of the equation given between the second set of curly brackets (which will be shown in the plain-text help). With the `\mjdeqn{latex}{ascii}` macro, one can add 'displayed equations' (as in LaTeX's `displaymath` environment).
 
-Single argument versions of these macros, `\mjseqn{latexascii}` and `\mjsdeqn{latexascii}`, are also available. For the relatively rare case that one must specify different LaTeX commands for the PDF and HTML pages, there are also triple argument versions of these macros, namely `\mjteqn{pdflatex}{htmllatex}{ascii}` and `\mjtdeqn{pdflatex}{htmllatex}{ascii}`.
+Single argument versions of these macros, `\mjseqn{latexascii}` and `\mjsdeqn{latexascii}`, are also available. In case that one must specify different LaTeX commands for the PDF and HTML pages, there are also triple argument versions of these macros, namely `\mjteqn{pdflatex}{htmllatex}{ascii}` and `\mjtdeqn{pdflatex}{htmllatex}{ascii}`.
 
 ## Details
 
-The Javascript code for MathJax is contained in this package. If a user viewing a help page has `mathjaxr` installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js. To force use of the CDN site, the user can set the environment variable `MATHJAXR_USECDN` to any non-blank value (e.g., `Sys.setenv(MATHJAXR_USECDN=TRUE)`). The URL for a diferent CDN can be specified via the environment variable `MATHJAXR_CDN`.
+The JavaScript code for MathJax is contained in this package. If a user viewing a help page has `mathjaxr` installed, it will be retrieved from there, otherwise it will be retrieved from the CDN site https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js. To force use of the CDN site, the user can set the environment variable `MATHJAXR_USECDN` to any non-blank value (e.g., `Sys.setenv(MATHJAXR_USECDN=TRUE)`). The URL for a diferent CDN can be specified via the environment variable `MATHJAXR_CDN`.
 
 ## Notes/Issues
 
-- Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. Adding space around these symbols should solve this problem (e.g., instead of writing `\mjseqn{i<j}`, write `\mjseqn{i < j}`). Do not use the `\lt` and `\gt` macros provided by MathJax as these will cause problems when rendering the PDF help pages.
+- Care must be taken when using the less-than and greater-than symbols in equations as these might get interpreted by the browser as HTML tags. See [here](https://docs.mathjax.org/en/latest/input/tex/html.html) for further details. The best solution is to avoid these symbols completely for the HTML pages and instead use the `\lt` and `\gt` macros provided by MathJax. However, these macros cause problems when rendering the PDF help pages. Hence, one should then use `\mjteqn{}` and `\mjtdeqn{}` to specify different LaTeX commands for the PDF and HTML pages. For example, `\mjteqn{i < j}{i \lt j}{i < j}` will work across all output formats and does not cause any problems for the HTML help pages. For the less- and greater-than-or-equal-to symbols, one can use the `\le` and `\ge` macros that work across all output formats.
 - Curly braces/brackets in equations also cause problems. Using `\lbrace` and `\rbrace` (possibly in combination with `\left` and `\right` to make them sufficiently large) is a solution (e.g., `\mjeqn{\left\lbrace ... \right\rbrace}{\{...\}}` should render nicely in the PDF/HTML help pages and the plain-text version).
 - Using the percent symbol (i.e., %) inside of equations is also problematic. The percent symbol needs to be 'escaped' by using a backslash, but backslashes need to be escaped as well. For this to work, we need to use the correct number of backslashes, which works slightly differently when producing the PDF, HTML, and plain-text help pages. The equation `\mjteqn{100\\\%}{100\\\\\\\%}{100\\%}` should be rendered correctly in all three help pages.
 - While MathJax supports a large number of LaTeX commands, only the math-mode commands are implemented. See [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) for a list of the supported commands.

@@ -1,6 +1,12 @@
-# mathjaxr 1.7-2 (2025-03-14)
+# mathjaxr 2.0-0 (2025-12-01)
 
-* version bump for devel version
+* update MathJax to version 4.0.0
+* removed option to minify the MathJax code via the `js` package (does not work with the current version of MathJax)
+* updated instructions for how to handle the less- and greater-than symbols
+
+# mathjaxr 1.8-0 (2025-04-30)
+
+* rebuilt for CRAN due to missing 'build/stage23.rdb' file
 
 # mathjaxr 1.6-0 (2022-02-28)
 
