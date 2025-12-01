@@ -1,6 +1,6 @@
 # mathjaxr 2.0-0 (2025-12-01)
 
-* update MathJax to version 4.0.0
+* updated MathJax to version 4.0.0
 * removed option to minify the MathJax code via the `js` package (does not work with the current version of MathJax)
 * updated instructions for how to handle the less- and greater-than symbols
 
