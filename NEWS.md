@@ -1,3 +1,7 @@
+# mathjaxr 2.1-1 (2025-12-18)
+
+* `preview_rd()` now also makes use of local `prism.css` and `prism.js` for syntax highlighting
+
 # mathjaxr 2.0-0 (2025-12-01)
 
 * updated MathJax to version 4.0.0

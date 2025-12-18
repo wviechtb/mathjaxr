@@ -106,6 +106,14 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
          macros = macros, permissive = TRUE, dynamic = TRUE,
          stylesheet = css, stages = c("build", "install", "render"))
 
+      # replace prism.css and prism.js references
+      tmp <- readLines(html)
+      prism.css <- paste0(prefix, system.file("doc/prism.css", package = "mathjaxr"))
+      prism.js  <- paste0(prefix, system.file("doc/prism.js", package = "mathjaxr"))
+      tmp <- sub("<link href=\"/doc/html/prism.css\" rel=\"stylesheet\">", paste0("<link href=\"", prism.css, "\" rel=\"stylesheet\">"), tmp, fixed=TRUE)
+      tmp <- sub("<script src=\"/doc/html/prism.js\"></script>", paste0("<script src=\"", prism.js, "\"></script>"), tmp, fixed=TRUE)
+      writeLines(tmp, con=html)
+
       # use viewer if available (as in RStudio); otherwise use browseURL()
       viewer <- getOption("viewer")
       if (!is.null(viewer)) {
