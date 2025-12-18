@@ -13,9 +13,7 @@
    margin-left: 2%;
 }
 
-.katex {
-   font-size: 1.1em;
-}
+.katex { font-size: 1.1em; }
 
 code {
    color: inherit;
@@ -24,29 +22,21 @@ code {
 
 body {
    line-height: 1.4;
-   /*background: white;*/
-   /*color: black;*/
    background: rgb(26, 26, 26);
    color: rgb(187, 187, 187);
 }
 
 a:link {
-   /*background: white;*/
-   /*color: blue;*/
    background: rgb(26, 26, 26);
    color: rgb(84, 158, 255);
 }
 
 a:visited {
-   /*background: white;*/
-   /*color: rgb(50%, 0%, 50%);*/
    background: rgb(26, 26, 26);
    color: rgb(84, 158, 255);
 }
 
 h1 {
-   /*background: white;*/
-   /*color: rgb(55%, 55%, 55%);*/
    background: rgb(26, 26, 26);
    color: rgb(255, 255, 255);
    font-family: monospace;
@@ -55,8 +45,6 @@ h1 {
 }
 
 h2 {
-   /*background: white;*/
-   /*color: rgb(40%, 40%, 40%);*/
    background: rgb(26, 26, 26);
    color: rgb(255, 255, 255);
    font-family: monospace;
@@ -65,8 +53,6 @@ h2 {
 }
 
 h3 {
-   /*background: white;*/
-   /*color: rgb(40%, 40%, 40%);*/
    background: rgb(52, 52, 52);
    color: rgb(255, 255, 255);
    font-family: monospace;
@@ -74,8 +60,6 @@ h3 {
 }
 
 h4 {
-   /*background: white;*/
-   /*color: rgb(40%, 40%, 40%);*/
    background: rgb(26, 26, 26);
    color: rgb(255, 255, 255);
    font-family: monospace;
@@ -84,16 +68,12 @@ h4 {
 }
 
 h5 {
-   /*background: white;*/
-   /*color: rgb(40%, 40%, 40%);*/
    background: rgb(26, 26, 26);
    color: rgb(255, 255, 255);
    font-family: monospace;
 }
 
 h6 {
-   /*background: white;*/
-   /*color: rgb(40%, 40%, 40%);*/
    background: rgb(26, 26, 26);
    color: rgb(255, 255, 255);
    font-family: monospace;
@@ -152,3 +132,4 @@ span.rlang {
    font-family: Courier New, Courier;
    color: #666666;
 }
+
