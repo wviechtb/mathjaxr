@@ -36,17 +36,16 @@ THE SOFTWARE.
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #cccccc;
+	color: black;
 	background: none;
-	text-shadow: 0 1px black;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 0.92em;
+	text-shadow: 0 1px white;
+	/* font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; font-size: 1em; */
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	line-height: 1.2;
+	line-height: 1.5;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
@@ -61,13 +60,13 @@ pre[class*="language-"] {
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
 	text-shadow: none;
-	background: #666666;
+	background: #b3d4fc;
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	text-shadow: none;
-	background: #666666;
+	background: #b3d4fc;
 }
 
 @media print {
@@ -100,11 +99,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #738a72; /* color of comments (#78de74 too bright) */
+	color: slategray;
 }
 
 .token.punctuation {
-	color: #999; /* color of , and () */
+	color: #999;
 }
 
 .token.namespace {
@@ -114,14 +113,11 @@ pre[class*="language-"] {
 .token.property,
 .token.tag,
 .token.boolean,
+.token.number,
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #b7b71a; /* color of TRUE/FALSE */
-}
-
-.token.number {
-   color: #b57433; /* color of numbers (#fe7f01 too bright) */
+	color: #905;
 }
 
 .token.selector,
@@ -130,7 +126,7 @@ pre[class*="language-"] {
 .token.char,
 .token.builtin,
 .token.inserted {
-	color: #269183; /* color of strings */
+	color: #690;
 }
 
 .token.operator,
@@ -138,20 +134,20 @@ pre[class*="language-"] {
 .token.url,
 .language-css .token.string,
 .style .token.string {
-	color: #aaaaaa; /* color of = - < ~ */
+	color: #9a6e3a;
 	/* This background color was intended by the author of this theme. */
-	/*background: hsla(0, 0%, 100%, .5);*/
+	background: hsla(0, 0%, 100%, .5);
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: #b7b71a; /* color of keywords (NULL) */
+	color: #07a;
 }
 
 .token.function,
 .token.class-name {
-	color: #dd4a68;
+	color: #DD4A68;
 }
 
 .token.regex,

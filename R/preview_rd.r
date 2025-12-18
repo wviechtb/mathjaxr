@@ -78,7 +78,7 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
          if (dark) {
             css <- paste0(prefix, system.file("doc/R_dark.css", package = "mathjaxr"))
          } else {
-            css <- paste0(prefix, system.file("html/R.css", package = "mathjaxr"))
+            css <- paste0(prefix, system.file("doc/R.css", package = "mathjaxr"))
          }
       }
 
@@ -108,7 +108,11 @@ preview_rd <- function(Rdfile, view = TRUE, type = "html", verbose = FALSE, dark
 
       # replace prism.css and prism.js references
       tmp <- readLines(html)
-      prism.css <- paste0(prefix, system.file("doc/prism.css", package = "mathjaxr"))
+      if (dark) {
+         prism.css <- paste0(prefix, system.file("doc/prism_dark.css", package = "mathjaxr"))
+      } else {
+         prism.css <- paste0(prefix, system.file("doc/prism.css", package = "mathjaxr"))
+      }
       prism.js  <- paste0(prefix, system.file("doc/prism.js", package = "mathjaxr"))
       tmp <- sub("<link href=\"/doc/html/prism.css\" rel=\"stylesheet\">", paste0("<link href=\"", prism.css, "\" rel=\"stylesheet\">"), tmp, fixed=TRUE)
       tmp <- sub("<script src=\"/doc/html/prism.js\"></script>", paste0("<script src=\"", prism.js, "\"></script>"), tmp, fixed=TRUE)
